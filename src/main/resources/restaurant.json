@@ -1,0 +1,4429 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API",
+  "osm3s": {
+    "timestamp_osm_base": "",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 277052529,
+  "lat": 43.6958077,
+  "lon": 7.2420017,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Le Dauphin NiГ§ois"
+  }
+},
+{
+  "type": "node",
+  "id": 287898520,
+  "lat": 43.7224091,
+  "lon": 7.1153905,
+  "tags": {
+    "amenity": "restaurant",
+    "created_by": "Potlatch 0.10b"
+  }
+},
+{
+  "type": "node",
+  "id": 305569145,
+  "lat": 43.6279629,
+  "lon": 7.0975711,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Jarrier",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2009"
+  }
+},
+{
+  "type": "node",
+  "id": 305569146,
+  "lat": 43.6270306,
+  "lon": 7.0991356,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Restaurant Hotel des Arcades"
+  }
+},
+{
+  "type": "node",
+  "id": 310593075,
+  "lat": 43.7084020,
+  "lon": 7.2611232,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "10",
+    "addr:postcode": "06000",
+    "addr:street": "Rue ClГ©ment Roassal",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "L'Anis EtoilГ©",
+    "phone": "04 93 01 65 99"
+  }
+},
+{
+  "type": "node",
+  "id": 310593083,
+  "lat": 43.7080155,
+  "lon": 7.2600723,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Au grill d'or"
+  }
+},
+{
+  "type": "node",
+  "id": 311348760,
+  "lat": 43.7069961,
+  "lon": 7.2571355,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Pizzeria Le Castello"
+  }
+},
+{
+  "type": "node",
+  "id": 313186234,
+  "lat": 43.6960187,
+  "lon": 7.2708430,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Lou Nissart"
+  }
+},
+{
+  "type": "node",
+  "id": 313186235,
+  "lat": 43.6960313,
+  "lon": 7.2710951,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Diva"
+  }
+},
+{
+  "type": "node",
+  "id": 313186331,
+  "lat": 43.6956094,
+  "lon": 7.2733957,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Voglia"
+  }
+},
+{
+  "type": "node",
+  "id": 372836172,
+  "lat": 43.6915882,
+  "lon": 7.2913772,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housename": "La RГ©serve",
+    "addr:postcode": "06300",
+    "addr:street": "Boulevard Franck Pilatte",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "La RГ©serve"
+  }
+},
+{
+  "type": "node",
+  "id": 373343489,
+  "lat": 43.7041934,
+  "lon": 7.2651084,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Crazy Wok"
+  }
+},
+{
+  "type": "node",
+  "id": 373343492,
+  "lat": 43.7028797,
+  "lon": 7.2696093,
+  "tags": {
+    "amenity": "restaurant",
+    "contact:phone": "+33 4 93 13 95 78",
+    "contact:website": "http://www.restaurant-shalimar.fr/",
+    "cuisine": "indian",
+    "name": "Shalimar",
+    "opening_hours": "Mo-Th,Su 12:00-14:00,19:00-22:00; Fr-Sa,PH 12:00-14:00,19:00-22:30"
+  }
+},
+{
+  "type": "node",
+  "id": 373343494,
+  "lat": 43.6973803,
+  "lon": 7.2765375,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le 22 septembre"
+  }
+},
+{
+  "type": "node",
+  "id": 373343497,
+  "lat": 43.6969731,
+  "lon": 7.2745323,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "4",
+    "addr:postcode": "06300",
+    "addr:street": "Rue de l'Abbaye",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Delhi Darbar"
+  }
+},
+{
+  "type": "node",
+  "id": 373343498,
+  "lat": 43.7088787,
+  "lon": 7.2630090,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Pacific"
+  }
+},
+{
+  "type": "node",
+  "id": 384744931,
+  "lat": 43.6976602,
+  "lon": 7.2706095,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "16",
+    "addr:postcode": "06000",
+    "addr:street": "Avenue Felix Faure",
+    "amenity": "restaurant",
+    "name": "Hippopotamus",
+    "phone": "+33 4 93 92 42 77",
+    "website": "http://www.hippopotamus.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 384744991,
+  "lat": 43.6958665,
+  "lon": 7.2737304,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "La Favola"
+  }
+},
+{
+  "type": "node",
+  "id": 384744992,
+  "lat": 43.6955660,
+  "lon": 7.2737099,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Le Bistrot Romain"
+  }
+},
+{
+  "type": "node",
+  "id": 439226954,
+  "lat": 43.6954538,
+  "lon": 7.2749898,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Chez Freddy"
+  }
+},
+{
+  "type": "node",
+  "id": 442498407,
+  "lat": 43.6213148,
+  "lon": 7.0639150,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Atelier 67"
+  }
+},
+{
+  "type": "node",
+  "id": 449076318,
+  "lat": 43.7145597,
+  "lon": 7.2611569,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Union"
+  }
+},
+{
+  "type": "node",
+  "id": 449085162,
+  "lat": 43.7099902,
+  "lon": 7.2614797,
+  "tags": {
+    "addr:postcode": "06000",
+    "addr:street": "1, place GГ©nГ©ral de Gaulle",
+    "alt_name": "Brasserie - Le Gambetta",
+    "amenity": "restaurant",
+    "cuisine": "fish",
+    "int_name": "Brasserie - Le Gambetta",
+    "name": "Le Gambetta"
+  }
+},
+{
+  "type": "node",
+  "id": 453141938,
+  "lat": 43.6983071,
+  "lon": 7.2688463,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian"
+  }
+},
+{
+  "type": "node",
+  "id": 456953029,
+  "lat": 43.6962685,
+  "lon": 7.2700904,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Buffalo Grill"
+  }
+},
+{
+  "type": "node",
+  "id": 461746126,
+  "lat": 43.6199418,
+  "lon": 7.0362966,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Sun City CafГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 465035441,
+  "lat": 43.6961964,
+  "lon": 7.2771160,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Trappa"
+  }
+},
+{
+  "type": "node",
+  "id": 465035447,
+  "lat": 43.6973770,
+  "lon": 7.2756962,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Lou Fran Calin"
+  }
+},
+{
+  "type": "node",
+  "id": 465035450,
+  "lat": 43.6974637,
+  "lon": 7.2757604,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Romarin"
+  }
+},
+{
+  "type": "node",
+  "id": 465035452,
+  "lat": 43.6965303,
+  "lon": 7.2763185,
+  "tags": {
+    "amenity": "restaurant",
+    "contact:phone": "+33 4 93 62 13 44",
+    "contact:website": "http://restolechoucas.free.fr/",
+    "name": "Le Choucas"
+  }
+},
+{
+  "type": "node",
+  "id": 467812671,
+  "lat": 43.6362149,
+  "lon": 7.1332086,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Bouche Г  Oreille",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2009"
+  }
+},
+{
+  "type": "node",
+  "id": 471974947,
+  "lat": 43.6578734,
+  "lon": 7.1231887,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Pizza FranГ§ois",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2009"
+  }
+},
+{
+  "type": "node",
+  "id": 485249946,
+  "lat": 43.6965692,
+  "lon": 7.2756884,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:country": "FR",
+    "addr:housenumber": "19/7",
+    "addr:postcode": "06300",
+    "addr:street": "Rue de la PrГ©fecture/Rue de l'Abbaye",
+    "amenity": "restaurant",
+    "name": "Le Tire Bouchon",
+    "url": "http://www.le-tire-bouchon.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 488577391,
+  "lat": 43.6976522,
+  "lon": 7.2752924,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:country": "FR",
+    "addr:housenumber": "4",
+    "addr:postcode": "06300",
+    "addr:street": "Rue du MarchГ©",
+    "amenity": "restaurant",
+    "cuisine": "local",
+    "name": "A l'Ecurie"
+  }
+},
+{
+  "type": "node",
+  "id": 488715018,
+  "lat": 43.7037296,
+  "lon": 7.2632985,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Voyageur Nissart"
+  }
+},
+{
+  "type": "node",
+  "id": 530728217,
+  "lat": 43.7037637,
+  "lon": 7.2699587,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Aromate"
+  }
+},
+{
+  "type": "node",
+  "id": 539387779,
+  "lat": 43.6999755,
+  "lon": 7.2855438,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Chez Pipo"
+  }
+},
+{
+  "type": "node",
+  "id": 546559155,
+  "lat": 43.6965049,
+  "lon": 7.2771638,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Chez Acchiardo"
+  }
+},
+{
+  "type": "node",
+  "id": 563918500,
+  "lat": 43.7000256,
+  "lon": 7.2515325,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "sushi",
+    "name": "Allo Sushi",
+    "phone": "+33 4 93 37 48 98"
+  }
+},
+{
+  "type": "node",
+  "id": 571168294,
+  "lat": 43.7200326,
+  "lon": 7.1127151,
+  "tags": {
+    "addr:housenumber": "539",
+    "addr:postcode": "06140",
+    "addr:street": "Avenue Emile Hugues",
+    "amenity": "restaurant",
+    "name": "La Table du Mas",
+    "website": "https://masdevence.azurline.com"
+  }
+},
+{
+  "type": "node",
+  "id": 573359413,
+  "lat": 43.6984331,
+  "lon": 7.2780319,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "turkish",
+    "name": "Royal Kebab"
+  }
+},
+{
+  "type": "node",
+  "id": 595260101,
+  "lat": 43.6685299,
+  "lon": 7.0424748,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'auberge du clos des pins",
+    "old_name": "Le Bistro des DГ©lices"
+  }
+},
+{
+  "type": "node",
+  "id": 617396538,
+  "lat": 43.6176379,
+  "lon": 7.0748674,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "alsacian",
+    "name": "Le Comptoir de Maitre Kanter"
+  }
+},
+{
+  "type": "node",
+  "id": 617396550,
+  "lat": 43.6178685,
+  "lon": 7.0749743,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "La Casa"
+  }
+},
+{
+  "type": "node",
+  "id": 620110812,
+  "lat": 43.6414737,
+  "lon": 7.0076425,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "CafГ© Latin"
+  }
+},
+{
+  "type": "node",
+  "id": 620110840,
+  "lat": 43.6409833,
+  "lon": 7.0089514,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 620110843,
+  "lat": 43.6414337,
+  "lon": 7.0081576,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "CrГЁperie de Valbonne"
+  }
+},
+{
+  "type": "node",
+  "id": 620110846,
+  "lat": 43.6424153,
+  "lon": 7.0081872,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Г‰lysГ©e Carnot"
+  }
+},
+{
+  "type": "node",
+  "id": 620110849,
+  "lat": 43.6425240,
+  "lon": 7.0084983,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Valbonnais"
+  }
+},
+{
+  "type": "node",
+  "id": 620110872,
+  "lat": 43.6414355,
+  "lon": 7.0084223,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'auberge provenГ§ale"
+  }
+},
+{
+  "type": "node",
+  "id": 620110880,
+  "lat": 43.6412938,
+  "lon": 7.0090374,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Le Kashmir"
+  }
+},
+{
+  "type": "node",
+  "id": 620110884,
+  "lat": 43.6422495,
+  "lon": 7.0090400,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Pigeot"
+  }
+},
+{
+  "type": "node",
+  "id": 620110894,
+  "lat": 43.6413085,
+  "lon": 7.0087950,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Terra Rossa"
+  }
+},
+{
+  "type": "node",
+  "id": 625669956,
+  "lat": 43.6231274,
+  "lon": 7.0330635,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Terrasses d'Antipolis"
+  }
+},
+{
+  "type": "node",
+  "id": 634904564,
+  "lat": 43.6428119,
+  "lon": 7.0076382,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Bergerie"
+  }
+},
+{
+  "type": "node",
+  "id": 640250651,
+  "lat": 43.7005947,
+  "lon": 7.2856622,
+  "tags": {
+    "addr:postcode": "06300",
+    "addr:street": "Rue Bonaparte",
+    "amenity": "restaurant",
+    "name": "La Socca d'Or"
+  }
+},
+{
+  "type": "node",
+  "id": 652489378,
+  "lat": 43.6241486,
+  "lon": 7.0034397,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Le Bois DorГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 693698493,
+  "lat": 43.6229074,
+  "lon": 7.0467020,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Amphore",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2010"
+  }
+},
+{
+  "type": "node",
+  "id": 693698695,
+  "lat": 43.6225792,
+  "lon": 7.0471126,
+  "tags": {
+    "amenity": "restaurant",
+    "capacity": "50",
+    "cuisine": "french",
+    "name": "LaFaMi"
+  }
+},
+{
+  "type": "node",
+  "id": 693698701,
+  "lat": 43.6220691,
+  "lon": 7.0460604,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Lorenzo",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2010"
+  }
+},
+{
+  "type": "node",
+  "id": 693698790,
+  "lat": 43.6228520,
+  "lon": 7.0465884,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Г” Resto",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2010"
+  }
+},
+{
+  "type": "node",
+  "id": 693699004,
+  "lat": 43.6226631,
+  "lon": 7.0471316,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'endroit"
+  }
+},
+{
+  "type": "node",
+  "id": 699628165,
+  "lat": 43.6579848,
+  "lon": 7.1884160,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "thai",
+    "name": "La Mousson",
+    "opening_hours": "Tu-Sa"
+  }
+},
+{
+  "type": "node",
+  "id": 702471908,
+  "lat": 43.6228854,
+  "lon": 7.0459705,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Coin Gourmand"
+  }
+},
+{
+  "type": "node",
+  "id": 702471913,
+  "lat": 43.6228894,
+  "lon": 7.0471512,
+  "tags": {
+    "addr:city": "Valbonne",
+    "addr:housenumber": "1",
+    "addr:postcode": "06560",
+    "addr:street": "Place des Amouriers",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Les Amouriers",
+    "opening_hours": "Mo-Fr 11:00-14:00",
+    "phone": "+33 4 93 65 40 94",
+    "website": "http://les-amouriers.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 703164050,
+  "lat": 43.6445022,
+  "lon": 7.0488343,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Baou Pizzeria"
+  }
+},
+{
+  "type": "node",
+  "id": 706799504,
+  "lat": 43.6751136,
+  "lon": 7.1883748,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "L'Appart"
+  }
+},
+{
+  "type": "node",
+  "id": 824520739,
+  "lat": 43.6183421,
+  "lon": 7.0750025,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "crepe",
+    "name": "CГґtГ© Golf"
+  }
+},
+{
+  "type": "node",
+  "id": 845291106,
+  "lat": 43.6226264,
+  "lon": 7.0462177,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "CГґtГ© Sud"
+  }
+},
+{
+  "type": "node",
+  "id": 845335298,
+  "lat": 43.6221661,
+  "lon": 7.0400848,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Le Montparnasse"
+  }
+},
+{
+  "type": "node",
+  "id": 845335303,
+  "lat": 43.6217669,
+  "lon": 7.0400583,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Australian"
+  }
+},
+{
+  "type": "node",
+  "id": 845335304,
+  "lat": 43.6216715,
+  "lon": 7.0398888,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Petit CafГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 883089091,
+  "lat": 43.6185791,
+  "lon": 7.0751068,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pub",
+    "name": "Green King"
+  }
+},
+{
+  "type": "node",
+  "id": 883089162,
+  "lat": 43.6180467,
+  "lon": 7.0750095,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Olivier"
+  }
+},
+{
+  "type": "node",
+  "id": 930079300,
+  "lat": 43.7033445,
+  "lon": 7.2822262,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Le Pellegrini",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2010"
+  }
+},
+{
+  "type": "node",
+  "id": 937862323,
+  "lat": 43.6959840,
+  "lon": 7.2798798,
+  "tags": {
+    "amenity": "restaurant",
+    "source": "cadastre-dgi-fr source : Direction GпїЅnпїЅrale des ImpпїЅts - Cadastre ; mise пїЅ jour : 2010"
+  }
+},
+{
+  "type": "node",
+  "id": 956908827,
+  "lat": 43.6191627,
+  "lon": 7.0740699,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "ProvenГ§al CafГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 976471245,
+  "lat": 43.6980200,
+  "lon": 7.2771273,
+  "tags": {
+    "addr:city": "NICE",
+    "addr:housenumber": "3",
+    "addr:postcode": "06000",
+    "addr:street": "Rue BenoГ®t Bunico",
+    "amenity": "restaurant",
+    "cuisine": "Bio",
+    "name": "Falabrac Fabrik",
+    "phone": "+33 4 93 54 41 23",
+    "url": "http://falabrac.fabrik.free.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 1037349719,
+  "lat": 43.6268552,
+  "lon": 7.0950391,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1088555711,
+  "lat": 43.7438622,
+  "lon": 7.2650643,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Au Rendez-vous des Amis",
+    "phone": "+33 4 93 84 49 66"
+  }
+},
+{
+  "type": "node",
+  "id": 1116040837,
+  "lat": 43.6153420,
+  "lon": 7.1274900,
+  "tags": {
+    "addr:housenumber": "1791",
+    "addr:street": "Route de Nice",
+    "amenity": "restaurant",
+    "name": "La bonne Auberge",
+    "old_name": "La Toscana"
+  }
+},
+{
+  "type": "node",
+  "id": 1130923412,
+  "lat": 43.6965079,
+  "lon": 7.2731020,
+  "tags": {
+    "addr:housenumber": "4",
+    "addr:postcode": "06000",
+    "addr:street": "Rue Raoul Bosio",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "La Merenda"
+  }
+},
+{
+  "type": "node",
+  "id": 1134619386,
+  "lat": 43.6982535,
+  "lon": 7.2778889,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "oriental",
+    "name": "Saf Saf"
+  }
+},
+{
+  "type": "node",
+  "id": 1134619671,
+  "lat": 43.6965511,
+  "lon": 7.2731133,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "sushi",
+    "name": "by Sushi"
+  }
+},
+{
+  "type": "node",
+  "id": 1134619732,
+  "lat": 43.6982888,
+  "lon": 7.2777705,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Bar du Coin"
+  }
+},
+{
+  "type": "node",
+  "id": 1134619756,
+  "lat": 43.6995871,
+  "lon": 7.2787642,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "La Mama",
+    "phone": "+33 4 93 85 70 85"
+  }
+},
+{
+  "type": "node",
+  "id": 1134619778,
+  "lat": 43.6982350,
+  "lon": 7.2779756,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "Afghan",
+    "name": "Pamir"
+  }
+},
+{
+  "type": "node",
+  "id": 1134619801,
+  "lat": 43.6966012,
+  "lon": 7.2731263,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Lou Pistou"
+  }
+},
+{
+  "type": "node",
+  "id": 1162981074,
+  "lat": 43.6746113,
+  "lon": 7.0062062,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Clos Saint-Pierre"
+  }
+},
+{
+  "type": "node",
+  "id": 1324217699,
+  "lat": 43.6981531,
+  "lon": 7.2775797,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Chez Palmyre"
+  }
+},
+{
+  "type": "node",
+  "id": 1377323627,
+  "lat": 43.7088819,
+  "lon": 7.2624582,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1377323631,
+  "lat": 43.7085988,
+  "lon": 7.2626299,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1379430341,
+  "lat": 43.6582142,
+  "lon": 7.1922787,
+  "tags": {
+    "addr:city": "Saint-Laurent-du-Var",
+    "addr:housenumber": "167",
+    "addr:postcode": "06700",
+    "addr:street": "Promenade des Flots Bleus",
+    "amenity": "restaurant",
+    "name": "La Cabanne",
+    "phone": "+33 4 93 07 07 70"
+  }
+},
+{
+  "type": "node",
+  "id": 1398473991,
+  "lat": 43.6979347,
+  "lon": 7.2836019,
+  "tags": {
+    "addr:housenumber": "4 bis",
+    "addr:street": "Quai Papacino",
+    "amenity": "restaurant",
+    "cuisine": "fish"
+  }
+},
+{
+  "type": "node",
+  "id": 1422452830,
+  "lat": 43.6415665,
+  "lon": 7.0082360,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le PoГ«lon"
+  }
+},
+{
+  "type": "node",
+  "id": 1422477538,
+  "lat": 43.6416450,
+  "lon": 7.0087099,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Arcades"
+  }
+},
+{
+  "type": "node",
+  "id": 1422477539,
+  "lat": 43.6424676,
+  "lon": 7.0099306,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Lou Cigalon"
+  }
+},
+{
+  "type": "node",
+  "id": 1422477542,
+  "lat": 43.6412649,
+  "lon": 7.0086141,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Joeed cafГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 1422477548,
+  "lat": 43.6415433,
+  "lon": 7.0083888,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1424362945,
+  "lat": 43.6910747,
+  "lon": 7.2448150,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Magnan"
+  }
+},
+{
+  "type": "node",
+  "id": 1426365232,
+  "lat": 43.6936733,
+  "lon": 7.2549218,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Jardins du Capitole"
+  }
+},
+{
+  "type": "node",
+  "id": 1434862970,
+  "lat": 43.6978769,
+  "lon": 7.1221828,
+  "tags": {
+    "addr:city": "Saint Paul de Vence",
+    "addr:country": "FR",
+    "addr:housenumber": "6",
+    "addr:postcode": "06570",
+    "addr:street": "Rue de la Pourtoune",
+    "amenity": "restaurant",
+    "cuisine": "arab",
+    "name": "La Taverne du Liban",
+    "phone": "+33 4 93 32 09 90"
+  }
+},
+{
+  "type": "node",
+  "id": 1445374663,
+  "lat": 43.6959487,
+  "lon": 7.2759584,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "22",
+    "addr:street": "Rue Barillerie",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Delhi Belhi"
+  }
+},
+{
+  "type": "node",
+  "id": 1445374664,
+  "lat": 43.6959403,
+  "lon": 7.2760766,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Chat Noir"
+  }
+},
+{
+  "type": "node",
+  "id": 1486397327,
+  "lat": 43.6968271,
+  "lon": 7.2770799,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Du Gesu"
+  }
+},
+{
+  "type": "node",
+  "id": 1486397336,
+  "lat": 43.6968967,
+  "lon": 7.2771966,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Indian Lounge"
+  }
+},
+{
+  "type": "node",
+  "id": 1492476145,
+  "lat": 43.6637198,
+  "lon": 7.1510288,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "description": "Brasserie;Restaurant;Glacier",
+    "name": "Electric CafГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 1558051902,
+  "lat": 43.6163643,
+  "lon": 7.0158784,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "drive_in": "no",
+    "name": "Open Ditch",
+    "smoking": "no",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 1573051131,
+  "lat": 43.6980868,
+  "lon": 7.2761255,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "lebanese",
+    "name": "Phoenicia"
+  }
+},
+{
+  "type": "node",
+  "id": 1606578014,
+  "lat": 43.7328604,
+  "lon": 7.2716584,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Palmiers",
+    "website": "http://www.restaurant-les-palmiers.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 1608196640,
+  "lat": 43.6984528,
+  "lon": 7.3070780,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Baleine Joyeuse"
+  }
+},
+{
+  "type": "node",
+  "id": 1619183340,
+  "lat": 43.6415118,
+  "lon": 7.1426833,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Festival de la Moule"
+  }
+},
+{
+  "type": "node",
+  "id": 1619183351,
+  "lat": 43.6426368,
+  "lon": 7.1443650,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Grand Large"
+  }
+},
+{
+  "type": "node",
+  "id": 1619183355,
+  "lat": 43.6414224,
+  "lon": 7.1425699,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "mexican",
+    "name": "Le Ranch"
+  }
+},
+{
+  "type": "node",
+  "id": 1619183362,
+  "lat": 43.6416960,
+  "lon": 7.1430062,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "thai",
+    "name": "ThaГЇ"
+  }
+},
+{
+  "type": "node",
+  "id": 1633638988,
+  "lat": 43.7234232,
+  "lon": 7.2558629,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1642766199,
+  "lat": 43.7086667,
+  "lon": 7.1885335,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Flunch"
+  }
+},
+{
+  "type": "node",
+  "id": 1642766378,
+  "lat": 43.7304181,
+  "lon": 7.1872998,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "international",
+    "name": "Flunch Nice LingostiГЁre"
+  }
+},
+{
+  "type": "node",
+  "id": 1642784256,
+  "lat": 43.7206850,
+  "lon": 7.2563679,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1642784258,
+  "lat": 43.7211406,
+  "lon": 7.2563116,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1645286606,
+  "lat": 43.6148998,
+  "lon": 7.0550089,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Dolce Vita"
+  }
+},
+{
+  "type": "node",
+  "id": 1645286607,
+  "lat": 43.6149376,
+  "lon": 7.0545296,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le CafГ© de Sophia"
+  }
+},
+{
+  "type": "node",
+  "id": 1645286609,
+  "lat": 43.6148261,
+  "lon": 7.0547221,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "sushi",
+    "name": "Sushi for You",
+    "website": "http://www.sushispirit.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 1659175416,
+  "lat": 43.7436267,
+  "lon": 7.2631619,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Auberge de l'aire Saint-Michel"
+  }
+},
+{
+  "type": "node",
+  "id": 1659213531,
+  "lat": 43.7438761,
+  "lon": 7.2646293,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Restaurant Simon",
+    "phone": "+33 4 93 84 40 61"
+  }
+},
+{
+  "type": "node",
+  "id": 1659436412,
+  "lat": 43.6956654,
+  "lon": 7.1225778,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Sait-Paul"
+  }
+},
+{
+  "type": "node",
+  "id": 1659704091,
+  "lat": 43.6967250,
+  "lon": 7.1220976,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Caruso",
+    "website": "eresto.net"
+  }
+},
+{
+  "type": "node",
+  "id": 1659704113,
+  "lat": 43.6968375,
+  "lon": 7.1218965,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "De la Fontaine",
+    "website": "lafontainestpaul.com"
+  }
+},
+{
+  "type": "node",
+  "id": 1661467070,
+  "lat": 43.7027145,
+  "lon": 7.2685185,
+  "tags": {
+    "amenity": "restaurant",
+    "contact:email": "info@lauthentic.com",
+    "contact:phone": "+33 4 93 62 48 88",
+    "contact:website": "http://www.lauthentic.com",
+    "name": "L'authentic",
+    "opening_hours": "Mo-Su 12:00-14:30, 19:00-22:30"
+  }
+},
+{
+  "type": "node",
+  "id": 1661467109,
+  "lat": 43.7026559,
+  "lon": 7.2683565,
+  "tags": {
+    "amenity": "restaurant",
+    "contact:phone": "+33 4 93 85 18 24",
+    "name": "Le Biscarra",
+    "tobacco": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 1661467113,
+  "lat": 43.7025558,
+  "lon": 7.2680560,
+  "tags": {
+    "amenity": "restaurant",
+    "contact:phone": "+33 4 93 92 46 93",
+    "contact:website": "http://lecenac.fr",
+    "name": "Le Cenac",
+    "opening_hours": "Mo-Su 11:30-15:00"
+  }
+},
+{
+  "type": "node",
+  "id": 1661467151,
+  "lat": 43.7026200,
+  "lon": 7.2682493,
+  "tags": {
+    "amenity": "restaurant",
+    "contact:fax": "+33 4 93 92 25 20",
+    "contact:phone": "+33 4 93 92 93 20",
+    "contact:website": "http://www.restaurant-20survin.com/",
+    "name": "Vin sur Vin",
+    "opening_hours": "Mo-Su 12:00-22:30"
+  }
+},
+{
+  "type": "node",
+  "id": 1662277146,
+  "lat": 43.7048383,
+  "lon": 7.2694150,
+  "tags": {
+    "amenity": "restaurant",
+    "contact:phone": "+33 4 93 85 17 13",
+    "name": "Le Lotus Blanc"
+  }
+},
+{
+  "type": "node",
+  "id": 1671606709,
+  "lat": 43.6573782,
+  "lon": 7.1854832,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Le Kashmir",
+    "phone": "+33 4 92 27 04 15"
+  }
+},
+{
+  "type": "node",
+  "id": 1674910163,
+  "lat": 43.6938770,
+  "lon": 7.2557502,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Cocodile"
+  }
+},
+{
+  "type": "node",
+  "id": 1714546663,
+  "lat": 43.7038620,
+  "lon": 7.3122323,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Oursin Bleu"
+  }
+},
+{
+  "type": "node",
+  "id": 1714546672,
+  "lat": 43.7041102,
+  "lon": 7.3124388,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La FrГ©gate"
+  }
+},
+{
+  "type": "node",
+  "id": 1714546678,
+  "lat": 43.7036914,
+  "lon": 7.3121706,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La MГЁre Germaine"
+  }
+},
+{
+  "type": "node",
+  "id": 1714546721,
+  "lat": 43.7066076,
+  "lon": 7.3136834,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Carpaccio"
+  }
+},
+{
+  "type": "node",
+  "id": 1714546738,
+  "lat": 43.7039357,
+  "lon": 7.3122671,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Fille du PГЄcheur"
+  }
+},
+{
+  "type": "node",
+  "id": 1714561393,
+  "lat": 43.7031814,
+  "lon": 7.3115199,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Cosmo"
+  }
+},
+{
+  "type": "node",
+  "id": 1715875722,
+  "lat": 43.7035792,
+  "lon": 7.3121318,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Trastevere"
+  }
+},
+{
+  "type": "node",
+  "id": 1715875723,
+  "lat": 43.7035016,
+  "lon": 7.3120916,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Corsaires"
+  }
+},
+{
+  "type": "node",
+  "id": 1715875729,
+  "lat": 43.7033561,
+  "lon": 7.3109346,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1716093372,
+  "lat": 43.7027646,
+  "lon": 7.3112326,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1716144002,
+  "lat": 43.7029475,
+  "lon": 7.3118284,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "seafood",
+    "name": "Le Calypso"
+  }
+},
+{
+  "type": "node",
+  "id": 1716376996,
+  "lat": 43.7024273,
+  "lon": 7.3121915,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Mayssa"
+  }
+},
+{
+  "type": "node",
+  "id": 1739121806,
+  "lat": 43.6970160,
+  "lon": 7.2736467,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Pelican's Restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1749731303,
+  "lat": 43.7051580,
+  "lon": 7.2649146,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "China Fast Food"
+  }
+},
+{
+  "type": "node",
+  "id": 1749731304,
+  "lat": 43.7044816,
+  "lon": 7.2630990,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Mi-Am"
+  }
+},
+{
+  "type": "node",
+  "id": 1751120351,
+  "lat": 43.7002203,
+  "lon": 7.2501908,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "AcadГ©mie Culinaire Escom"
+  }
+},
+{
+  "type": "node",
+  "id": 1753029388,
+  "lat": 43.6988885,
+  "lon": 7.2438301,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1782362044,
+  "lat": 43.6996486,
+  "lon": 7.2789865,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "L'Escalinada",
+    "website": "http://www.escalinada.fr"
+  }
+},
+{
+  "type": "node",
+  "id": 1792296696,
+  "lat": 43.6992808,
+  "lon": 7.2510900,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "internet_access": "wlan",
+    "name": "Croqu Pizza"
+  }
+},
+{
+  "type": "node",
+  "id": 1794299460,
+  "lat": 43.6598365,
+  "lon": 7.1380115,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chicken",
+    "name": "Chicken Charlie"
+  }
+},
+{
+  "type": "node",
+  "id": 1799971865,
+  "lat": 43.6964891,
+  "lon": 7.2514412,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Ardoise"
+  }
+},
+{
+  "type": "node",
+  "id": 1799971878,
+  "lat": 43.6961316,
+  "lon": 7.2518024,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "New Shang Hai"
+  }
+},
+{
+  "type": "node",
+  "id": 1799971891,
+  "lat": 43.6973378,
+  "lon": 7.2515042,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "Sushi-Ono",
+    "phone": "+33 4 93 83 49 82"
+  }
+},
+{
+  "type": "node",
+  "id": 1829944113,
+  "lat": 43.6232914,
+  "lon": 7.0147398,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Daniel Desavie"
+  }
+},
+{
+  "type": "node",
+  "id": 1855782269,
+  "lat": 43.6953747,
+  "lon": 7.2540196,
+  "tags": {
+    "amenity": "restaurant",
+    "backrest": "yes",
+    "colour": "brown",
+    "material": "wood",
+    "name": "Meatbar",
+    "seats": "4"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139343,
+  "lat": 43.7008270,
+  "lon": 7.2667663,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Don Carlo"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139362,
+  "lat": 43.7027211,
+  "lon": 7.2641034,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Fleur de Jade"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139371,
+  "lat": 43.6959690,
+  "lon": 7.2735067,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "L'Americano"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139372,
+  "lat": 43.7027151,
+  "lon": 7.2643425,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "L'Empire de Chine"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139403,
+  "lat": 43.7008839,
+  "lon": 7.2669187,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "O'Staff"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139406,
+  "lat": 43.6970374,
+  "lon": 7.2725163,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Phnom Penh"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139425,
+  "lat": 43.6966497,
+  "lon": 7.2712518,
+  "tags": {
+    "addr:housenumber": "10",
+    "addr:street": "place MassГ©na",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Attimi",
+    "phone": "+33 4 93 62 00 22",
+    "website": "http://attimi.fr"
+  }
+},
+{
+  "type": "node",
+  "id": 1867139436,
+  "lat": 43.7001641,
+  "lon": 7.2678543,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Why Nice"
+  }
+},
+{
+  "type": "node",
+  "id": 1871154944,
+  "lat": 43.7100035,
+  "lon": 7.2596314,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Chez Vann"
+  }
+},
+{
+  "type": "node",
+  "id": 1871155006,
+  "lat": 43.7099874,
+  "lon": 7.2588942,
+  "tags": {
+    "addr:housenumber": "23",
+    "addr:street": "Boulevard Joseph Garnier",
+    "amenity": "restaurant",
+    "name": "Woody's Diner",
+    "website": "http://www.woodys-diner.com/index.php"
+  }
+},
+{
+  "type": "node",
+  "id": 1871804515,
+  "lat": 43.7064780,
+  "lon": 7.2671129,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "spanish",
+    "description": "SpГ©cialitГ©: paella",
+    "name": "Chez Mireille"
+  }
+},
+{
+  "type": "node",
+  "id": 1872477880,
+  "lat": 43.7023692,
+  "lon": 7.2720749,
+  "tags": {
+    "addr:housenumber": "10",
+    "addr:street": "Boulevard Dubouchage",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Restaurant Aphrodite",
+    "phone": "+33 4 93 85 63 53",
+    "website": "http://restaurant-aphrodite.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 1888427819,
+  "lat": 43.6977884,
+  "lon": 7.2865499,
+  "tags": {
+    "addr:city": "Nice",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "L'Esquinade"
+  }
+},
+{
+  "type": "node",
+  "id": 1888427839,
+  "lat": 43.6975790,
+  "lon": 7.2865124,
+  "tags": {
+    "addr:city": "Nice",
+    "amenity": "restaurant",
+    "name": "L'Ane Rouge",
+    "website": "http://www.anerougenice.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 1888427840,
+  "lat": 43.6979860,
+  "lon": 7.2865877,
+  "tags": {
+    "addr:city": "Nice",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Paloma Cantine",
+    "website": "http://www.palomacantine.com"
+  }
+},
+{
+  "type": "node",
+  "id": 1888427841,
+  "lat": 43.6981256,
+  "lon": 7.2866038,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "1",
+    "addr:postcode": "06300",
+    "addr:street": "Quai des Deux Emmanuels",
+    "amenity": "restaurant",
+    "name": "La Vigna",
+    "website": "http://www.restaurant-la-vigna.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 1888428571,
+  "lat": 43.6987270,
+  "lon": 7.2855790,
+  "tags": {
+    "addr:city": "Nice",
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1888437563,
+  "lat": 43.7005532,
+  "lon": 7.2837814,
+  "tags": {
+    "addr:housenumber": "20",
+    "addr:street": "rue Bonaparte",
+    "amenity": "restaurant",
+    "name": "Domino"
+  }
+},
+{
+  "type": "node",
+  "id": 1901937169,
+  "lat": 43.6959490,
+  "lon": 7.2766193,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "ice_cream",
+    "name": "Fenocchio"
+  }
+},
+{
+  "type": "node",
+  "id": 1901937170,
+  "lat": 43.6981152,
+  "lon": 7.2767178,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "10",
+    "addr:postcode": "06300",
+    "addr:street": "Rue du Collet",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Lou Pilha Leva",
+    "outdoor_seating": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 1904372949,
+  "lat": 43.6973227,
+  "lon": 7.2762212,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1904372957,
+  "lat": 43.6973072,
+  "lon": 7.2764412,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 1918872098,
+  "lat": 43.6213932,
+  "lon": 7.0400376,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Kantine",
+    "source": "cadastre-dgi-fr source : Direction GГ©nГ©rale des ImpГґts - Cadastre. Mise Г  jour : 2012"
+  }
+},
+{
+  "type": "node",
+  "id": 1920715817,
+  "lat": 43.7035435,
+  "lon": 7.3117024,
+  "tags": {
+    "addr:housenumber": "3",
+    "addr:postcode": "06230",
+    "addr:street": "rue de l'Eglise",
+    "amenity": "restaurant",
+    "cuisine": "fish",
+    "name": "La Caravelle",
+    "website": "www.restaurant-lacaravelle.fr"
+  }
+},
+{
+  "type": "node",
+  "id": 1922208878,
+  "lat": 43.7072803,
+  "lon": 7.2610631,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Denky"
+  }
+},
+{
+  "type": "node",
+  "id": 1922208880,
+  "lat": 43.7074725,
+  "lon": 7.2628550,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le petit libanais"
+  }
+},
+{
+  "type": "node",
+  "id": 1922256279,
+  "lat": 43.7078892,
+  "lon": 7.2599339,
+  "tags": {
+    "amenity": "restaurant",
+    "description": "Restaurant pizzГ©ria",
+    "name": "Au grill d'or"
+  }
+},
+{
+  "type": "node",
+  "id": 1922275416,
+  "lat": 43.7090910,
+  "lon": 7.2645405,
+  "tags": {
+    "amenity": "restaurant",
+    "description": "Restaurant pizzeria",
+    "name": "La pomme d'Adam"
+  }
+},
+{
+  "type": "node",
+  "id": 1941671051,
+  "lat": 43.7107186,
+  "lon": 7.2620788,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Tapas et pasta"
+  }
+},
+{
+  "type": "node",
+  "id": 1941671054,
+  "lat": 43.7112160,
+  "lon": 7.2619947,
+  "tags": {
+    "amenity": "restaurant",
+    "description": "Bar Г  salades, salon de thГ©",
+    "name": "Г”10zen"
+  }
+},
+{
+  "type": "node",
+  "id": 1950490039,
+  "lat": 43.7129847,
+  "lon": 7.2614073,
+  "tags": {
+    "amenity": "restaurant",
+    "description": "Sur place ou Г  emporter",
+    "name": "La route du miam"
+  }
+},
+{
+  "type": "node",
+  "id": 1950618067,
+  "lat": 43.7006842,
+  "lon": 7.2614396,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Chez Arthur"
+  }
+},
+{
+  "type": "node",
+  "id": 1950618077,
+  "lat": 43.7001571,
+  "lon": 7.2645614,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Viviers"
+  }
+},
+{
+  "type": "node",
+  "id": 1958550056,
+  "lat": 43.6197921,
+  "lon": 7.0380810,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Restaurant Inter Entreprise"
+  }
+},
+{
+  "type": "node",
+  "id": 1974355511,
+  "lat": 43.6891121,
+  "lon": 7.2945621,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Coco Beach"
+  }
+},
+{
+  "type": "node",
+  "id": 1991197122,
+  "lat": 43.6228578,
+  "lon": 7.0467279,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "crepe",
+    "name": "Les CrГЄpes De Beau Grand-PГЁre"
+  }
+},
+{
+  "type": "node",
+  "id": 1991197126,
+  "lat": 43.6228301,
+  "lon": 7.0466586,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Brasserie"
+  }
+},
+{
+  "type": "node",
+  "id": 2000541979,
+  "lat": 43.7156513,
+  "lon": 7.2717644,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:postcode": "06000",
+    "addr:street": "Rue du Professeur Maurice Sureau",
+    "amenity": "restaurant",
+    "name": "CГґtГ© Sud"
+  }
+},
+{
+  "type": "node",
+  "id": 2000541985,
+  "lat": 43.7327655,
+  "lon": 7.2763094,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La gaГ®tГ© nallino"
+  }
+},
+{
+  "type": "node",
+  "id": 2024661303,
+  "lat": 43.7046752,
+  "lon": 7.2648269,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Brasserie le Colbert"
+  }
+},
+{
+  "type": "node",
+  "id": 2031585904,
+  "lat": 43.7132112,
+  "lon": 7.2840528,
+  "tags": {
+    "addr:housenumber": "30",
+    "addr:postcode": "06300",
+    "addr:street": "boulevard Jean Baptiste VГ©rany",
+    "amenity": "restaurant",
+    "cuisine": "international, sandwiches, kebab, regional",
+    "name": "Chez Green Turtle",
+    "opening_hours": "Mo-Fr 09:00-20:00; Su 09:00-20:00",
+    "website": "www.green-turtle.com"
+  }
+},
+{
+  "type": "node",
+  "id": 2031598989,
+  "lat": 43.7121984,
+  "lon": 7.2850465,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 2031800413,
+  "lat": 43.7166947,
+  "lon": 7.2845475,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 2031997078,
+  "lat": 43.7004794,
+  "lon": 7.2852579,
+  "tags": {
+    "addr:housenumber": "38",
+    "addr:postcode": "06300",
+    "addr:street": "Rue Bonaparte",
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Pizzeria Spizzico"
+  }
+},
+{
+  "type": "node",
+  "id": 2057420420,
+  "lat": 43.7141228,
+  "lon": 7.2624237,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Lou PantaГЇl"
+  }
+},
+{
+  "type": "node",
+  "id": 2063490266,
+  "lat": 43.6865550,
+  "lon": 7.2259730,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "sandwich",
+    "name": "L'IdГ©al"
+  }
+},
+{
+  "type": "node",
+  "id": 2063842500,
+  "lat": 43.7010779,
+  "lon": 7.2663800,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "crepe",
+    "name": "CrГЄperie Bretonne Corentin"
+  }
+},
+{
+  "type": "node",
+  "id": 2066937735,
+  "lat": 43.7020166,
+  "lon": 7.2599902,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "african",
+    "name": "Chez Marie-Ange"
+  }
+},
+{
+  "type": "node",
+  "id": 2066937742,
+  "lat": 43.7020502,
+  "lon": 7.2655922,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "thai",
+    "name": "Le Bangkok"
+  }
+},
+{
+  "type": "node",
+  "id": 2066937743,
+  "lat": 43.7017225,
+  "lon": 7.2640192,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Tono"
+  }
+},
+{
+  "type": "node",
+  "id": 2066937745,
+  "lat": 43.7017904,
+  "lon": 7.2642483,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Snack-cafГ© Nam"
+  }
+},
+{
+  "type": "node",
+  "id": 2073399826,
+  "lat": 43.7064415,
+  "lon": 7.2887134,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Allo Pizza"
+  }
+},
+{
+  "type": "node",
+  "id": 2073399830,
+  "lat": 43.7064231,
+  "lon": 7.2887656,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Eelam"
+  }
+},
+{
+  "type": "node",
+  "id": 2089313417,
+  "lat": 43.6763957,
+  "lon": 7.0123944,
+  "tags": {
+    "addr:housenumber": "67",
+    "amenity": "restaurant",
+    "name": "Le 67"
+  }
+},
+{
+  "type": "node",
+  "id": 2104717474,
+  "lat": 43.7017886,
+  "lon": 7.2834011,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Alto"
+  }
+},
+{
+  "type": "node",
+  "id": 2139416984,
+  "lat": 43.6788094,
+  "lon": 7.2279017,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Papey pizza"
+  }
+},
+{
+  "type": "node",
+  "id": 2141760006,
+  "lat": 43.6786319,
+  "lon": 7.2294983,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "o'Sushi"
+  }
+},
+{
+  "type": "node",
+  "id": 2141764963,
+  "lat": 43.6793516,
+  "lon": 7.2242626,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "L'Amour est dans le Four"
+  }
+},
+{
+  "type": "node",
+  "id": 2142856699,
+  "lat": 43.6774187,
+  "lon": 7.2225009,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "pizza Fiorentina"
+  }
+},
+{
+  "type": "node",
+  "id": 2144379514,
+  "lat": 43.6963548,
+  "lon": 7.2867024,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:country": "FR",
+    "addr:housenumber": "46",
+    "addr:postcode": "06300",
+    "addr:street": "Boulevard Stalingrad",
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Les Amoureux",
+    "opening_hours": "Tu-Sa",
+    "phone": "+33 4 93 07 59 73",
+    "smoking": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 2150846256,
+  "lat": 43.6802161,
+  "lon": 7.2306243,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "La Piccada"
+  }
+},
+{
+  "type": "node",
+  "id": 2152322821,
+  "lat": 43.6773573,
+  "lon": 7.2256915,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "ice_cream",
+    "name": "Bijou des glaces"
+  }
+},
+{
+  "type": "node",
+  "id": 2154775761,
+  "lat": 43.6767045,
+  "lon": 7.2256328,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "international",
+    "name": "L'etoile du sahel"
+  }
+},
+{
+  "type": "node",
+  "id": 2157576481,
+  "lat": 43.6803023,
+  "lon": 7.2306714,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "international",
+    "name": "Lib"
+  }
+},
+{
+  "type": "node",
+  "id": 2173932800,
+  "lat": 43.6803427,
+  "lon": 7.2307172,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La jetГ©e"
+  }
+},
+{
+  "type": "node",
+  "id": 2192645456,
+  "lat": 43.6113965,
+  "lon": 7.0083134,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Menthe Douce"
+  }
+},
+{
+  "type": "node",
+  "id": 2194581340,
+  "lat": 43.6805397,
+  "lon": 7.2297036,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 2199973900,
+  "lat": 43.6803860,
+  "lon": 7.2305833,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Dauphin"
+  }
+},
+{
+  "type": "node",
+  "id": 2199974319,
+  "lat": 43.6804714,
+  "lon": 7.2298376,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Potiron Gourmet"
+  }
+},
+{
+  "type": "node",
+  "id": 2206369001,
+  "lat": 43.6805299,
+  "lon": 7.2306966,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Mesclun"
+  }
+},
+{
+  "type": "node",
+  "id": 2206370195,
+  "lat": 43.6805725,
+  "lon": 7.2307529,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "La Socca"
+  }
+},
+{
+  "type": "node",
+  "id": 2206385969,
+  "lat": 43.6780682,
+  "lon": 7.2266035,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Cuisine des iles"
+  }
+},
+{
+  "type": "node",
+  "id": 2214889319,
+  "lat": 43.6808632,
+  "lon": 7.2304734,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "May Ly"
+  }
+},
+{
+  "type": "node",
+  "id": 2223006877,
+  "lat": 43.7052955,
+  "lon": 7.2843375,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chicken",
+    "name": "Chicken Chicken"
+  }
+},
+{
+  "type": "node",
+  "id": 2241158544,
+  "lat": 43.6973066,
+  "lon": 7.2763558,
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "place Rossetti",
+    "amenity": "restaurant",
+    "name": "Fenocchio",
+    "phone": "+33 4 93 80 72 52"
+  }
+},
+{
+  "type": "node",
+  "id": 2249045268,
+  "lat": 43.7065251,
+  "lon": 7.2874551,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Casa viny"
+  }
+},
+{
+  "type": "node",
+  "id": 2262896742,
+  "lat": 43.6811018,
+  "lon": 7.2306854,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Table"
+  }
+},
+{
+  "type": "node",
+  "id": 2278551895,
+  "lat": 43.7055404,
+  "lon": 7.2869266,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Saveur d'Azur"
+  }
+},
+{
+  "type": "node",
+  "id": 2287697676,
+  "lat": 43.6757234,
+  "lon": 7.2242647,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian"
+  }
+},
+{
+  "type": "node",
+  "id": 2287704294,
+  "lat": 43.7005202,
+  "lon": 7.2843616,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Pourquoi pas"
+  }
+},
+{
+  "type": "node",
+  "id": 2287718653,
+  "lat": 43.7028394,
+  "lon": 7.2853017,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "CotГ© Jardin"
+  }
+},
+{
+  "type": "node",
+  "id": 2289461166,
+  "lat": 43.6833865,
+  "lon": 7.2331241,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Le Celtic"
+  }
+},
+{
+  "type": "node",
+  "id": 2295791468,
+  "lat": 43.6990676,
+  "lon": 7.2840912,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "international",
+    "name": "Fjord"
+  }
+},
+{
+  "type": "node",
+  "id": 2304269025,
+  "lat": 43.6946670,
+  "lon": 7.2660516,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Galion"
+  }
+},
+{
+  "type": "node",
+  "id": 2307709055,
+  "lat": 43.7012823,
+  "lon": 7.2795711,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "2",
+    "addr:postcode": "06300",
+    "addr:street": "Place Garibaldi",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Au Petit Gari",
+    "website": "http://www.aupetitgari.com"
+  }
+},
+{
+  "type": "node",
+  "id": 2307709056,
+  "lat": 43.7005971,
+  "lon": 7.2795971,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "5",
+    "addr:postcode": "06300",
+    "addr:street": "Place Garibaldi",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "CafГ© de Turin",
+    "website": "http://www.cafedeturin.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 2307709058,
+  "lat": 43.6976116,
+  "lon": 7.2746534,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "50",
+    "addr:postcode": "06800",
+    "addr:street": "Boulevard Jean JaurГЁs",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Mac Mahon",
+    "phone": "+33 9 53 16 95 97",
+    "website": "http://www.macmahon-restaurant.com/fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 2307709059,
+  "lat": 43.6977825,
+  "lon": 7.2751245,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "42",
+    "addr:postcode": "06300",
+    "addr:street": "Boulevard Jean JaurГЁs",
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "Planet Sushi Nice Jean JaurГЁs",
+    "phone": "+33 4 97 08 08 08",
+    "website": "http://www.planetsushi.fr/fr/restaurants-japonais/planet-sushi-nice.html"
+  }
+},
+{
+  "type": "node",
+  "id": 2308178842,
+  "lat": 43.6947248,
+  "lon": 7.2866452,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "53",
+    "addr:postcode": "06300",
+    "addr:street": "Boulevard Stalingrad",
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "San Marco"
+  }
+},
+{
+  "type": "node",
+  "id": 2308178843,
+  "lat": 43.6982127,
+  "lon": 7.2866021,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "2",
+    "addr:postcode": "06000",
+    "addr:street": "Boulevard Carnot",
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "O'Sushi",
+    "website": "http://www.osushi.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 2308178847,
+  "lat": 43.6974522,
+  "lon": 7.2864814,
+  "tags": {
+    "addr:city": "Nice",
+    "amenity": "restaurant",
+    "name": "La Barque Bleue"
+  }
+},
+{
+  "type": "node",
+  "id": 2308187790,
+  "lat": 43.6879204,
+  "lon": 7.2961579,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "4",
+    "addr:postcode": "06300",
+    "addr:street": "Boulevard Maurice Maeterlinck",
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Pizza du Mont Boron",
+    "phone": "+33 4 93 55 74 74"
+  }
+},
+{
+  "type": "node",
+  "id": 2324226130,
+  "lat": 43.7010036,
+  "lon": 7.2760001,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "10",
+    "addr:postcode": "06000",
+    "addr:street": "Rue Tonduti de l'Escarene",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Le 7ГЁme Sens",
+    "opening_hours": "Mo-Tu 12:00-15:00;We-Fr 19:00-22:00",
+    "phone": "+33 4 93 13 82 68"
+  }
+},
+{
+  "type": "node",
+  "id": 2324240279,
+  "lat": 43.7041067,
+  "lon": 7.2653158,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "3",
+    "addr:postcode": "06000",
+    "addr:street": "Rue Alsace-Lorraine",
+    "amenity": "restaurant",
+    "cuisine": "mediterranean",
+    "name": "Alounak",
+    "phone": "+33 4 93 85 86 50",
+    "website": "http://alounak-nice.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 2331735467,
+  "lat": 43.7136768,
+  "lon": 7.2930015,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 2338651330,
+  "lat": 43.6573981,
+  "lon": 7.1658448,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "San Marino"
+  }
+},
+{
+  "type": "node",
+  "id": 2346762103,
+  "lat": 43.7093016,
+  "lon": 7.2571110,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Deux Chefs"
+  }
+},
+{
+  "type": "node",
+  "id": 2376948005,
+  "lat": 43.7007142,
+  "lon": 7.2839306,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Traction"
+  }
+},
+{
+  "type": "node",
+  "id": 2376991449,
+  "lat": 43.7025932,
+  "lon": 7.2847085,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Resatuarant Arson"
+  }
+},
+{
+  "type": "node",
+  "id": 2377004525,
+  "lat": 43.6991609,
+  "lon": 7.2838712,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "La Libellule Rouge"
+  }
+},
+{
+  "type": "node",
+  "id": 2377005541,
+  "lat": 43.6994557,
+  "lon": 7.2839275,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "L'Uzine"
+  }
+},
+{
+  "type": "node",
+  "id": 2379425524,
+  "lat": 43.6982162,
+  "lon": 7.2768059,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Pizza Pili",
+    "outdoor_seating": "only"
+  }
+},
+{
+  "type": "node",
+  "id": 2379426861,
+  "lat": 43.6968064,
+  "lon": 7.2653958,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "international",
+    "name": "Le QuГ©bec"
+  }
+},
+{
+  "type": "node",
+  "id": 2379428518,
+  "lat": 43.6958736,
+  "lon": 7.2617319,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "La Trattoria"
+  }
+},
+{
+  "type": "node",
+  "id": 2379428840,
+  "lat": 43.6960287,
+  "lon": 7.2615925,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "burger",
+    "name": "Diavoletto"
+  }
+},
+{
+  "type": "node",
+  "id": 2385493159,
+  "lat": 43.6943280,
+  "lon": 7.2876830,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le San Juan"
+  }
+},
+{
+  "type": "node",
+  "id": 2386309639,
+  "lat": 43.6971650,
+  "lon": 7.2765270,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Claire Fontaine"
+  }
+},
+{
+  "type": "node",
+  "id": 2387793173,
+  "lat": 43.6977510,
+  "lon": 7.2757300,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Chat Gourmand",
+    "outdoor_seating": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2389181396,
+  "lat": 43.6948160,
+  "lon": 7.2866520,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:postcode": "06300",
+    "addr:street": "Boulevard Stalingrad",
+    "amenity": "restaurant",
+    "name": "VO Lounge"
+  }
+},
+{
+  "type": "node",
+  "id": 2390691619,
+  "lat": 43.6953180,
+  "lon": 7.2864813,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:postcode": "06300",
+    "addr:street": "Boulevard Stalingrad",
+    "amenity": "restaurant",
+    "name": "GoГ»sto",
+    "outdoor_seating": "yes",
+    "wheelchair": "limited"
+  }
+},
+{
+  "type": "node",
+  "id": 2391165932,
+  "lat": 43.6960103,
+  "lon": 7.2866181,
+  "tags": {
+    "addr:city": "Nice",
+    "amenity": "restaurant",
+    "name": "Lou Tifosi",
+    "outdoor_seating": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2392131801,
+  "lat": 43.6965790,
+  "lon": 7.2862080,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "18",
+    "addr:postcode": "06300",
+    "addr:street": "Quai des Docks",
+    "amenity": "restaurant",
+    "cuisine": "fish",
+    "name": "Les PГЄcheurs",
+    "opening_hours": "We-Su",
+    "outdoor_seating": "yes",
+    "website": "http://www.lespecheurs.com"
+  }
+},
+{
+  "type": "node",
+  "id": 2393777320,
+  "lat": 43.6230337,
+  "lon": 7.0470084,
+  "tags": {
+    "addr:city": "Valbonne",
+    "addr:country": "FR",
+    "addr:housenumber": "3",
+    "addr:street": "Place Mejane",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Fratelli Pasta Bar",
+    "opening_hours": "Mo-Fr 11:30-14:00",
+    "operator": "SARL Fresh Time",
+    "phone": "+33 4 93 63 14 09"
+  }
+},
+{
+  "type": "node",
+  "id": 2406189619,
+  "lat": 43.6516535,
+  "lon": 7.1521138,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "burger"
+  }
+},
+{
+  "type": "node",
+  "id": 2440814973,
+  "lat": 43.6417868,
+  "lon": 7.1420699,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Kow Long"
+  }
+},
+{
+  "type": "node",
+  "id": 2445492648,
+  "lat": 43.6221829,
+  "lon": 7.0459506,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Antipasti"
+  }
+},
+{
+  "type": "node",
+  "id": 2512891520,
+  "lat": 43.6951276,
+  "lon": 7.2645668,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "burger",
+    "name": "Hard Rock CafГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 2512898291,
+  "lat": 43.6977926,
+  "lon": 7.2679994,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "La Villa d'Este"
+  }
+},
+{
+  "type": "node",
+  "id": 2514375450,
+  "lat": 43.6753910,
+  "lon": 7.1866973,
+  "tags": {
+    "addr:city": "Saint-Laurent-Du-Var",
+    "addr:housenumber": "29",
+    "addr:postcode": "06700",
+    "addr:street": "Avenue des Filagnes",
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Astro Pizza",
+    "phone": "+33 4 93 31 95 36"
+  }
+},
+{
+  "type": "node",
+  "id": 2561894919,
+  "lat": 43.7048263,
+  "lon": 7.2639424,
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:postcode": "06000",
+    "addr:street": "Avenue Thiers",
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "name": "Le LГ©opard"
+  }
+},
+{
+  "type": "node",
+  "id": 2615153330,
+  "lat": 43.7073412,
+  "lon": 7.2631711,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "polish",
+    "description": "Bar & restaurant",
+    "name": "Chez Suzanne"
+  }
+},
+{
+  "type": "node",
+  "id": 2637497443,
+  "lat": 43.6979363,
+  "lon": 7.1219850,
+  "tags": {
+    "addr:city": "Saint Paul de Vence",
+    "addr:housenumber": "2",
+    "addr:postcode": "06570",
+    "addr:street": "Place du Tilleul",
+    "amenity": "restaurant",
+    "name": "Le Tilleul"
+  }
+},
+{
+  "type": "node",
+  "id": 2638566244,
+  "lat": 43.7058086,
+  "lon": 7.2823886,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "korean",
+    "name": "Korean Barbecue"
+  }
+},
+{
+  "type": "node",
+  "id": 2638566249,
+  "lat": 43.7059331,
+  "lon": 7.2824682,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "description": "grill, pizza",
+    "name": "Le congrГЁs"
+  }
+},
+{
+  "type": "node",
+  "id": 2638566253,
+  "lat": 43.7053278,
+  "lon": 7.2820765,
+  "tags": {
+    "amenity": "restaurant",
+    "description": "Cuisine alsacienne",
+    "name": "Le plaisir des mets"
+  }
+},
+{
+  "type": "node",
+  "id": 2638601512,
+  "lat": 43.7033087,
+  "lon": 7.2806537,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le duplex",
+    "website": "http://www.leduplexnice.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 2638601515,
+  "lat": 43.7051276,
+  "lon": 7.2819356,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Lou Bistrot Nissart"
+  }
+},
+{
+  "type": "node",
+  "id": 2638601555,
+  "lat": 43.7040118,
+  "lon": 7.2811687,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Pizza Coco"
+  }
+},
+{
+  "type": "node",
+  "id": 2671501732,
+  "lat": 43.6404249,
+  "lon": 7.0070274,
+  "tags": {
+    "addr:postcode": "06560",
+    "addr:street": "Avenue Saint-Roch",
+    "amenity": "restaurant",
+    "cuisine": "burger",
+    "name": "Chez Max",
+    "source": "Knowledge"
+  }
+},
+{
+  "type": "node",
+  "id": 2686110742,
+  "lat": 43.6980119,
+  "lon": 7.2675841,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Casita"
+  }
+},
+{
+  "type": "node",
+  "id": 2686110744,
+  "lat": 43.6967830,
+  "lon": 7.2641888,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les mets de Provence"
+  }
+},
+{
+  "type": "node",
+  "id": 2686110745,
+  "lat": 43.6949489,
+  "lon": 7.2624099,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Queenie"
+  }
+},
+{
+  "type": "node",
+  "id": 2688577141,
+  "lat": 43.7429201,
+  "lon": 7.0084038,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Auberge de Courmes"
+  }
+},
+{
+  "type": "node",
+  "id": 2699834694,
+  "lat": 43.6673206,
+  "lon": 7.1453977,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Le Jimmy's"
+  }
+},
+{
+  "type": "node",
+  "id": 2699834701,
+  "lat": 43.6672400,
+  "lon": 7.1457800,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Village"
+  }
+},
+{
+  "type": "node",
+  "id": 2699955502,
+  "lat": 43.6683896,
+  "lon": 7.1461259,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Josy Jo"
+  }
+},
+{
+  "type": "node",
+  "id": 2727230969,
+  "lat": 43.6123586,
+  "lon": 7.0489405,
+  "tags": {
+    "addr:city": "Valbonne",
+    "addr:housenumber": "80",
+    "addr:postcode": "06560",
+    "addr:street": "Route des Lucioles",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Green is Better",
+    "opening_hours": "Mo-Fr 11:30-15:00",
+    "website": "http://www.greenisbetter.fr"
+  }
+},
+{
+  "type": "node",
+  "id": 2737893711,
+  "lat": 43.7000839,
+  "lon": 7.2867589,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:country": "FR",
+    "addr:housenumber": "14",
+    "addr:postcode": "06300",
+    "addr:street": "Rue Arson",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "CrГЄpes Krampouz"
+  }
+},
+{
+  "type": "node",
+  "id": 2748638220,
+  "lat": 43.6749626,
+  "lon": 7.0061349,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Bamboo"
+  }
+},
+{
+  "type": "node",
+  "id": 2769172910,
+  "lat": 43.7053173,
+  "lon": 7.2896534,
+  "tags": {
+    "addr:city": "nice",
+    "addr:housenumber": "2",
+    "addr:postcode": "06300",
+    "addr:street": "Place Auguste Blanqui",
+    "amenity": "restaurant",
+    "name": "Le Virginie"
+  }
+},
+{
+  "type": "node",
+  "id": 2779377537,
+  "lat": 43.7020552,
+  "lon": 7.2770485,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "8",
+    "addr:postcode": "06000",
+    "addr:street": "Rue Defly",
+    "amenity": "restaurant",
+    "cuisine": "american",
+    "name": "Juke House Cafe"
+  }
+},
+{
+  "type": "node",
+  "id": 2779377566,
+  "lat": 43.7016755,
+  "lon": 7.2763038,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "sandwich",
+    "name": "Salade ou Sandwich"
+  }
+},
+{
+  "type": "node",
+  "id": 2779377570,
+  "lat": 43.7016296,
+  "lon": 7.2762745,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "17",
+    "addr:postcode": "06000",
+    "addr:street": "Rue Gioffredo",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "L'Atelier",
+    "website": "http://www.tripadvisor.fr/Restaurant_Review-g187234-d2514227-Reviews-L_Atelier-Nice_French_Riviera_Cote_d_Azur_Provence.html"
+  }
+},
+{
+  "type": "node",
+  "id": 2781033938,
+  "lat": 43.7089682,
+  "lon": 7.2629197,
+  "tags": {
+    "addr:housenumber": "28",
+    "addr:postcode": "06000",
+    "addr:street": "Avenue Malaussena ",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "La Gauloise"
+  }
+},
+{
+  "type": "node",
+  "id": 2783277613,
+  "lat": 43.7005943,
+  "lon": 7.2729383,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "6",
+    "addr:postcode": "06000",
+    "addr:street": "Place Wilson",
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Les Epicuriens"
+  }
+},
+{
+  "type": "node",
+  "id": 2783300032,
+  "lat": 43.6969535,
+  "lon": 7.2759864,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "1",
+    "addr:postcode": "06300",
+    "addr:street": "Rue Sainte-RГ©parate",
+    "amenity": "restaurant",
+    "cuisine": "ice_cream",
+    "name": "Gelateria Azzurro"
+  }
+},
+{
+  "type": "node",
+  "id": 2783300045,
+  "lat": 43.6958319,
+  "lon": 7.2731841,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "3",
+    "addr:postcode": "06300",
+    "addr:street": "Rue Saint-FranГ§ois de Paule",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Le Hussard",
+    "website": "http://www.lehussardrestaurant.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 2783300054,
+  "lat": 43.6955694,
+  "lon": 7.2738631,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Brasserie du Cours"
+  }
+},
+{
+  "type": "node",
+  "id": 2783304560,
+  "lat": 43.6968214,
+  "lon": 7.2744143,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "lebanese",
+    "name": "Di Yar",
+    "website": "http://www.diyar.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 2804641433,
+  "lat": 43.6580370,
+  "lon": 7.1510954,
+  "tags": {
+    "addr:city": "Cagnes-Sur-Mer",
+    "addr:country": "FR",
+    "addr:housenumber": "47",
+    "addr:postcode": "06800",
+    "addr:street": "Boulevard du MarГ©chal Juin",
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "Yoko",
+    "phone": "+33 4 93 22 99 31"
+  }
+},
+{
+  "type": "node",
+  "id": 2837453478,
+  "lat": 43.6965759,
+  "lon": 7.2867372,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "kebab",
+    "name": "Les pins d'Alep"
+  }
+},
+{
+  "type": "node",
+  "id": 2867269950,
+  "lat": 43.6988396,
+  "lon": 7.2786543,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:country": "FR",
+    "addr:housenumber": "3",
+    "addr:postcode": "06300",
+    "addr:street": "Rue du Four",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Le Barbecue",
+    "opening_hours": "12:00-15:00,19:00-22:00",
+    "phone": "+33 4 93 53 02 59"
+  }
+},
+{
+  "type": "node",
+  "id": 2923504912,
+  "lat": 43.6165191,
+  "lon": 7.0704603,
+  "tags": {
+    "amenity": "restaurant",
+    "capacity": "200",
+    "cuisine": "regional",
+    "name": "CROUS Resto-U",
+    "opening_hours": "11:15 - 13:30",
+    "smoking": "outside"
+  }
+},
+{
+  "type": "node",
+  "id": 3014119788,
+  "lat": 43.6957626,
+  "lon": 7.2591476,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344236,
+  "lat": 43.6944015,
+  "lon": 7.2783606,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Castel",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344237,
+  "lat": 43.6971617,
+  "lon": 7.2767556,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Chez Juliette",
+    "outdoor_seating": "yes",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344238,
+  "lat": 43.6959855,
+  "lon": 7.2612307,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "China Park"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344246,
+  "lat": 43.6974228,
+  "lon": 7.2769602,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Himalaya",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344248,
+  "lat": 43.6973209,
+  "lon": 7.2767967,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Bouchon Provence"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344249,
+  "lat": 43.6974149,
+  "lon": 7.2768391,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le DГ©modГ©",
+    "outdoor_seating": "yes",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344565,
+  "lat": 43.6981535,
+  "lon": 7.2769665,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Roberto",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3039344566,
+  "lat": 43.6946032,
+  "lon": 7.2648694,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Ruhl Plage",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3041251213,
+  "lat": 43.6975330,
+  "lon": 7.2764069,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "8",
+    "addr:postcode": "06300",
+    "addr:street": "Rue MascoГЇnat",
+    "amenity": "restaurant",
+    "capacity": "12",
+    "cuisine": "international",
+    "name": "ISI Restaurant",
+    "payment:bitcoin": "yes",
+    "website": "http://isirestaurant.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 3050886633,
+  "lat": 43.6651463,
+  "lon": 7.2132337,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "MГ©li MГ©lo",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3050886637,
+  "lat": 43.6649729,
+  "lon": 7.2133269,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "level": "2",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3066328770,
+  "lat": 43.6947424,
+  "lon": 7.2603433,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "28",
+    "addr:postcode": "06000",
+    "addr:street": "Promenade des Anglais",
+    "amenity": "restaurant",
+    "cuisine": "international",
+    "name": "Le Koudou",
+    "website": "http://www.koudou-restaurant.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 3085402572,
+  "lat": 43.6959739,
+  "lon": 7.2832885,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Lunel"
+  }
+},
+{
+  "type": "node",
+  "id": 3104036623,
+  "lat": 43.6106519,
+  "lon": 7.0178110,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "R.I.E"
+  }
+},
+{
+  "type": "node",
+  "id": 3118272204,
+  "lat": 43.6955145,
+  "lon": 7.2542447,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Cave Washington"
+  }
+},
+{
+  "type": "node",
+  "id": 3118274975,
+  "lat": 43.6951266,
+  "lon": 7.2553820,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les hussards bleu"
+  }
+},
+{
+  "type": "node",
+  "id": 3127810562,
+  "lat": 43.6986764,
+  "lon": 7.2783230,
+  "tags": {
+    "addr:housenumber": "13",
+    "addr:street": "Place St FranГ§ois",
+    "amenity": "restaurant",
+    "name": "Le Trimaran crГЄperie",
+    "website": "http://www.tripadvisor.co.uk/Restaurant_Review-g187234-d1209055-Reviews-Creperie_Le_Trimaran-Nice_French_Riviera_Cote_d_Azur_Provence.html"
+  }
+},
+{
+  "type": "node",
+  "id": 3191435831,
+  "lat": 43.6554814,
+  "lon": 7.1604482,
+  "tags": {
+    "addr:city": "Cagnes-sur-Mer",
+    "addr:housenumber": "91",
+    "addr:postcode": "06800",
+    "addr:street": "Promenade de la Plage",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Gusto",
+    "phone": "+33 4 93 31 00 17"
+  }
+},
+{
+  "type": "node",
+  "id": 3191439480,
+  "lat": 43.6561445,
+  "lon": 7.1799974,
+  "tags": {
+    "addr:city": "Saint-Laurent-du-Var",
+    "addr:housenumber": "105",
+    "addr:postcode": "06700",
+    "addr:street": "Port Saint Laurent",
+    "amenity": "restaurant",
+    "cuisine": "burger",
+    "name": "Quai Ouest",
+    "phone": "+33 4 92 27 16 00"
+  }
+},
+{
+  "type": "node",
+  "id": 3218712353,
+  "lat": 43.7018798,
+  "lon": 7.2734438,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "32",
+    "addr:postcode": "06000",
+    "addr:street": "Rue Tonduti de l'Escarene",
+    "amenity": "restaurant",
+    "cuisine": "burger",
+    "name": "50's Happy Diner",
+    "website": "http://www.50happydiner.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 3218730661,
+  "lat": 43.7006594,
+  "lon": 7.2752599,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Pizza Hut"
+  }
+},
+{
+  "type": "node",
+  "id": 3218730662,
+  "lat": 43.7011549,
+  "lon": 7.2743607,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "16",
+    "addr:postcode": "06000",
+    "addr:street": "Rue de l'HГґtel des Postes",
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Pizza World",
+    "website": "http://www.pizzaworld.fr/"
+  }
+},
+{
+  "type": "node",
+  "id": 3246911017,
+  "lat": 43.7000159,
+  "lon": 7.2789193,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Socca chez RenГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 3338963133,
+  "lat": 43.6978463,
+  "lon": 7.2765667,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Piccola Italia"
+  }
+},
+{
+  "type": "node",
+  "id": 3372830235,
+  "lat": 43.6975036,
+  "lon": 7.2763664,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "8",
+    "addr:street": "Rue MascoГЇnat",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "ROSSETTISSERIE",
+    "smoking": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 3398535639,
+  "lat": 43.6576125,
+  "lon": 7.1665900,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "seafood",
+    "name": "Charlot 1er"
+  }
+},
+{
+  "type": "node",
+  "id": 3398535640,
+  "lat": 43.6573163,
+  "lon": 7.1656215,
+  "tags": {
+    "addr:city": "Cagnes-sur-Mer",
+    "addr:housenumber": "78",
+    "addr:postcode": "06800",
+    "addr:street": "Promenade de la Plage",
+    "amenity": "restaurant",
+    "cuisine": "pancake",
+    "name": "La Bergerie",
+    "phone": "+33 4 93 31 54 47"
+  }
+},
+{
+  "type": "node",
+  "id": 3398535641,
+  "lat": 43.6573006,
+  "lon": 7.1655553,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Grill du Boucher"
+  }
+},
+{
+  "type": "node",
+  "id": 3421214393,
+  "lat": 43.6624491,
+  "lon": 7.0632613,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Auberge du Colombier",
+    "tourism": "hotel",
+    "website": "http://www.auberge-du-colombier.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 3423500593,
+  "lat": 43.6575563,
+  "lon": 7.1645163,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "Indochina"
+  }
+},
+{
+  "type": "node",
+  "id": 3439201358,
+  "lat": 43.7028067,
+  "lon": 7.2691703,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Ligure"
+  }
+},
+{
+  "type": "node",
+  "id": 3463429300,
+  "lat": 43.6876110,
+  "lon": 7.1041500,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "La Vie est belle",
+    "opening_hours": "Tu,Fr 19:30-21:00; We,Sa 12:00-13:00,19:30-21:00; Su 12:00-13:00",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 3507436052,
+  "lat": 43.7006001,
+  "lon": 7.2855940,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:postcode": "06300",
+    "addr:street": "Rue Bonaparte",
+    "amenity": "restaurant",
+    "name": "L'atelier du port"
+  }
+},
+{
+  "type": "node",
+  "id": 3511223721,
+  "lat": 43.6957445,
+  "lon": 7.2551552,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Restaurant Dante"
+  }
+},
+{
+  "type": "node",
+  "id": 3512654108,
+  "lat": 43.6732038,
+  "lon": 7.0051552,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Bistro Saint-Pierre"
+  }
+},
+{
+  "type": "node",
+  "id": 3512654167,
+  "lat": 43.6737989,
+  "lon": 7.0021557,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Tire-Bouchon"
+  }
+},
+{
+  "type": "node",
+  "id": 3533029156,
+  "lat": 43.6743997,
+  "lon": 7.0083789,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Hollywood Pizza"
+  }
+},
+{
+  "type": "node",
+  "id": 3533029157,
+  "lat": 43.6743750,
+  "lon": 7.0095326,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La maison de la pizza"
+  }
+},
+{
+  "type": "node",
+  "id": 3543154959,
+  "lat": 43.6827304,
+  "lon": 7.0863010,
+  "tags": {
+    "addr:housenumber": "1160",
+    "addr:street": "Route du Pont de Pierre",
+    "amenity": "restaurant",
+    "cuisine": "international",
+    "email": "le-clos-du-loup@wanadoo.fr",
+    "name": "Le Clos du Loup",
+    "opening_hours": "12:00-14:00, 17:00-23:00",
+    "phone": "+33 4 93 32 88 76",
+    "website": "http://www.leclosduloup.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 3625187297,
+  "lat": 43.6872384,
+  "lon": 7.1034244,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468600,
+  "lat": 43.6574218,
+  "lon": 7.1861440,
+  "tags": {
+    "amenity": "restaurant",
+    "description": "Lounge;Bar",
+    "name": "Beach Club"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468609,
+  "lat": 43.6579143,
+  "lon": 7.1877543,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Atelier B"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468610,
+  "lat": 43.6579370,
+  "lon": 7.1881164,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "L'Г‰den"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468612,
+  "lat": 43.6871382,
+  "lon": 7.1020949,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La MaГЇoun"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468613,
+  "lat": 43.6571775,
+  "lon": 7.1833421,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Lotus Bleu"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468614,
+  "lat": 43.6570786,
+  "lon": 7.1829148,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Moore"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468615,
+  "lat": 43.6567174,
+  "lon": 7.1814984,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Paff"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468616,
+  "lat": 43.6566766,
+  "lon": 7.1812984,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "description": "Restaurant;Pizzeria",
+    "name": "Le Perlz"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468619,
+  "lat": 43.6571210,
+  "lon": 7.1830905,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Sant'Ana"
+  }
+},
+{
+  "type": "node",
+  "id": 3667468620,
+  "lat": 43.6571649,
+  "lon": 7.1832575,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Les Jardins d'Asadir"
+  }
+},
+{
+  "type": "node",
+  "id": 3667470127,
+  "lat": 43.6569114,
+  "lon": 7.1822415,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "description": "Reestaurant Japonnais;Brochettes Japonnaises;Sushi",
+    "name": "Osaka"
+  }
+},
+{
+  "type": "node",
+  "id": 3667470131,
+  "lat": 43.6579419,
+  "lon": 7.1891661,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Tortola"
+  }
+},
+{
+  "type": "node",
+  "id": 3667470162,
+  "lat": 43.6870938,
+  "lon": 7.1016156,
+  "tags": {
+    "amenity": "restaurant"
+  }
+},
+{
+  "type": "node",
+  "id": 3667500475,
+  "lat": 43.6782741,
+  "lon": 7.1171453,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La ClГ© des Champs"
+  }
+},
+{
+  "type": "node",
+  "id": 3667500476,
+  "lat": 43.6658165,
+  "lon": 7.1222014,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Franc Comtoise",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 3667652535,
+  "lat": 43.6665115,
+  "lon": 7.1459019,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "La Goutte d'Eau"
+  }
+},
+{
+  "type": "node",
+  "id": 3667652536,
+  "lat": 43.6662613,
+  "lon": 7.1457340,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Le Manoir"
+  }
+},
+{
+  "type": "node",
+  "id": 3667652538,
+  "lat": 43.6662981,
+  "lon": 7.1458283,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Timezone"
+  }
+},
+{
+  "type": "node",
+  "id": 3667697910,
+  "lat": 43.6977600,
+  "lon": 7.2650526,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Salon"
+  }
+},
+{
+  "type": "node",
+  "id": 3667750841,
+  "lat": 43.7058370,
+  "lon": 7.3010482,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "PizzГ©ria du Col"
+  }
+},
+{
+  "type": "node",
+  "id": 3679141193,
+  "lat": 43.6970870,
+  "lon": 7.2655706,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "La Pizza Cresci"
+  }
+},
+{
+  "type": "node",
+  "id": 3696363325,
+  "lat": 43.6988102,
+  "lon": 7.2844260,
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:street": "Place de l'ГЋle de BeautГ©",
+    "amenity": "restaurant",
+    "name": "Brasserie du vieux port",
+    "outdoor_seating": "yes",
+    "phone": "+33 4 93 56 57 66",
+    "source:phone": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3710816684,
+  "lat": 43.6610256,
+  "lon": 7.1485944,
+  "tags": {
+    "addr:city": "Cagnes sur mer",
+    "addr:housenumber": "63",
+    "addr:postcode": "06800",
+    "addr:street": "Avenue de la Gare",
+    "amenity": "restaurant",
+    "cuisine": "pizza",
+    "name": "Pizza Kelly"
+  }
+},
+{
+  "type": "node",
+  "id": 3721305132,
+  "lat": 43.7228138,
+  "lon": 7.1129370,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Le Pigeonnier"
+  }
+},
+{
+  "type": "node",
+  "id": 3721305133,
+  "lat": 43.7229389,
+  "lon": 7.1129634,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "L'en Champs ThГ©"
+  }
+},
+{
+  "type": "node",
+  "id": 3730438279,
+  "lat": 43.7427636,
+  "lon": 7.3178718,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Flunch"
+  }
+},
+{
+  "type": "node",
+  "id": 3742288525,
+  "lat": 43.6991572,
+  "lon": 7.2777320,
+  "tags": {
+    "addr:city": "Nice",
+    "addr:housenumber": "2",
+    "addr:postcode": "06300",
+    "addr:street": "Place Saint-FranГ§ois",
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Le Gaglio"
+  }
+},
+{
+  "type": "node",
+  "id": 3748973563,
+  "lat": 43.7230531,
+  "lon": 7.1132589,
+  "tags": {
+    "addr:city": "Vence",
+    "addr:housenumber": "3",
+    "addr:postcode": "06140",
+    "addr:street": "Place  Vieille",
+    "amenity": "restaurant",
+    "cuisine": "Terroir_espagnol,_Tapas",
+    "name": "La Onda",
+    "opening_hours": "11:00 Г  23:00 du mardi au samedi",
+    "phone": "+33 4 93 32 90 97, +33 6 15 81 11 22",
+    "website": "http://www.la-onda.fr"
+  }
+},
+{
+  "type": "node",
+  "id": 3772060861,
+  "lat": 43.7228168,
+  "lon": 7.1142669,
+  "tags": {
+    "addr:city": "Vence",
+    "addr:housenumber": "1",
+    "addr:postcode": "06140",
+    "addr:street": "Place Godeau",
+    "amenity": "restaurant",
+    "name": "Le Michel Ange",
+    "phone": "+33 4 93 58 32 56"
+  }
+}
+
+  ]
+}
