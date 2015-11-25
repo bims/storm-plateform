@@ -5,10 +5,10 @@ package inputClass;
  */
 public class Restaurant {
 
-    String id;
-    String xCor;
-    String yCor;
-    String name;
+    private String id;
+    private String xCor;
+    private String yCor;
+    private String name;
 
     //constructeur
     public Restaurant(String id, String x, String y){

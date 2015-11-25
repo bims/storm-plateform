@@ -17,68 +17,52 @@ public class InputReader extends BaseRichSpout {
 	private SpoutOutputCollector collector;
 	private FileReader fileReader;
 	private boolean completed = false;
+
 	public void ack(Object msgId) {
-		System.out.println("OK:"+msgId);
+		System.out.println("OK:" + msgId);
 	}
 	public void close() {}
+
 	public void fail(Object msgId) {
-		System.out.println("FAIL:"+msgId);
+		System.out.println("FAIL:" + msgId);
 	}
 
-	/**
-	 * The only thing that the methods will do It is emit each 
-	 * file line
-	 */
 	public void nextTuple() {
-		/**
-		 * The nextuple it is called forever, so if we have been readed the file
-		 * we will wait and then return
-		 */
 		if(completed){
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				//Do nothing
+			}
+			catch (InterruptedException e) {
 			}
 			return;
 		}
 		String str;
-		//Open the reader
+
 		BufferedReader reader = new BufferedReader(fileReader);
 		try{
-			//Read all lines
 			while((str = reader.readLine()) != null){
-				/**
-				 * By each line emmit a new value with the line as a their
-				 */
-
 				System.err.println("Il reste des données à analyser!!!");
-
-				this.collector.emit(new Values(str),str);
+				this.collector.emit(str, new Values(str));
 			}
-		}catch(Exception e){
-			throw new RuntimeException("Error reading tuple",e);
-		}finally{
+		}
+		catch(Exception e){
+			throw new RuntimeException("Error reading tuple", e);
+		}
+		finally{
 			completed = true;
 		}
 	}
 
-	/**
-	 * We will create the file and get the collector object
-	 */
-	public void open(Map conf, TopologyContext context,
-			SpoutOutputCollector collector) {
+	public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
 		try {
 			this.fileReader = new FileReader(conf.get("inputFile").toString());
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException("Error reading file ["+conf.get("inputFile")+"]");
+		}
+		catch (FileNotFoundException e) {
+			throw new RuntimeException("Error reading file [" + conf.get("inputFile") + "]");
 		}
 		this.collector = collector;
 	}
 
-	/**
-	 * Declare the output field "word"
-	 */
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
 		declarer.declare(new Fields("line"));
 	}

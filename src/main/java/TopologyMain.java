@@ -9,27 +9,21 @@ import bolts.InputNormalizer;
 
 public class TopologyMain {
 	public static void main(String[] args) throws InterruptedException {
-         
-        //Topology definition
+
 		TopologyBuilder builder = new TopologyBuilder();
 
-		//P1: SPOUT
 		builder.setSpout("input-reader",new InputReader());
 
-		//P2: BOLTS
-		//BOLT 1
-		builder.setBolt("input-normalizer", new InputNormalizer()).shuffleGrouping("input-reader");
-		//BOLT 2
-		builder.setBolt("input-compareToDB", new InputCompareToDB(),1).fieldsGrouping("input-normalizer", new Fields("inputcoord"));
+		builder.setBolt("input-normalizer", new InputNormalizer())
+			   .shuffleGrouping("input-reader");
+		builder.setBolt("input-compareToDB", new InputCompareToDB(),1)
+			   .shuffleGrouping("input-normalizer");
 
-
-        //Configuration
 		Config conf;
 		conf = new Config();
 		conf.put("inputFile", args[0]);
 		conf.setDebug(false);
 
-        //Topology run
 		conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
 		LocalCluster cluster = new LocalCluster();
 

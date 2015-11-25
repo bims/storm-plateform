@@ -1,8 +1,5 @@
 package inputClass;
 
-/**
- * Created by pb402 on 24/11/2015.
- */
 public class Input {
 
     //Les coordonnées des données entrées en input
@@ -14,7 +11,6 @@ public class Input {
         this.x = x;
         this.y = y;
     }
-
 
     //getters pour recupérer x et y
     public String getX(){
