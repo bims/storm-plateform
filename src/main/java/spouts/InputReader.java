@@ -31,18 +31,19 @@ public class InputReader extends BaseRichSpout {
 		if(completed){
 			try {
 				Thread.sleep(1000);
-			}
-			catch (InterruptedException e) {
+			}catch(InterruptedException e){
+
 			}
 			return;
 		}
+
 		String str;
 
 		BufferedReader reader = new BufferedReader(fileReader);
 		try{
 			while((str = reader.readLine()) != null){
 				System.err.println("Il reste des données à analyser!!!");
-				this.collector.emit(str, new Values(str));
+				this.collector.emit(new Values(str),str);
 			}
 		}
 		catch(Exception e){

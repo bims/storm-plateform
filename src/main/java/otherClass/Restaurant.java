@@ -1,4 +1,4 @@
-package inputClass;
+package otherClass;
 
 /**
  * Created by pb402 on 25/11/2015.

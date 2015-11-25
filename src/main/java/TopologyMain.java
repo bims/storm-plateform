@@ -14,10 +14,8 @@ public class TopologyMain {
 
 		builder.setSpout("input-reader",new InputReader());
 
-		builder.setBolt("input-normalizer", new InputNormalizer())
-			   .shuffleGrouping("input-reader");
-		builder.setBolt("input-compareToDB", new InputCompareToDB(),1)
-			   .fieldsGrouping("input-normalizer", new Fields("inputcoord"));
+		builder.setBolt("input-normalizer", new InputNormalizer()).shuffleGrouping("input-reader");
+		builder.setBolt("input-compareToDB", new InputCompareToDB(),1).fieldsGrouping("input-normalizer", new Fields("inputcoord"));
 
 		Config conf;
 		conf = new Config();
@@ -33,7 +31,7 @@ public class TopologyMain {
 
 		System.err.println("Thread.sleep(2000)!!!!!!!!!!!!!!!!!!!!");
 
-		Thread.sleep(120000);
+		Thread.sleep(6000);
 		cluster.shutdown();
 
 		System.err.println("END!!!!!!!!!!!!!!!!!!!!");
