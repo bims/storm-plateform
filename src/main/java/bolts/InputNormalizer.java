@@ -6,6 +6,7 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+
 import inputClass.Input;
 
 public class InputNormalizer extends BaseBasicBolt {
@@ -39,9 +40,9 @@ public class InputNormalizer extends BaseBasicBolt {
 	
 
 	/**
-	 * The bolt will only emit the field "word" 
+	 * The bolt will only emit the field "inputcoord"
 	 */
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("word"));
+		declarer.declare(new Fields("inputcoord"));
 	}
 }
