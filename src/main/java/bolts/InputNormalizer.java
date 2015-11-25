@@ -9,6 +9,7 @@ import backtype.storm.tuple.Values;
 
 import inputClass.Input;
 
+
 public class InputNormalizer extends BaseBasicBolt {
 
 	public void cleanup() {}

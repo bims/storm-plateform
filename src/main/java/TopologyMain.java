@@ -7,6 +7,7 @@ import bolts.InputCompareToDB;
 import bolts.InputNormalizer;
 
 
+
 public class TopologyMain {
 	public static void main(String[] args) throws InterruptedException {
 

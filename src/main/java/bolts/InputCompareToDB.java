@@ -15,6 +15,7 @@ public class InputCompareToDB extends BaseBasicBolt {
 	Integer id;
 	String name;
 
+
 	@Override
 	public void cleanup() {
 	}
