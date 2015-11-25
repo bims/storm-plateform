@@ -17,7 +17,7 @@ public class TopologyMain {
 		builder.setBolt("input-normalizer", new InputNormalizer())
 			   .shuffleGrouping("input-reader");
 		builder.setBolt("input-compareToDB", new InputCompareToDB(),1)
-			   .shuffleGrouping("input-normalizer");
+			   .fieldsGrouping("input-normalizer", new Fields("inputcoord"));
 
 		Config conf;
 		conf = new Config();
