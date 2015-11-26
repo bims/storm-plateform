@@ -30,9 +30,9 @@ public class TopologyMain {
 
 		cluster.submitTopology("Getting-Started-Toplogie", conf, builder.createTopology());
 
-		System.err.println("Thread.sleep(2000)!!!!!!!!!!!!!!!!!!!!");
+		System.err.println("Thread.sleep(4000)!!!!!!!!!!!!!!!!!!!!");
 
-		Thread.sleep(6000);
+		Thread.sleep(4000);
 		cluster.shutdown();
 
 		System.err.println("END!!!!!!!!!!!!!!!!!!!!");

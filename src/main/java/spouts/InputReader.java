@@ -43,7 +43,7 @@ public class InputReader extends BaseRichSpout {
 		BufferedReader reader = new BufferedReader(fileReader);
 		try{
 			while((str = reader.readLine()) != null){
-				System.err.println("Il reste des données à analyser!!!");
+				//System.err.println("Il reste des données à analyser!!!");
 				this.collector.emit(new Values(str),str);
 			}
 		}
