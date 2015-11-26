@@ -1,8 +1,8 @@
 package otherClass;
 
+
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import org.apache.storm.shade.org.json.simple.JSONObject;
+import org.apache.storm.shade.com.google.common.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

@@ -30,9 +30,14 @@ public class InputCompareToDB extends BaseBasicBolt {
 
 	public void execute(Tuple input, BasicOutputCollector collector) {
 
+		//On recupère les données de l'input
 		Input str = (Input) input.getValue(0);
 		//On vérifie que l'on a bien recuperer les donnees de l'input
-		System.err.println("X: " + str.getX() + " Y: " + str.getY());
+		//System.err.println("X: " + str.getX() + " Y: " + str.getY());
+
+
+		//on implemente KNN ici
+		int k = 3;// # of neighbours
 
 
 		//les données sont X et Y et no du restaurant
@@ -57,8 +62,6 @@ public class InputCompareToDB extends BaseBasicBolt {
 		} ;
 
 
-		//on implemente KNN ici
-		int k = 3;// # of neighbours
 
 		//Constructeur des restaurants
 		// TODO modifier aussi
@@ -77,9 +80,8 @@ public class InputCompareToDB extends BaseBasicBolt {
 		restaurantList.add(new Restaurant(instances[8],"Restaurant9"));
 
 		//find distances
+		int nbR = 1;
 		for(Restaurant restaurant : restaurantList){
-
-			int x = 1;
 
 			double dist = 0.0;
 			for(int j = 0; j < restaurant.restaurantAttributes.length; j++){
@@ -88,16 +90,16 @@ public class InputCompareToDB extends BaseBasicBolt {
 			}
 			double distance = Math.sqrt( dist );
 			resultList.add(new Result(distance,restaurant.restaurantName));
-			System.out.print("restaurant"+x+" X:"+restaurant.restaurantAttributes[0]+" Y:"+restaurant.restaurantAttributes[1]+"\n");
-			System.out.println(distance);
-			x++;
+			System.out.print("restaurant"+nbR+" X:"+restaurant.restaurantAttributes[0]+" Y:"+restaurant.restaurantAttributes[1]+"\n");
+			System.out.println("distance="+distance);
+			nbR++;
 		}
 
 		//System.out.println(resultList);
 		Collections.sort(resultList, new DistanceComparator());
 		//String[] ss = new String[k];
 
-		System.out.println("X: " + str.getX() + " Y: " + str.getY());
+		System.err.println("X: " + str.getX() + " Y: " + str.getY());
 
 		for(int x = 0; x < k; x++){
 			System.out.println(resultList.get(x).restaurantName+ " .... " + resultList.get(x).distance + " X=" + restaurantList.get(x).restaurantAttributes[0] +  " et Y=" + restaurantList.get(x).restaurantAttributes[1]);
@@ -106,6 +108,12 @@ public class InputCompareToDB extends BaseBasicBolt {
 		}
 
 	}
+
+
+
+
+
+
 
 
 	/**
