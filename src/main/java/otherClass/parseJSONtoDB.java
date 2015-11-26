@@ -1,41 +1,48 @@
 package otherClass;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.apache.storm.shade.org.json.simple.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pb402 on 25/11/2015.
  */
+
 public class parseJSONtoDB {
-
-
 
     public static void main(String[] args){
 
-        //on cree un objet json pour récupérer le résultat.
-        JSONObject obj = new JSONObject();
-
-        //String pour recuperer la string du fichier
+        // String pour recuperer la string du fichier
         String stringDB = "";
 
-        //on lit le fichier
+        // On lit le fichier
         Path path_DataBase = Paths.get("src/main/resources", "restaurant.json");
 
-        byte[] ArrayDB = new byte[0];
         try {
-            ArrayDB = Files.readAllBytes(path_DataBase);
+            byte[] ArrayDB = Files.readAllBytes(path_DataBase);
             stringDB = new String(ArrayDB, "ISO-8859-1");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        // Deserialize the list of Restaurants from JSon to Java Restaurant Objects.
+        Gson gson = new Gson();
 
-        System.out.println(stringDB);
+        Type listType = new TypeToken<ArrayList<Restaurant>>(){}.getType();
 
+        List<Restaurant> allRestaurants = gson.fromJson(stringDB, listType);
+
+        for(Restaurant rest: allRestaurants){
+            System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
+        }
 
     }
 }

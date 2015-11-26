@@ -18,14 +18,10 @@ public class InputNormalizer extends BaseBasicBolt {
         String sentence = input.getString(0);
         String[] words = sentence.split(" ");
 
-		String x = "";
-		String y = "";
+		String x = words[0];
+		String y = words[1];
 
-		Input obj = null;
-		x = words[0];
-		y = words[1];
-
-		obj = new Input(x,y);
+		Input obj = new Input(x,y);
 
 		collector.emit(new Values(obj));
 
