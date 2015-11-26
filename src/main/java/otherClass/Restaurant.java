@@ -3,37 +3,68 @@ package otherClass;
 /**
  * Created by pb402 on 25/11/2015.
  */
+
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+@Generated("org.jsonschema2pojo")
 public class Restaurant {
 
-    private String id;
-    private String xCor;
-    private String yCor;
-    private String name;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("id")
+    @Expose
+    private Long id;
+    @SerializedName("lat")
+    @Expose
+    private Double lat;
+    @SerializedName("lon")
+    @Expose
+    private Double lon;
+    @SerializedName("tags")
+    @Expose
+    private Tags tags;
 
-    //constructeur
-    public Restaurant(String id, String x, String y){
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
-        this.xCor = x;
-        this.yCor = y;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public Double getLat() {
+        return lat;
     }
 
-    public String getName(){
-        return this.name;
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
-    public String getId(){
-        return this.id;
+    public Double getLon() {
+        return lon;
     }
 
-    public String getXcor(){
-        return this.xCor;
+    public void setLon(Double lon) {
+        this.lon = lon;
     }
 
-    public String getYcor(){
-        return this.yCor;
+    public Tags getTags() {
+        return tags;
     }
+
+    public void setTags(Tags tags) {
+        this.tags = tags;
+    }
+
 }
