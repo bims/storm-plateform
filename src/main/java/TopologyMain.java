@@ -18,7 +18,7 @@ public class TopologyMain {
                 TopologyBuilder builder=new TopologyBuilder();
 
                 ZkHosts zkHosts = new ZkHosts("localhost:2181");
-                String topic = "coord";
+                String topic = "gps";
                 String consumer_group_id = "id7";
                 SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, topic, "", consumer_group_id);
 
