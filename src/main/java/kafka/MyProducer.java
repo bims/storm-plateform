@@ -16,7 +16,6 @@ public class MyProducer {
         double xInit = 43.69;
         double yInit = 7.24;
         Random rnd = new Random();
-        String msg;
 
         //Variables utilisees pour la simulation
         double x = xInit;
@@ -24,7 +23,7 @@ public class MyProducer {
 
         Properties props = new Properties();
         //Un broker suffit pour la premiere version mais l'API Java de Kafka requiert un broker comme roue de secours
-        props.put("metadata.broker.list", "localhost:9093,localhost:9094");
+        props.put("metadata.broker.list", "localhost:9092,localhost:9093");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
         //Partitionnement pas important pour l'instant
         //props.put("partitioner.class", "SimplePartitioner");
@@ -43,7 +42,7 @@ public class MyProducer {
             }
             else y = y - ONE_MOVE;
 
-            msg = x+" "+y;
+            String msg = x+" "+y;
 
             //Ici, on specifie le nom du topic dans lequel on va envoyer le message
             KeyedMessage<String, String> data = new KeyedMessage<String, String>("gps",msg);
