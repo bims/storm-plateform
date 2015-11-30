@@ -18,7 +18,7 @@ import java.util.List;
 
 public class parseJSONtoDB {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
 
         // String pour recuperer la string du fichier
         String stringDB = "";
@@ -40,9 +40,13 @@ public class parseJSONtoDB {
 
         List<Restaurant> allRestaurants = gson.fromJson(stringDB, listType);
 
+        HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants");
+
         for(Restaurant rest: allRestaurants){
             System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
+            restaurantsTable.addItem(rest.getId(), rest.getLat(), rest.getLon(), rest.getTags().getName(), rest.getTags().getAddrStreet());
         }
 
+        restaurantsTable.closeConnection();
     }
 }
