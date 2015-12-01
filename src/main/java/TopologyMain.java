@@ -1,6 +1,5 @@
 import backtype.storm.spout.SchemeAsMultiScheme;
 import kafka.api.OffsetRequest;
-import spouts.InputReader;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
@@ -12,8 +11,13 @@ import storm.kafka.SpoutConfig;
 import storm.kafka.StringScheme;
 import storm.kafka.ZkHosts;
 
+import java.util.Properties;
+
 
 public class TopologyMain {
+
+        protected Properties topologyConfig;
+
         public static void main(String[] args) throws InterruptedException {
                 TopologyBuilder builder=new TopologyBuilder();
 
