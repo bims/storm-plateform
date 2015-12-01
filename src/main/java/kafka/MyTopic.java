@@ -21,7 +21,7 @@ public class MyTopic {
 
         // Create a topic named "gps" with 1 partition and a replication factor of 1
         String topicName = "gps";
-        int numPartitions = 4;
+        int numPartitions = 1;
         int replicationFactor = 1;
         Properties topicConfig = new Properties();
         AdminUtils.createTopic(zkClient, topicName, numPartitions, replicationFactor, topicConfig);
