@@ -42,7 +42,7 @@ public class parseJSONtoDB {
 
         HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants");
 
-        for(Restaurant rest: allRestaurants){
+        for(Restaurant rest: allRestaurants) {
             System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
             restaurantsTable.addItem(rest.getId(), rest.getLat(), rest.getLon(), rest.getTags().getName(), rest.getTags().getAddrStreet());
         }
