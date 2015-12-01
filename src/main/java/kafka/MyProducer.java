@@ -26,7 +26,7 @@ public class MyProducer {
         props.put("metadata.broker.list", "localhost:9092,localhost:9093");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
         //Partitionnement aleatoire : N partitions egales
-        props.put("partitioner.class", "SimplePartitioner");
+        //props.put("partitioner.class", "SimplePartitioner");
         props.put("request.required.acks", "1");
         ProducerConfig config = new ProducerConfig(props);
 
