@@ -21,7 +21,7 @@ public class MyTopic {
         //Le parametre avec les dollars à revoir
 
         // Create a topic named "gps" with N partition and a replication factor of 1
-        String topicName = "gps";
+        String topicName = MyConstants.TOPIC_NAME;
         int numPartitions = MyConstants.NUM_PARTITIONS;
         int replicationFactor = 1;
         Properties topicConfig = new Properties();

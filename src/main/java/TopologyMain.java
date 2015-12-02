@@ -1,4 +1,5 @@
 import backtype.storm.spout.SchemeAsMultiScheme;
+import bolts.TestKafka;
 import kafka.api.OffsetRequest;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -24,7 +25,7 @@ public class TopologyMain {
 
                 ZkHosts zkHosts = new ZkHosts("localhost:2181");
 
-                String topic = "gps";
+                String topic = MyConstants.TOPIC_NAME;
                 String consumer_group_id = "id7";
                 SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, topic, "", consumer_group_id);
 
@@ -33,6 +34,7 @@ public class TopologyMain {
 
                 KafkaSpout kafkaSpout = new KafkaSpout(kafkaConfig);
                 builder.setSpout("KafkaSpout", kafkaSpout, MyConstants.NUM_PARTITIONS);
+                //builder.setBolt("test-kafka", new TestKafka()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-normalizer", new InputNormalizer()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-compareToDB", new InputCompareToDB(), 1).fieldsGrouping("input-normalizer", new Fields("inputcoord"));
 

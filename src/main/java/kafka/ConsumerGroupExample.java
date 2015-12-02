@@ -75,11 +75,11 @@ public class ConsumerGroupExample {
         ConsumerGroupExample example = new ConsumerGroupExample(zooKeeper, groupId, topic);
         example.run(threads);
 
-       /* try {
+        try {
             Thread.sleep(10000);
         } catch (InterruptedException ie) {
 
         }
-        example.shutdown();*/
+        example.shutdown();
     }
 }

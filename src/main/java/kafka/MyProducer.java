@@ -3,6 +3,7 @@ package kafka;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
+import otherClass.MyConstants;
 
 import java.util.Properties;
 import java.util.Random;
@@ -42,11 +43,11 @@ public class MyProducer {
             }
             else y = y - ONE_MOVE;
 
-            String msg = "Partition2";
-            String key = "4";
+            String msg = x+" "+y;
+            String key = ""; //Clé non nécessaire pour l'instant, obligatoire (?) de mettre une valeur pour utiliser Partitioner
 
             //Ici, on specifie le nom du topic dans lequel on va envoyer le message
-            KeyedMessage<String, String> data = new KeyedMessage<String, String>("gps",key,msg);
+            KeyedMessage<String, String> data = new KeyedMessage<String, String>(MyConstants.TOPIC_NAME,key,msg);
             try {
                 //A modifier ???
                 Thread.sleep(3000);
