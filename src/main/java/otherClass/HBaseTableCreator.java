@@ -10,10 +10,6 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
 
-/**
- * Created by Gawish on 11/30/2015.
- */
-
 public class HBaseTableCreator {
 
     HTable hTable;
@@ -45,10 +41,11 @@ public class HBaseTableCreator {
                 Bytes.toBytes("name"),
                 Bytes.toBytes(name));
 
-        p.add(Bytes.toBytes("info"),
-                Bytes.toBytes("addr"),
-                Bytes.toBytes(addStreet));
-
+        if(addStreet != null) {
+            p.add(Bytes.toBytes("info"),
+                    Bytes.toBytes("addr"),
+                    Bytes.toBytes(addStreet));
+        }
         // Saving the put Instance to the HTable.
         hTable.put(p);
         System.out.println("data inserted: Id = " + id + ", Lat = " + lat + ", Long = " + lon + ", Name = " + name);
@@ -83,7 +80,11 @@ public class HBaseTableCreator {
         Double lat = Bytes.toDouble(value);
         Double lon = Bytes.toDouble(value1);
         String name = Bytes.toString(value2);
-        String addr = Bytes.toString(value3);
+        String addr = null;
+
+        if(value3 != null) {
+            addr = Bytes.toString(value3);
+        }
 
         myRestaurant.setId(id);
         myRestaurant.setLat(lat);
