@@ -25,7 +25,7 @@ public class MyProducer {
         //Un broker suffit pour la premiere version mais l'API Java de Kafka requiert un broker comme roue de secours
         props.put("metadata.broker.list", "localhost:9092,localhost:9093");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
-        //Partitionnement pas important pour l'instant
+        //Partitionnement aleatoire : N partitions egales
         //props.put("partitioner.class", "SimplePartitioner");
         props.put("request.required.acks", "1");
         ProducerConfig config = new ProducerConfig(props);
@@ -48,11 +48,12 @@ public class MyProducer {
             KeyedMessage<String, String> data = new KeyedMessage<String, String>("gps",msg);
             try {
                 //A modifier ???
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             producer.send(data);
+            System.out.println("Message sent:"+msg);
         }
         producer.close();
     }
