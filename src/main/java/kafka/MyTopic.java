@@ -5,6 +5,7 @@ import kafka.utils.ZKStringSerializer$;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.exception.ZkMarshallingError;
 import org.I0Itec.zkclient.serialize.ZkSerializer;
+import otherClass.MyConstants;
 
 import java.util.Properties;
 
@@ -19,9 +20,9 @@ public class MyTopic {
         ZkClient zkClient = new ZkClient("localhost:2181", sessionTimeoutMs, connectionTimeoutMs,ZKStringSerializer$.MODULE$);
         //Le parametre avec les dollars à revoir
 
-        // Create a topic named "gps" with 1 partition and a replication factor of 1
+        // Create a topic named "gps" with N partition and a replication factor of 1
         String topicName = "gps";
-        int numPartitions = 1;
+        int numPartitions = MyConstants.NUM_PARTITIONS;
         int replicationFactor = 1;
         Properties topicConfig = new Properties();
         AdminUtils.createTopic(zkClient, topicName, numPartitions, replicationFactor, topicConfig);

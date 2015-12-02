@@ -26,7 +26,7 @@ public class MyProducer {
         props.put("metadata.broker.list", "localhost:9092,localhost:9093");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
         //Partitionnement aleatoire : N partitions egales
-        //props.put("partitioner.class", "SimplePartitioner");
+        props.put("partitioner.class", "kafka.SimplePartitioner");
         props.put("request.required.acks", "1");
         ProducerConfig config = new ProducerConfig(props);
 
@@ -42,13 +42,14 @@ public class MyProducer {
             }
             else y = y - ONE_MOVE;
 
-            String msg = x+" "+y;
+            String msg = "Partition2";
+            String key = "4";
 
             //Ici, on specifie le nom du topic dans lequel on va envoyer le message
-            KeyedMessage<String, String> data = new KeyedMessage<String, String>("gps",msg);
+            KeyedMessage<String, String> data = new KeyedMessage<String, String>("gps",key,msg);
             try {
                 //A modifier ???
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
