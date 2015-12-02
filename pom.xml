@@ -23,16 +23,6 @@
         </plugins>
     </build>
 
-    <repositories>
-
-        <!-- Repository where we can found the storm dependencies  -->
-        <repository>
-            <id>clojars.org</id>
-            <url>http://clojars.org/repo</url>
-        </repository>
-
-    </repositories>
-
     <dependencies>
 
         <!-- Storm Dependency -->
@@ -40,6 +30,16 @@
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-core</artifactId>
             <version>0.10.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--Google GSON library-->
