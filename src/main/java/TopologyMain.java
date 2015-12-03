@@ -16,8 +16,6 @@ import java.util.Properties;
 
 public class TopologyMain {
 
-        protected Properties topologyConfig;
-
         public static void main(String[] args) throws InterruptedException {
                 TopologyBuilder builder=new TopologyBuilder();
 
@@ -36,7 +34,7 @@ public class TopologyMain {
 
                 Config conf;
                 conf = new Config();
-                //conf.put("inputFile", args[0]);
+
                 conf.setDebug(false);
 
                 conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);

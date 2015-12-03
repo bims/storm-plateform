@@ -1,6 +1,5 @@
 package otherClass;
 
-
 import com.google.gson.Gson;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
 
@@ -40,7 +39,11 @@ public class parseJSONtoDB {
 
         List<Restaurant> allRestaurants = gson.fromJson(stringDB, listType);
 
-        HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants");
+        List<String> familyColumns = new ArrayList<>();
+        familyColumns.add(1, "geo");
+        familyColumns.add(2, "info");
+
+        HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants", familyColumns);
 
         for(Restaurant rest: allRestaurants) {
             System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
