@@ -40,8 +40,8 @@ public class parseJSONtoDB {
         List<Restaurant> allRestaurants = gson.fromJson(stringDB, listType);
 
         List<String> familyColumns = new ArrayList<>();
-        familyColumns.add(1, "geo");
-        familyColumns.add(2, "info");
+        familyColumns.add("geo");
+        familyColumns.add("info");
 
         HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants", familyColumns);
 
