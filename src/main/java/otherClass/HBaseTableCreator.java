@@ -18,7 +18,13 @@ public class HBaseTableCreator {
     public HBaseTableCreator(String tablename, List<String> familyCols) throws IOException {
         Configuration config = HBaseConfiguration.create();
 
-        HBaseAdmin hBaseAdmin = new HBaseAdmin(config);
+        System.out.println( "Connecting..." );
+
+        Connection conn = ConnectionFactory.createConnection(config);
+
+        Admin hBaseAdmin = conn.getAdmin();
+
+        System.out.println( "Creating Table..." );
 
         HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf(tablename));
 
@@ -26,9 +32,11 @@ public class HBaseTableCreator {
             tableDescriptor.addFamily(new HColumnDescriptor(familyCol));
         }
 
-        if(!hBaseAdmin.tableExists(tablename)) {
+        if(!hBaseAdmin.tableExists(TableName.valueOf(tablename))) {
             hBaseAdmin.createTable(tableDescriptor);
         }
+
+        System.out.println("Done!");
     }
 
     public void addItem(Long id, Double lat, Double lon, String name, String addStreet) throws IOException {
