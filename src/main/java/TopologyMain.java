@@ -8,10 +8,9 @@ import backtype.storm.tuple.Fields;
 import bolts.InputCompareToDB;
 import bolts.InputNormalizer;
 import otherClass.MyConstants;
-import storm.kafka.KafkaSpout;
-import storm.kafka.SpoutConfig;
-import storm.kafka.StringScheme;
-import storm.kafka.ZkHosts;
+import spouts.InputReader;
+import storm.kafka.*;
+import storm.kafka.trident.GlobalPartitionInformation;
 
 import java.util.Properties;
 
@@ -22,6 +21,12 @@ public class TopologyMain {
                 TopologyBuilder builder=new TopologyBuilder();
 
                 ZkHosts zkHosts = new ZkHosts("localhost:2181");
+                /*GlobalPartitionInformation partitionInfo = new GlobalPartitionInformation();
+                partitionInfo.addPartition(0,new Broker("localhost:9092"));
+                partitionInfo.addPartition(1,new Broker("localhost:9092"));
+                partitionInfo.addPartition(2,new Broker("localhost:9092"));
+                partitionInfo.addPartition(3,new Broker("localhost:9092"));
+                StaticHosts staticHosts = new StaticHosts(partitionInfo);*/
 
                 String topic = MyConstants.TOPIC_NAME;
                 String consumer_group_id = "id7";
@@ -32,13 +37,11 @@ public class TopologyMain {
 
                 KafkaSpout kafkaSpout = new KafkaSpout(kafkaConfig);
                 builder.setSpout("KafkaSpout", kafkaSpout, MyConstants.NUM_PARTITIONS);
-                //builder.setBolt("test-kafka", new TestKafka()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-normalizer", new InputNormalizer()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-compareToDB", new InputCompareToDB(), 1).fieldsGrouping("input-normalizer", new Fields("inputcoord"));
 
                 Config conf;
                 conf = new Config();
-
                 conf.setDebug(false);
 
                 conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
