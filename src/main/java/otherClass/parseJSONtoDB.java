@@ -1,6 +1,8 @@
 package otherClass;
 
 import com.google.gson.Gson;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
 
 import java.io.IOException;
@@ -39,17 +41,16 @@ public class parseJSONtoDB {
 
         List<Restaurant> allRestaurants = gson.fromJson(stringDB, listType);
 
-        List<String> familyColumns = new ArrayList<>();
-        familyColumns.add("geo");
-        familyColumns.add("info");
+        Configuration config = HBaseConfiguration.create();
+        config.addResource(new org.apache.hadoop.fs.Path(System.getenv("HBASE_CONF_DIR"), "hbase-site.xml"));
 
-        HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants", familyColumns);
+        HBaseDB restaurantsDB = new HBaseDB(config);
 
         for(Restaurant rest: allRestaurants) {
             System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
-            restaurantsTable.addItem(rest.getId(), rest.getLat(), rest.getLon(), rest.getTags().getName(), rest.getTags().getAddrStreet());
+            restaurantsDB.addItem(rest.getId(), rest.getLat(), rest.getLon(), rest.getTags().getName(), rest.getTags().getAddrStreet());
         }
 
-        restaurantsTable.closeConnection();
+        restaurantsDB.GetRow("277052529");
     }
 }
