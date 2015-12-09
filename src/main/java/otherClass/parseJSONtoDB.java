@@ -43,7 +43,7 @@ public class parseJSONtoDB {
         familyColumns.add("geo");
         familyColumns.add("info");
 
-        HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants", familyColumns);
+        HBaseTableCreator restaurantsTable = new HBaseTableCreator("restaurants2", familyColumns);
 
         for(Restaurant rest: allRestaurants) {
             System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");

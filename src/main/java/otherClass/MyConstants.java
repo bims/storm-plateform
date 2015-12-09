@@ -5,5 +5,5 @@ package otherClass;
  */
 public class MyConstants {
     public static final int NUM_PARTITIONS = 1;
-    public static final String TOPIC_NAME = "blabla";
+    public static final String TOPIC_NAME = "gps";
 }

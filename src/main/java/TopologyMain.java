@@ -37,6 +37,7 @@ public class TopologyMain {
 
                 KafkaSpout kafkaSpout = new KafkaSpout(kafkaConfig);
                 builder.setSpout("KafkaSpout", kafkaSpout, MyConstants.NUM_PARTITIONS);
+                //builder.setBolt("test-kafka",new TestKafka()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-normalizer", new InputNormalizer()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-compareToDB", new InputCompareToDB(), 1).fieldsGrouping("input-normalizer", new Fields("inputcoord"));
 

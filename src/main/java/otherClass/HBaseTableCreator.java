@@ -26,9 +26,9 @@ public class HBaseTableCreator {
             tableDescriptor.addFamily(new HColumnDescriptor(familyCol));
         }
 
-        if(!hBaseAdmin.tableExists(tablename)) {
+        //if(!hBaseAdmin.tableExists(tablename)) {
             hBaseAdmin.createTable(tableDescriptor);
-        }
+        //}
     }
 
     public void addItem(Long id, Double lat, Double lon, String name, String addStreet) throws IOException {
