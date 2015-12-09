@@ -16,13 +16,13 @@ public class Restaurant {
     private String type;
     @SerializedName("id")
     @Expose
-    private Long id;
+    private String id;
     @SerializedName("lat")
     @Expose
-    private Double lat;
+    private String lat;
     @SerializedName("lon")
     @Expose
-    private Double lon;
+    private String lon;
     @SerializedName("tags")
     @Expose
     private Tags tags;
@@ -35,27 +35,27 @@ public class Restaurant {
         this.type = type;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Double getLat() {
+    public String getLat() {
         return lat;
     }
 
-    public void setLat(Double lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
-    public Double getLon() {
+    public String getLon() {
         return lon;
     }
 
-    public void setLon(Double lon) {
+    public void setLon(String lon) {
         this.lon = lon;
     }
 
