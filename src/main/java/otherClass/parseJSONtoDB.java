@@ -50,7 +50,12 @@ public class parseJSONtoDB {
 
         for(Restaurant rest: allRestaurants) {
             System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
-            restaurantsDB.addItem(rest.getId(), rest.getLat(), rest.getLon(), rest.getTags().getName(), rest.getTags().getAddrStreet());
+            String id = rest.getId();
+            String lat = rest.getLat();
+            String lon = rest.getLon();
+            String name = rest.getTags().getName() == null? "":rest.getTags().getName();
+            String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
+            restaurantsDB.addItem(id, lat, lon, name, addr);
         }
 
         restaurantsDB.GetRow("277052529");
