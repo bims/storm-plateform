@@ -42,7 +42,7 @@ public class parseJSONtoDB {
         List<Restaurant> allRestaurants = gson.fromJson(stringDB, listType);
 
         Configuration config = HBaseConfiguration.create();
-        config.addResource(new org.apache.hadoop.fs.Path(System.getenv("HBASE_CONF_DIR"), "hbase-site.xml"));
+//        config.addResource(new org.apache.hadoop.fs.Path(System.getenv("HBASE_CONF_DIR"), "hbase-site.xml"));
 
         HBaseDB restaurantsDB = new HBaseDB(config);
 
