@@ -45,6 +45,8 @@ public class parseJSONtoDB {
         //config.addResource("hbase-site.xml");
 
         HBaseDB restaurantsDB = new HBaseDB(config);
+        restaurantsDB.DropTable();
+        restaurantsDB.CreateTable();
 
         for(Restaurant rest: allRestaurants) {
             System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
