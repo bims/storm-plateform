@@ -67,6 +67,8 @@ public class HBaseDB {
 
     public Restaurant GetRow(String id) throws IOException {
         Restaurant myRestaurant = new Restaurant();
+        Tags myTags = new Tags();
+        myRestaurant.setTags(myTags);
         try (Connection conn = ConnectionFactory.createConnection(config)){
             // Get the table
             Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
@@ -76,10 +78,14 @@ public class HBaseDB {
             // return the results
             if ( r.isEmpty() ) return null;
             myRestaurant.setId(new String(r.getRow())); // Gets rowkey from the record for validation
+            String name = new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME));
+            String addr = new String(r.getValue(COLUMN_FAMILY_INFO, COL_ADDR));
             myRestaurant.setLat(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)));
             myRestaurant.setLon(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LON)));
-            myRestaurant.getTags().setName(new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME)));
-            myRestaurant.getTags().setAddrStreet(new String(r.getValue(COLUMN_FAMILY_INFO, COL_ADDR)));
+            myRestaurant.getTags().setName("");
+            myRestaurant.getTags().setAddrStreet("");
+            if(name != null) myRestaurant.getTags().setName(name);
+            if(addr != null) myRestaurant.getTags().setAddrStreet(addr);
 
             System.out.println("Gotten the row...");
 
