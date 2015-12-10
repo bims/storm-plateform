@@ -45,18 +45,18 @@ public class parseJSONtoDB {
         //config.addResource("hbase-site.xml");
 
         HBaseDB restaurantsDB = new HBaseDB(config);
-        restaurantsDB.DropTable();
-        restaurantsDB.CreateTable();
-
-        for(Restaurant rest: allRestaurants) {
-            System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
-            String id = rest.getId();
-            String lat = rest.getLat();
-            String lon = rest.getLon();
-            String name = rest.getTags().getName() == null? "":rest.getTags().getName();
-            String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
-            restaurantsDB.addItem(id, lat, lon, name, addr);
-        }
+//        restaurantsDB.DropTable();
+//        restaurantsDB.CreateTable();
+//
+//        for(Restaurant rest: allRestaurants) {
+//            System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
+//            String id = rest.getId();
+//            String lat = rest.getLat();
+//            String lon = rest.getLon();
+//            String name = rest.getTags().getName() == null? "" : rest.getTags().getName();
+//            String addr = rest.getTags().getAddrStreet() == null? "" : rest.getTags().getAddrStreet();
+//            restaurantsDB.addItem(id, lat, lon, name, addr);
+//        }
 
         Restaurant recoveredRest = restaurantsDB.GetRow("277052529");
         System.out.print("277052529" + ", ");
@@ -64,5 +64,17 @@ public class parseJSONtoDB {
         System.out.print(recoveredRest.getTags().getAddrStreet() + ", ");
         System.out.print(recoveredRest.getLon() + ", ");
         System.out.print(recoveredRest.getLat());
+        System.out.println();
+
+        System.out.println("Testing the Scan:");
+
+        List<Restaurant> allRecoveredRest = restaurantsDB.ScanRows("277052529", 10);
+        for(int i = 0; i < allRecoveredRest.size(); i++){
+            System.out.print(allRecoveredRest.get(i).getTags().getName() + ", ");
+            System.out.print(allRecoveredRest.get(i).getTags().getAddrStreet() + ", ");
+            System.out.print(allRecoveredRest.get(i).getLon() + ", ");
+            System.out.print(allRecoveredRest.get(i).getLat());
+            System.out.println();
+        }
     }
 }

@@ -7,6 +7,9 @@ import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.filter.PageFilter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
 
@@ -98,13 +101,16 @@ public class HBaseDB {
      *    and retrieves up to limit rows.  Each row is passed to the supplied
      *    DataScanner.
      */
-    public void ScanRows(String startID, int limit) throws IOException {
+    public List<Restaurant> ScanRows(String startID, int limit) throws IOException {
         ResultScanner results = null;
+        List<Restaurant> allRestaurants = new ArrayList<>();
         try (Connection conn = ConnectionFactory.createConnection(config)){
             // Get the table
             Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
             // Create the scan
             Scan scan = new Scan();
+            // start at a specific rowkey.
+            scan.setStartRow(startID.getBytes());
             // Tell the server not to cache more than limit rows since we won't need them
             scan.setCaching(limit);
             // Can also set a server side filter
@@ -114,7 +120,23 @@ public class HBaseDB {
             // Iterate over the scan results and break at the limit
             int count = 0;
             for (Result r : results) {
-                this.ProcessRow(r);
+                Restaurant myRestaurant = new Restaurant();
+                Tags myTags = new Tags();
+                myRestaurant.setTags(myTags);
+
+                if ( r.isEmpty() ) return null;
+                myRestaurant.setId(new String(r.getRow())); // Gets rowkey from the record for validation
+                String name = new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME));
+                String addr = new String(r.getValue(COLUMN_FAMILY_INFO, COL_ADDR));
+                myRestaurant.setLat(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)));
+                myRestaurant.setLon(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LON)));
+                myRestaurant.getTags().setName("");
+                myRestaurant.getTags().setAddrStreet("");
+                if(name != null) myRestaurant.getTags().setName(name);
+                if(addr != null) myRestaurant.getTags().setAddrStreet(addr);
+
+                allRestaurants.add(myRestaurant);
+
                 if ( count++ >= limit ) break;
             }
         }
@@ -122,6 +144,7 @@ public class HBaseDB {
             // ResultScanner must be closed.
             if ( results != null ) results.close();
         }
+        return allRestaurants;
     }
 
     public void ProcessRow(Result r) {
