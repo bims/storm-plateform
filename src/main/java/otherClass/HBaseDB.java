@@ -1,5 +1,7 @@
 package otherClass;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
@@ -24,7 +26,7 @@ public class HBaseDB {
     // HBase configuration
     private final Configuration config;
 
-    public HBaseDB(Configuration inConfig) throws IOException {
+    public HBaseDB(Configuration inConfig){
         config = inConfig;
     }
 
@@ -78,13 +80,29 @@ public class HBaseDB {
             myRestaurant.setId(new String(r.getRow())); // Gets rowkey from the record for validation
             myRestaurant.setLat(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)));
             myRestaurant.setLon(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LON)));
-            myRestaurant.getTags().setName(new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME)));
-            myRestaurant.getTags().setAddrStreet(new String(r.getValue(COLUMN_FAMILY_INFO, COL_ADDR)));
 
-            System.out.println("Gotten the row...");
+            if(r.getValue(COLUMN_FAMILY_INFO, COL_NAME) != null) {
+                String name = new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME));
+                myRestaurant.setName(name);
+                System.out.println("name="+name);
+            }else{
+                myRestaurant.setName("Nom inconnu");
+            }
+            //String addr = new String(r.getValue(COLUMN_FAMILY_INFO, COL_ADDR));
 
+            //myRestaurant.getTags().setAddrStreet("");
+            //if(name != null) myRestaurant.getTags().setName(name);
+            //if(addr != null) myRestaurant.getTags().setAddrStreet(addr);
+
+            System.out.println("Gotten the row... id="+(new String(r.getRow()))+" x="+(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)))+" y="+(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LON))));
+            //if(name != null) System.out.println("name="+name);
+            //if(addr != null) System.out.println("address="+addr);
             return myRestaurant;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        return null;
     }
 
     /**
@@ -92,7 +110,8 @@ public class HBaseDB {
      *    and retrieves up to limit rows.  Each row is passed to the supplied
      *    DataScanner.
      */
-    public void ScanRows(String startID, int limit) throws IOException {
+    /**
+    public ResultScanner ScanRows(String startID, int limit) throws IOException {
         ResultScanner results = null;
         try (Connection conn = ConnectionFactory.createConnection(config)){
             // Get the table
@@ -115,7 +134,58 @@ public class HBaseDB {
         finally {
             // ResultScanner must be closed.
             if ( results != null ) results.close();
+            return results;
         }
+    }
+     **/
+
+    /**
+     *    Specifies a range of rows to retrieve based on a starting row key
+     *    and retrieves up to limit rows.  Each row is passed to the supplied
+     *    DataScanner.
+     */
+    public List<Restaurant> ScanRows(String startID, int limit) throws IOException {
+        ResultScanner results = null;
+        List<Restaurant> allRestaurants = new ArrayList<>();
+        try (Connection conn = ConnectionFactory.createConnection(config)){
+            // Get the table
+            Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
+            // Create the scan
+            Scan scan = new Scan();
+            // start at a specific rowkey.
+            scan.setStartRow(startID.getBytes());
+            // Tell the server not to cache more than limit rows since we won't need them
+            scan.setCaching(limit);
+            // Can also set a server side filter
+            scan.setFilter(new PageFilter(limit));
+            // Get the scan results
+            results = table.getScanner(scan);
+            // Iterate over the scan results and break at the limit
+            int count = 0;
+            for (Result r : results) {
+                Restaurant myRestaurant = new Restaurant();
+                //Tags myTags = new Tags();
+                //myRestaurant.setTags(myTags);
+
+                if ( r.isEmpty() ) return null;
+                myRestaurant.setId(new String(r.getRow())); // Gets rowkey from the record for validation
+                //String addr = new String(r.getValue(COLUMN_FAMILY_INFO, COL_ADDR));
+                myRestaurant.setLat(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)));
+                myRestaurant.setLon(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LON)));
+                //myRestaurant.getTags().setAddrStreet("");
+                myRestaurant.setName(new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME)));
+                //if(addr != null) myRestaurant.getTags().setAddrStreet(addr);
+
+                allRestaurants.add(myRestaurant);
+
+                if ( count++ >= limit ) break;
+            }
+        }
+        finally {
+            // ResultScanner must be closed.
+            if ( results != null ) results.close();
+        }
+        return allRestaurants;
     }
 
     public void ProcessRow(Result r) {
@@ -126,13 +196,22 @@ public class HBaseDB {
         System.out.print(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)));
     }
 
+    public Restaurant ProcessRowR(Result r) {
+        Restaurant myRestaurant = new Restaurant();
+        myRestaurant.setLat(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)));
+        myRestaurant.setLon(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LON)));
 
-    public void addItem(String id, String lat, String lon, String name, String addStreet) throws IOException {
+        return myRestaurant;
+    }
+
+    public void addItem(String id, String lat, String lon, String name) throws IOException {
+    //public void addItem(String id, String lat, String lon, String name, String addStreet) throws IOException {
         // Construct a "put" object for insert
         Put p = new Put(id.getBytes());
+
         p.addColumn(COLUMN_FAMILY_INFO, COL_NAME, name.getBytes());
-        if(addStreet!=null)
-            p.addColumn(COLUMN_FAMILY_INFO, COL_ADDR, addStreet.getBytes());
+        //if(addStreet!=null)
+          //  p.addColumn(COLUMN_FAMILY_INFO, COL_ADDR, addStreet.getBytes());
         p.addColumn(COLUMN_FAMILY_GEO, COL_LON, lon.getBytes());
         p.addColumn(COLUMN_FAMILY_GEO, COL_LAT, lat.getBytes());
 

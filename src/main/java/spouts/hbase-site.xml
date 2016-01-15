@@ -125,7 +125,7 @@
       <name>hbase.rpc.protection</name>
       <value>PRIVACY</value>
     </property>
-    
+
     <property>
       <name>hbase.security.authentication</name>
       <value>simple</value>

@@ -13,9 +13,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by pb402 on 25/11/2015.
- */
 
 public class parseJSONtoDB {
 
@@ -48,16 +45,54 @@ public class parseJSONtoDB {
         restaurantsDB.DropTable();
         restaurantsDB.CreateTable();
 
+        int cpt = 0;
         for(Restaurant rest: allRestaurants) {
-            System.out.println("Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
-            String id = rest.getId();
+
+            cpt++;
+
+            //System.out.println("Numéro "+cpt+":  Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
+            String id = Integer.toString(cpt);
             String lat = rest.getLat();
             String lon = rest.getLon();
-            String name = rest.getTags().getName() == null? "":rest.getTags().getName();
-            String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
-            restaurantsDB.addItem(id, lat, lon, name, addr);
+
+            String name = "N/C";
+            if(rest.getTags().getName() != null){
+                name = rest.getTags().getName();
+            }
+
+            //String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
+            //restaurantsDB.addItem(id, lat, lon, name, addr);
+            restaurantsDB.addItem(id, lat, lon, name);
         }
 
-        restaurantsDB.GetRow("277052529");
+        //DEBUG
+        //System.out.println("ROWWWWWWWWWWWWWWWWWW");
+        //restaurantsDB.GetRow("1");
+        //System.out.println("ROWWWWWWWWWWWWWWWWWW");
+        //restaurantsDB.GetRow("2");
+    }
+
+
+    //Faire une fonction de ce genre pour remplacer les problèmes d'accents
+    //Г§ = ç
+    //Г© = é
+    //ГЁ = ê
+    //Г = à
+    //etc...
+    public static String sansAccent(String s) {
+        final String accents = "ÀÁÂÃÄÅàáâãäåÈÉÊËèéêë"; // A compléter...
+        final String letters = "AAAAAAaaaaaaEEEEeeee"; // A compléter...
+
+        StringBuffer buffer = null;
+        for(int i=s.length()-1 ; i>=0; i--) {
+            int index = accents.indexOf(s.charAt(i));
+            if (index>=0) {
+                if (buffer==null) {
+                    buffer = new StringBuffer(s);
+                }
+                buffer.setCharAt(i, letters.charAt(index));
+            }
+        }
+        return buffer==null ? s : buffer.toString();
     }
 }

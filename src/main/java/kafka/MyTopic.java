@@ -17,7 +17,7 @@ public class MyTopic {
         // Create a ZooKeeper client
         int sessionTimeoutMs = 10000;
         int connectionTimeoutMs = 10000;
-        ZkClient zkClient = new ZkClient("localhost:2181", sessionTimeoutMs, connectionTimeoutMs,ZKStringSerializer$.MODULE$);
+        ZkClient zkClient = new ZkClient("localhost:1984", sessionTimeoutMs, connectionTimeoutMs,ZKStringSerializer$.MODULE$);
         //Le parametre avec les dollars à revoir
 
         // Create a topic named "gps" with N partition and a replication factor of 1
