@@ -14,7 +14,6 @@ public class SimplePartitioner implements Partitioner {
 
     public int partition(Object key, int a_numPartitions) {
         currentNum = (currentNum+1)%a_numPartitions;
-        System.out.println("Partition: "+currentNum);
         return currentNum;
     }
 }

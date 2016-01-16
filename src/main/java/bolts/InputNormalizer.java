@@ -25,7 +25,7 @@ public class InputNormalizer extends BaseBasicBolt {
 
 		collector.emit(new Values(obj));
 
-		System.err.println("il y a des mots !!! x=" + x + " et y=" + y);
+		//System.err.println("il y a des mots !!! x=" + x + " et y=" + y);
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {

@@ -23,6 +23,9 @@ public class Restaurant {
     @SerializedName("lon")
     @Expose
     private String lon;
+    @SerializedName("name")
+    @Expose
+    private String name;
     @SerializedName("tags")
     @Expose
     private Tags tags;
@@ -65,6 +68,14 @@ public class Restaurant {
 
     public void setTags(Tags tags) {
         this.tags = tags;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

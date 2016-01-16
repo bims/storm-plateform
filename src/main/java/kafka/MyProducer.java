@@ -23,17 +23,20 @@ public class MyProducer {
         double y = yInit;
 
         Properties props = new Properties();
+
         //Un broker suffit pour la premiere version
         props.put("metadata.broker.list", "localhost:9092");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
+
         //Partitionnement aleatoire : N partitions egales
-        props.put("partitioner.class", "kafka.SimplePartitioner");
+        //props.put("partitioner.class", "kafka.SimplePartitioner");
         props.put("request.required.acks", "1");
         ProducerConfig config = new ProducerConfig(props);
 
         int j = 0;
-        int i = 1;
+        int i = 0;
         Producer<String, String> producer = new Producer<String, String>(config);
+
         for (long nEvents = 0; nEvents < events; nEvents++) {
             //On genere les deplacements
             if(rnd.nextBoolean()){
@@ -45,20 +48,19 @@ public class MyProducer {
             }
             else y = y - ONE_MOVE;
 
-            if(j==3){
+            /*if(j==4){
                 j = 0;
                 i++;
             }
-            else j++;
+            else j++;*/
             String msg = x+" "+y;
-            //String msg = ""+i;
             String key = ""; //Clé non nécessaire pour l'instant, obligatoire (?) de mettre une valeur pour utiliser Partitioner
 
             //Ici, on specifie le nom du topic dans lequel on va envoyer le message
             KeyedMessage<String, String> data = new KeyedMessage<String, String>(MyConstants.TOPIC_NAME,key,msg);
             try {
                 //A modifier ???
-                Thread.sleep(1000);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

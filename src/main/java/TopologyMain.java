@@ -1,5 +1,11 @@
+import backtype.storm.StormSubmitter;
+import backtype.storm.generated.AlreadyAliveException;
+import backtype.storm.generated.AuthorizationException;
+import backtype.storm.generated.InvalidTopologyException;
+import backtype.storm.generated.StormTopology;
 import backtype.storm.spout.SchemeAsMultiScheme;
-import bolts.TestKafka;
+import backtype.storm.tuple.Values;
+import bolts.InputNormalizerFunction;
 import kafka.api.OffsetRequest;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -8,54 +14,28 @@ import backtype.storm.tuple.Fields;
 import bolts.InputCompareToDB;
 import bolts.InputNormalizer;
 import otherClass.MyConstants;
-import spouts.InputReader;
 import storm.kafka.*;
-import storm.kafka.trident.GlobalPartitionInformation;
-import storm.kafka.trident.OpaqueTridentKafkaSpout;
-import storm.kafka.trident.TridentKafkaConfig;
-import storm.trident.TridentTopology;
-
-import java.util.Properties;
 
 
 public class TopologyMain {
 
         public static void main(String[] args) throws InterruptedException {
 
-                /*Creation du spout Kafka pour Trident*/
-                BrokerHosts zk = new ZkHosts("localhost"); //Pas besoin de specifier le port ?
-                //ZkHosts zkHosts = new ZkHosts("localhost:2181");
-                /*GlobalPartitionInformation partitionInfo = new GlobalPartitionInformation();
-                partitionInfo.addPartition(0,new Broker("localhost:9092"));
-                partitionInfo.addPartition(1,new Broker("localhost:9092"));
-                partitionInfo.addPartition(2,new Broker("localhost:9092"));
-                partitionInfo.addPartition(3,new Broker("localhost:9092"));
-                StaticHosts staticHosts = new StaticHosts(partitionInfo);*/
+                /*Creation du spout Kafka*/
+                BrokerHosts zk = new ZkHosts("localhost"); //Pas besoin de specifier le port
 
-                //Un troisieme parametre est-il necessaire ?
-                TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME, "");
-
-                spoutConf.scheme = new SchemeAsMultiScheme(new StringScheme());
-                //L'initialisation d'autres parametres est sans doute necessaire
-
-                //Est-ce le bon type de spout ?
-                OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
-
-                /*String topic = MyConstants.TOPIC_NAME;
+                String topic = MyConstants.TOPIC_NAME;
                 String consumer_group_id = "id7";
-                SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, topic, "", consumer_group_id);
+                SpoutConfig kafkaConfig = new SpoutConfig(zk, topic, "", consumer_group_id);
 
                 kafkaConfig.startOffsetTime = OffsetRequest.EarliestTime();
                 kafkaConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
 
+                KafkaSpout kafkaSpout = new KafkaSpout(kafkaConfig);
 
-                KafkaSpout kafkaSpout = new KafkaSpout(kafkaConfig);*/
-
-                TridentTopology topology=new TridentTopology();
-                topology.newStream("kafka-spout",spout);
-
-
-                /*builder.setSpout("KafkaSpout", kafkaSpout, MyConstants.NUM_PARTITIONS);
+                /*Mise en place de la topologie*/
+                TopologyBuilder builder = new TopologyBuilder();
+                builder.setSpout("KafkaSpout", kafkaSpout, MyConstants.NUM_PARTITIONS);
                 //builder.setBolt("test-kafka",new TestKafka()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-normalizer", new InputNormalizer()).shuffleGrouping("KafkaSpout");
                 builder.setBolt("input-compareToDB", new InputCompareToDB(), 1).fieldsGrouping("input-normalizer", new Fields("inputcoord"));
@@ -70,12 +50,9 @@ public class TopologyMain {
                 System.err.println("START!!!!!!!!!!!!!!!!!!!!");
 
                 cluster.submitTopology("Getting-Started-Topology", conf, builder.createTopology());
-
-                System.err.println("Thread.sleep(4000)!!!!!!!!!!!!!!!!!!!!");
-
-                Thread.sleep(4000);
+                Thread.sleep(600000);
                 cluster.shutdown();
 
-                System.err.println("END!!!!!!!!!!!!!!!!!!!!");*/
+                System.err.println("END!!!!!!!!!!!!!!!!!!!!");
 	}
 }

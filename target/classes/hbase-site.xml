@@ -1,0 +1,14 @@
+<!--Fri Jun  5 01:57:03 2015-->
+    <configuration>
+
+        <property>
+            <name>hbase.zookeeper.property.clientPort</name>
+            <value>2182</value>
+        </property>
+
+        <property>
+            <name>hbase.zookeeper.quorum</name>
+            <value>localhost</value>
+        </property>
+    
+  </configuration>
