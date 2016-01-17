@@ -1,6 +1,6 @@
-# storm-plateform
+# Trident plateform (Apache Storm technology)
 
-An implementation of kNN algorithm on a real-time platform, namely a Apache Storm topology. 
+An implementation of kNN algorithm on a real-time platform, namely a Trident topology using Apache Storm.
 
 ### How to run the program
 #### HBase part
