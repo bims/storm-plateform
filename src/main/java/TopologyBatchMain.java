@@ -1,11 +1,13 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
+import backtype.storm.spout.SchemeAsMultiScheme;
 import backtype.storm.tuple.Fields;
 import bolts.InputCompareToDB;
 import bolts.InputCompareToDBFunction;
 import bolts.InputNormalizerFunction;
 import otherClass.MyConstants;
 import storm.kafka.BrokerHosts;
+import storm.kafka.StringScheme;
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
@@ -22,7 +24,7 @@ public class TopologyBatchMain {
 
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
 
-        //spoutConf.scheme = new SchemeAsMultiScheme(new StringScheme()); //Trouver le field approprie
+        //spoutConf.scheme = new SchemeAsMultiScheme(new StringScheme());
         //L'initialisation d'autres parametres est necessaire pour faire du batching
 
         OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);

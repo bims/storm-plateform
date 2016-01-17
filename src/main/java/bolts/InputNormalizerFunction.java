@@ -18,6 +18,7 @@ public class InputNormalizerFunction extends BaseFunction {
         String y = words[1];
 
         Input obj = new Input(x,y);
+
         collector.emit(new Values(obj));
     }
 }
