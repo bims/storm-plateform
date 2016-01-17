@@ -22,7 +22,7 @@ public class TopologyMain {
         public static void main(String[] args) throws InterruptedException {
 
                 /*Creation du spout Kafka*/
-                BrokerHosts zk = new ZkHosts("localhost"); //Pas besoin de specifier le port
+                BrokerHosts zk = new ZkHosts("localhost:"+MyConstants.KAFKA_ZK_PORT); //Pas besoin de specifier le port
 
                 String topic = MyConstants.TOPIC_NAME;
                 String consumer_group_id = "id7";

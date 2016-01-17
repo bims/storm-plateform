@@ -7,7 +7,7 @@ An implementation of kNN algorithm on a real-time platform, namely a Apache Stor
 - First, download HBase and run it using the command `bin/start-hbase.sh`. Verify with the `jps` command that you have
 one running process called `HMaster`.
 - Then, after importing all the dependencies with Maven, run the main class `otherClass.parseJSONtoDB`. It will
-populate the database.
+create and populate a database.
 
 #### Kafka part
 - Run the main class `kafka.MyKafkaCluster`. It will create a Kafka cluster and a topic.
@@ -19,5 +19,5 @@ The first will run a Storm topology and the second a Trident topology.
 
 ### What the program do
 In this version, the Storm and the Trident topologies work exactly the same way. They receive fake GPS positions from
-Kafka, normalize these messages, then process the kNN algorithm to find the - how much? - nearest restaurants for each
+Kafka, normalize these messages, then process the kNN algorithm to find the 10 nearest restaurants for each
 position.
