@@ -18,7 +18,7 @@ import java.util.Properties;
 public class MyKafkaCluster {
     public static void main(String[] args){
 
-        EmbeddedZookeeper embeddedZookeeper = new EmbeddedZookeeper(2181);
+        EmbeddedZookeeper embeddedZookeeper = new EmbeddedZookeeper(1984);
         List<Integer> kafkaPorts = new ArrayList<Integer>();
         // -1 for any available port
         kafkaPorts.add(9092);
@@ -37,8 +37,7 @@ public class MyKafkaCluster {
         // Create a ZooKeeper client
         int sessionTimeoutMs = 10000;
         int connectionTimeoutMs = 10000;
-        ZkClient zkClient = new ZkClient("localhost:2181", sessionTimeoutMs, connectionTimeoutMs,ZKStringSerializer$.MODULE$);
-        //Le parametre avec les dollars à revoir
+        ZkClient zkClient = new ZkClient("localhost:1984", sessionTimeoutMs, connectionTimeoutMs,ZKStringSerializer$.MODULE$);
 
         // Create a topic named "gps" with N partition and a replication factor of 1
         String topicName = MyConstants.TOPIC_NAME;

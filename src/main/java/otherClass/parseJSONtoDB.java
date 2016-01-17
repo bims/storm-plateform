@@ -1,9 +1,12 @@
 package otherClass;
 
 import com.google.gson.Gson;
+import kafka.EmbeddedZookeeper;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
+import org.apache.zookeeper.server.ZooKeeperServer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -40,6 +43,8 @@ public class parseJSONtoDB {
 
         Configuration config = HBaseConfiguration.create();
         //config.addResource("hbase-site.xml");
+        config.set("hbase.zookeeper.quorum", "localhost:2181");  // Here we are running zookeeper locally
+
 
         HBaseDB restaurantsDB = new HBaseDB(config);
         restaurantsDB.DropTable();
