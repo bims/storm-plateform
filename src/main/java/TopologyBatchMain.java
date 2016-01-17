@@ -1,6 +1,8 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
+import bolts.InputCompareToDB;
+import bolts.InputCompareToDBFunction;
 import bolts.InputNormalizerFunction;
 import otherClass.MyConstants;
 import storm.kafka.BrokerHosts;
@@ -27,7 +29,8 @@ public class TopologyBatchMain {
 
         TridentTopology topology=new TridentTopology();
         topology.newStream("kafka-spout", spout)
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("off"));
+                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
+                .each(new Fields("input"), new InputCompareToDBFunction(), new Fields("Nimporte"));
 
         Config conf;
         conf = new Config();
