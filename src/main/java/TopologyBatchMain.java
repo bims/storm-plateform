@@ -1,13 +1,10 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
-import backtype.storm.spout.SchemeAsMultiScheme;
 import backtype.storm.tuple.Fields;
-import bolts.InputCompareToDB;
-import bolts.InputCompareToDBFunction;
-import bolts.InputNormalizerFunction;
+import tridentFunctions.InputCompareToDBFunction;
+import tridentFunctions.InputNormalizerFunction;
 import otherClass.MyConstants;
 import storm.kafka.BrokerHosts;
-import storm.kafka.StringScheme;
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
@@ -32,7 +29,7 @@ public class TopologyBatchMain {
         TridentTopology topology=new TridentTopology();
         topology.newStream("kafka-spout", spout)
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
-                .each(new Fields("input"), new InputCompareToDBFunction(), new Fields("Nimporte"));
+                .each(new Fields("input"), new InputCompareToDBFunction(1,11), new Fields("Nimporte"));
 
         Config conf;
         conf = new Config();

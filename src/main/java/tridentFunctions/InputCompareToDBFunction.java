@@ -1,4 +1,4 @@
-package bolts;
+package tridentFunctions;
 
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.tuple.Tuple;
@@ -9,18 +9,37 @@ import otherClass.HBaseDB;
 import otherClass.Restaurant;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
+import storm.trident.operation.TridentOperationContext;
 import storm.trident.tuple.TridentTuple;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by sy306571 on 16/01/16.
  */
 public class InputCompareToDBFunction extends BaseFunction {
+    private int borneInf;
+    private int borneSup;
+    private List<Restaurant> lr;
+
+    public InputCompareToDBFunction(int borneInf, int borneSup){
+        this.borneInf = borneInf;
+        this.borneSup = borneSup;
+    }
+
+    @Override
+    public void prepare(Map conf, TridentOperationContext context){
+        Configuration config = HBaseConfiguration.create();
+        config.addResource("hbase-site.xml");
+        HBaseDB listeRestaurants = new HBaseDB(config);
+        //On récupère la liste des restaurants
+        try {
+            lr = listeRestaurants.ScanRows(""+borneInf,borneSup); //On interroge HBase
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void execute(TridentTuple input, TridentCollector collector) {
 
@@ -40,23 +59,14 @@ public class InputCompareToDBFunction extends BaseFunction {
 
 
         //On récupère les restaurants
-        Configuration config = HBaseConfiguration.create();
-        HBaseDB listeRestaurants = new HBaseDB(config);
+
+
 
         double x;
         double y;
         String nomDuRestaurant;
-        int limit = 380;
+        int limit = borneSup;
 
-        config = HBaseConfiguration.create();
-        config.addResource("hbase-site.xml");
-
-        List<Restaurant> lr = null;
-
-        try {
-
-            //On récupère la liste des restaurants
-            lr = listeRestaurants.ScanRows("1",limit);
             //un tableau pour contenir x et y (lon et lat)
             double[][] instancesResto = new double[limit+1][2];
             //list to save distance result
@@ -107,16 +117,6 @@ public class InputCompareToDBFunction extends BaseFunction {
             }
 
             System.err.println("\n\n");
-
-
-
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
 
     }

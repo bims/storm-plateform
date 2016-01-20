@@ -1,4 +1,4 @@
-package bolts;
+package tridentFunctions;
 
 import backtype.storm.tuple.Values;
 import inputClass.Input;
