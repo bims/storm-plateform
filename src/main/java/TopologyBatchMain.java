@@ -17,7 +17,7 @@ public class TopologyBatchMain {
     public static void main(String[] args) throws InterruptedException {
 
          /*Creation du spout Kafka pour Trident*/
-        BrokerHosts zk = new ZkHosts("localhost:1985");
+        BrokerHosts zk = new ZkHosts("localhost:"+MyConstants.KAFKA_ZK_PORT);
 
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
 
