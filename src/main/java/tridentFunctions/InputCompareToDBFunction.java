@@ -1,7 +1,5 @@
 package tridentFunctions;
 
-import backtype.storm.topology.BasicOutputCollector;
-import backtype.storm.tuple.Tuple;
 import inputClass.Input;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -22,10 +20,19 @@ public class InputCompareToDBFunction extends BaseFunction {
     private int borneInf;
     private int borneSup;
     private List<Restaurant> lr;
+    private List<Restaurant> lr1;
+    private List<Restaurant> lr2;
+    private List<Restaurant> lr3;
+    private List<Restaurant> lr4;
+
+    //DEBUG
+    Integer id;
 
     public InputCompareToDBFunction(int borneInf, int borneSup){
+        //liste des bornes inf en static: 1, 185, 270, 356
         this.borneInf = borneInf;
         this.borneSup = borneSup;
+
     }
 
     @Override
@@ -35,18 +42,50 @@ public class InputCompareToDBFunction extends BaseFunction {
         HBaseDB listeRestaurants = new HBaseDB(config);
         //On récupère la liste des restaurants
         try {
-            lr = listeRestaurants.ScanRows(""+borneInf,borneSup); //On interroge HBase
+            lr1 = listeRestaurants.ScanRows(""+borneInf,borneSup); //On interroge HBase
+            lr2 = listeRestaurants.ScanRows(""+185,borneSup); //On interroge HBase
+            lr3 = listeRestaurants.ScanRows(""+270,borneSup); //On interroge HBase
+            lr4 = listeRestaurants.ScanRows(""+356,borneSup); //On interroge HBase
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //DEBUG
+        this.id = context.getPartitionIndex();
     }
 
     public void execute(TridentTuple input, TridentCollector collector) {
+
+
+        //DEBUG
+        //On commence à l'id 1
+        this.id = this.id+1;
+        System.err.println("BOLT_ID: "+this.id);
 
         //On recupère les données de l'input
         Input str = (Input) input.getValue(0);
         //On vérifie que l'on a bien recuperer les donnees de l'input
         //System.err.println("X: " + str.getX() + " Y: " + str.getY());
+
+        String numPart = (String) input.getValue(1);
+
+        if(numPart.contains("1")){
+
+            lr = this.lr1;
+
+        }else if(numPart.contains("2")){
+
+            lr = this.lr2;
+
+        }else if(numPart.contains("3")){
+
+            lr = this.lr3;
+
+        }else if(numPart.contains("4")){
+
+            lr = this.lr4;
+
+        }
 
 
         //on implemente KNN ici

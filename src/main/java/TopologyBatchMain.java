@@ -1,9 +1,9 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
+import otherClass.MyConstants;
 import tridentFunctions.InputCompareToDBFunction;
 import tridentFunctions.InputNormalizerFunction;
-import otherClass.MyConstants;
 import storm.kafka.BrokerHosts;
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
@@ -17,7 +17,7 @@ public class TopologyBatchMain {
     public static void main(String[] args) throws InterruptedException {
 
          /*Creation du spout Kafka pour Trident*/
-        BrokerHosts zk = new ZkHosts("localhost:"+MyConstants.KAFKA_ZK_PORT);
+        BrokerHosts zk = new ZkHosts("localhost:1985");
 
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
 
@@ -28,8 +28,11 @@ public class TopologyBatchMain {
 
         TridentTopology topology=new TridentTopology();
         topology.newStream("kafka-spout", spout)
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
-                .each(new Fields("input"), new InputCompareToDBFunction(1,11), new Fields("Nimporte"));
+                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input","numPart"))
+                .each(new Fields("input","numPart"), new InputCompareToDBFunction(1,95), new Fields("Nimporte1"));
+                //.each(new Fields("input"), new InputCompareToDBFunction(185,90), new Fields("Nimporte2"))
+                //.each(new Fields("input"), new InputCompareToDBFunction(270,90), new Fields("Nimporte3"))
+                //.each(new Fields("input"), new InputCompareToDBFunction(356,90), new Fields("Nimporte4"));
 
         Config conf;
         conf = new Config();

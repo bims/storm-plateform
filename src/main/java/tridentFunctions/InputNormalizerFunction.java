@@ -14,11 +14,16 @@ public class InputNormalizerFunction extends BaseFunction {
         String sentence = new String(tuple.getBinary(0));
         String[] words = sentence.split(" ");
 
+        int nbParts = 4;
+
         String x = words[0];
         String y = words[1];
+        String part = "";
 
-        Input obj = new Input(x,y);
-
-        collector.emit(new Values(obj));
+        for(int i = 1; i <= nbParts; i++){
+            part = new Integer(i).toString();
+            Input obj = new Input(x,y);
+            collector.emit(new Values(obj, part));
+        }
     }
 }
