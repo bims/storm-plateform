@@ -46,9 +46,9 @@ public class InputCompareToDBFunction extends BaseFunction {
         //On récupère la liste des restaurants de la base S
         try {
             lr1 = listeRestaurants.ScanRows(""+borneInf,borneSup); //On interroge HBase sur la partition 1
-            lr2 = listeRestaurants.ScanRows(""+185,borneSup); //On interroge HBase sur la partition 2
-            lr3 = listeRestaurants.ScanRows(""+270,borneSup); //On interroge HBase sur la partition 3
-            lr4 = listeRestaurants.ScanRows(""+356,borneSup); //On interroge HBase sur la partition 4
+            //lr2 = listeRestaurants.ScanRows(""+185,borneSup); //On interroge HBase sur la partition 2
+           // lr3 = listeRestaurants.ScanRows(""+270,borneSup); //On interroge HBase sur la partition 3
+            //lr4 = listeRestaurants.ScanRows(""+356,borneSup); //On interroge HBase sur la partition 4
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,13 +67,13 @@ public class InputCompareToDBFunction extends BaseFunction {
         //On vérifie que l'on a bien recuperer les donnees de l'input
         //System.err.println("X: " + str.getX() + " Y: " + str.getY());
         
-        String numPart = (String) input.getValue(1);
+        //String numPart = (String) input.getValue(1);
         
-        if(numPart.contains("1")){
+       //if(numPart.contains("1")){
             
             lr = this.lr1;
             
-        }else if(numPart.contains("2")){
+        /*}else if(numPart.contains("2")){
             
             lr = this.lr2;
             
@@ -85,7 +85,7 @@ public class InputCompareToDBFunction extends BaseFunction {
             
             lr = this.lr4;
             
-        }
+        }*/
 
         //on implemente KNN ici
         int k = 10;// # of neighbours
@@ -154,6 +154,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         
         System.err.println("\n\n");
         //return(resultList);///me
+        collector.emit(new Values(obj, part));
         
     }
     

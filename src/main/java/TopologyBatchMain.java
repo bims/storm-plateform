@@ -31,15 +31,12 @@ public class TopologyBatchMain {
 
         topology.newStream("kafka-spout", spout)
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input","numPart"))
-<<<<<<< HEAD
-                .each(new Fields("input","numPart"), new InputCompareToDBFunction(1,95), new Fields("knnParPartition"));
-        //.aggregate(new Fields("knnParPartition"), new ReducekNN(), new Fields("Finaloutput"));
-=======
-                .each(new Fields("input","numPart"), new InputCompareToDBFunction(1,95), new Fields("Nimporte1"));
-                //.each(new Fields("input"), new InputCompareToDBFunction(185,90), new Fields("Nimporte2"))
-                //.each(new Fields("input"), new InputCompareToDBFunction(270,90), new Fields("Nimporte3"))
-                //.each(new Fields("input"), new InputCompareToDBFunction(356,90), new Fields("Nimporte4"));
->>>>>>> f6d4481976d8133f5547ee9725129ea6abdf989b
+                .each(new Fields("input","numPart"), new InputCompareToDBFunction(1,95), new Fields("Nimporte1"))
+                .each(new Fields("input"), new InputCompareToDBFunction(185,90), new Fields("Nimporte2"))
+                .each(new Fields("input"), new InputCompareToDBFunction(0270,9), new Fields("Nimporte3"))
+                .each(new Fields("input"), new InputCompareToDBFunction(356,90), new Fields("Nimporte4"))
+                .aggregate(new Fields("knnParPartition"), new ReducekNN("Nimporte1","Nimporte3","Nimporte3"), new Fields("Finaloutput"));
+
 
         Config conf;
         conf = new Config();
