@@ -13,7 +13,7 @@ public class MyProducer {
     public static final double ONE_MOVE = 2;
 
     public static void main(String[] args){
-        long events = Long.parseLong(args[0]);
+        long events = 10;// nombre de messages
         double xInit = 43.69;
         double yInit = 7.24;
         Random rnd = new Random();

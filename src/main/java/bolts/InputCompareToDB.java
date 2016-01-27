@@ -46,7 +46,7 @@ public class InputCompareToDB extends BaseBasicBolt {
 
 
 		//les données sont X et Y (INPUT)
-		// TODO modifier
+		//TODO modifier
 		double[] query = {Double.parseDouble(str.getX()), Double.parseDouble(str.getY())};
 
 
@@ -57,7 +57,7 @@ public class InputCompareToDB extends BaseBasicBolt {
 		double x;
 		double y;
 		String nomDuRestaurant;
-		int limit = 380;
+		int limit = 380; //nb of HBase's columns
 
 		config = HBaseConfiguration.create();
 		config.addResource("hbase-site.xml");
@@ -68,8 +68,10 @@ public class InputCompareToDB extends BaseBasicBolt {
 
 			//On récupère la liste des restaurants
 			lr = listeRestaurants.ScanRows("1",limit);
+            
 			//un tableau pour contenir x et y (lon et lat)
 			double[][] instancesResto = new double[limit+1][2];
+            
 			//list to save distance result
 			List<Result> resultList = new ArrayList<Result>();
 
@@ -99,11 +101,7 @@ public class InputCompareToDB extends BaseBasicBolt {
 				//System.out.print("Restaurant:"+name+" X:"+instancesResto[resto][0]+" Y:"+instancesResto[resto][1]+"\n");
 				//System.out.println("distance="+distance);
 
-
-
 			}
-
-
 
 			//System.out.println(resultList);
 			Collections.sort(resultList, new DistanceComparator());
@@ -118,11 +116,6 @@ public class InputCompareToDB extends BaseBasicBolt {
 			}
 
 			System.err.println("\n\n");
-
-
-
-
-
 
 		} catch (IOException e) {
 			e.printStackTrace();

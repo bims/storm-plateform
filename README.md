@@ -21,3 +21,9 @@ The first will run a Storm topology and the second a Trident topology.
 In this version, the Storm and the Trident topologies work exactly the same way. They receive fake GPS positions from
 Kafka, normalize these messages, then process the kNN algorithm to find the 10 nearest restaurants for each
 position.
+
+
+lr1 = listeRestaurants.ScanRows(""+borneInf,borneSup); //On interroge HBase sur la partition 1
+lr2 = listeRestaurants.ScanRows(""+185,borneSup); //On interroge HBase sur la partition 2
+lr3 = listeRestaurants.ScanRows(""+270,borneSup); //On interroge HBase sur la partition 3
+lr4 = listeRestaurants.ScanRows(""+356,borneSup); //On interroge HBase sur la partition 4
