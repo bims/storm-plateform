@@ -21,10 +21,10 @@ public class InputNormalizerFunction extends BaseFunction {
         String y = words[1];
         String part = "";
 
-        for(int i = 1; i <= nbParts; i++){
-            part = new Integer(i).toString();
+        //for(int i = 1; i <= nbParts; i++){
+           // part = new Integer(i).toString();
             Input obj = new Input(x,y);
-            collector.emit(new Values(obj, part));
-        }
+            collector.emit(new Values(obj));
+      //  }
     }
 }

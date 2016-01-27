@@ -30,12 +30,12 @@ public class TopologyBatchMain {
         TridentTopology topology=new TridentTopology();
 
         topology.newStream("kafka-spout", spout)
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input","numPart"))
-                .each(new Fields("input","numPart"), new InputCompareToDBFunction(1,95), new Fields("Nimporte1"))
+                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
+                .each(new Fields("input"), new InputCompareToDBFunction(1,95), new Fields("Nimporte1"))
                 .each(new Fields("input"), new InputCompareToDBFunction(185,90), new Fields("Nimporte2"))
-                .each(new Fields("input"), new InputCompareToDBFunction(0270,9), new Fields("Nimporte3"))
+                .each(new Fields("input"), new InputCompareToDBFunction(270, 9), new Fields("Nimporte3"))
                 .each(new Fields("input"), new InputCompareToDBFunction(356,90), new Fields("Nimporte4"))
-                .aggregate(new Fields("knnParPartition"), new ReducekNN("Nimporte1","Nimporte3","Nimporte3"), new Fields("Finaloutput"));
+                .aggregate(new Fields("input","Nimporte1", "Nimporte2", "Nimporte3", "Nimporte4"), new ReducekNN(), new Fields("Finaloutput"));
 
 
         Config conf;

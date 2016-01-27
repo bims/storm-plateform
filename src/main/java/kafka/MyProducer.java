@@ -14,8 +14,8 @@ public class MyProducer {
 
     public static void main(String[] args){
         long events = 10;// nombre de messages
-        double xInit = 43.69;
-        double yInit = 7.24;
+        double xInit = 43.5;
+        double yInit = 3.1;
         Random rnd = new Random();
 
         //Variables utilisees pour la simulation
