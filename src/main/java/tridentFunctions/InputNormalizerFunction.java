@@ -15,7 +15,7 @@ public class InputNormalizerFunction extends BaseFunction {
         String[] words = sentence.split(" ");
 
 
-        int nbParts = 4;
+       // int nbParts = 4;
 
         String x = words[0];
         String y = words[1];
