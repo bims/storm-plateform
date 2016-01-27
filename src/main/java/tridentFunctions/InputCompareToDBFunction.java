@@ -131,7 +131,7 @@ public class InputCompareToDBFunction extends BaseFunction {
             }
             
             double distance = Math.sqrt( dist );
-            resultList.add(new Result(distance,name));
+            resultList.add(new Result(distance,name,instancesResto[resto][0],instancesResto[resto][1]));
             //System.out.print("Restaurant:"+name+" X:"+instancesResto[resto][0]+" Y:"+instancesResto[resto][1]+"\n");
             //System.out.println("distance="+distance);
             
@@ -163,10 +163,14 @@ public class InputCompareToDBFunction extends BaseFunction {
     //simple class to model results (distance + class)
     public static class Result {
         double distance;
+        double x;
+        double y;
         String restaurantName;
-        public Result(double distance, String restaurantName){
+        public Result(double distance, String restaurantName, double x, double y){
             this.restaurantName = restaurantName;
             this.distance = distance;
+            this.x =x;
+            this.y=y;
         }
     }
     //simple comparator class used to compare results via distances

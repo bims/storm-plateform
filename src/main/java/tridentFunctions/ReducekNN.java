@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class ReducekNN implements Aggregator {
 
-    List<Result> resultList = new ArrayList<>();
+    List<Result> resultList;
     @Override
     public Object init(Object o, TridentCollector tridentCollector) {
         return null;
@@ -30,7 +30,7 @@ public class ReducekNN implements Aggregator {
     @Override
     public void aggregate(Object o, TridentTuple input, TridentCollector tridentCollector) {
         //liste des bornes inf en static: 1, 185, 270, 356
-        this.resultList = resultList;
+        resultList = new ArrayList<>();
         for(Result r : (List<Result>) input.getValueByField("Nimporte1")){
             resultList.add(r);
         }
@@ -53,7 +53,7 @@ public class ReducekNN implements Aggregator {
         System.err.println("\n\nX: " + str.getX() + " Y: " + str.getY());
 
         for (int v = 0; v < k; v++) {
-            System.err.println(resultList.get(v).restaurantName + " ....*******kNN Global " + resultList.get(v).distance);
+            System.err.println(resultList.get(v).restaurantName + " ....*******kNN Global " + resultList.get(v).distance+ " x: "+resultList.get(v).x+" y:"+resultList.get(v).y);
             //get classes of k nearest instances (city names) from the list into an array
             //ss[x] = resultList.get(x).restaurantName;
         }
@@ -73,7 +73,6 @@ public class ReducekNN implements Aggregator {
 
     @Override
     public void cleanup() {
-
     }
 
 }
