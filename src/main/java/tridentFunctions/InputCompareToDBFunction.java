@@ -1,5 +1,6 @@
 package tridentFunctions;
 
+import backtype.storm.tuple.Values;
 import inputClass.Input;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -88,7 +89,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         }*/
 
         //on implemente KNN ici
-        int k = 10;// # of neighbours
+        int k = 5;// # of neighbours
         
         
         //les données sont X et Y (INPUT)
@@ -141,7 +142,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         
         
         //System.out.println(resultList);
-        Collections.sort(resultList, new DistanceComparator());
+       /* Collections.sort(resultList, new DistanceComparator());
         //String[] ss = new String[k];
         
         System.err.println("\n\nX: " + str.getX() + " Y: " + str.getY());
@@ -152,15 +153,15 @@ public class InputCompareToDBFunction extends BaseFunction {
             //ss[x] = resultList.get(x).restaurantName;
         }
         
-        System.err.println("\n\n");
+        System.err.println("\n\n");*/
         //return(resultList);///me
-        collector.emit(new Values(obj, part));
+        collector.emit(new Values(resultList));
         
     }
-    
-    
+
+
     //simple class to model results (distance + class)
-    static class Result {
+    public static class Result {
         double distance;
         String restaurantName;
         public Result(double distance, String restaurantName){
@@ -169,7 +170,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         }
     }
     //simple comparator class used to compare results via distances
-    static class DistanceComparator implements Comparator<Result> {
+    public static class DistanceComparator implements Comparator<Result> {
         //@Override
         public int compare(Result a, Result b) {
             return a.distance < b.distance ? -1 : a.distance == b.distance ? 0 : 1;
