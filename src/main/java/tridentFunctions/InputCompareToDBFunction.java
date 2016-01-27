@@ -24,15 +24,18 @@ public class InputCompareToDBFunction extends BaseFunction {
     private List<Restaurant> lr2;
     private List<Restaurant> lr3;
     private List<Restaurant> lr4;
-    
+
+
     //DEBUG
     Integer id;
-    
+
+
     public InputCompareToDBFunction(int borneInf, int borneSup){
         //liste des bornes inf en static: 1, 185, 270, 356
         this.borneInf = borneInf;
         this.borneSup = borneSup;
-        
+
+
     }
     
     //@Override
@@ -49,19 +52,16 @@ public class InputCompareToDBFunction extends BaseFunction {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
         //DEBUG
         this.id = context.getPartitionIndex();
     }
     
     public void execute(TridentTuple input, TridentCollector collector) {
-        
-        
         //DEBUG
         //On commence à l'id 1
         this.id = this.id+1;
         System.err.println("BOLT_ID: "+this.id);
-        
+
         //On recupère les données de l'input
         Input str = (Input) input.getValue(0);
         //On vérifie que l'on a bien recuperer les donnees de l'input
@@ -86,7 +86,7 @@ public class InputCompareToDBFunction extends BaseFunction {
             lr = this.lr4;
             
         }
-        
+
         //on implemente KNN ici
         int k = 10;// # of neighbours
         
