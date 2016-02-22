@@ -143,8 +143,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         
         //System.out.println(resultList);
         Collections.sort(resultList, new DistanceComparator());
-        String[] ss = new String[k];
-        
+
         //System.err.println("\n\nX: " + str.getX() + " Y: " + str.getY());
         
        /* for(int v = 0; v < k; v++){
@@ -155,9 +154,6 @@ public class InputCompareToDBFunction extends BaseFunction {
             //ss[x] = resultList.get(x).restaurantName;
         }*/
         resultList = resultList.subList(0,k);
-
-        //System.err.println("\n\n");
-        //return(resultList);///me
 
         collector.emit(new Values(resultList));
         
