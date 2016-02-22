@@ -52,8 +52,8 @@ public class TopologyBatchMain {
                 .parallelismHint(nbParts)
                 .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[3], size / nbParts), new Fields("Nimporte4"))
                 .parallelismHint(nbParts)
-                .each(new Fields("input", "Nimporte1", "Nimporte2", "Nimporte3", "Nimporte4"), new ReducekNNFunction(), new Fields("Finaloutput"));
-               // .parallelismHint(nbParts);
+                .each(new Fields("input", "Nimporte1", "Nimporte2", "Nimporte3", "Nimporte4"), new ReducekNNFunction(), new Fields("Finaloutput"))
+                .parallelismHint(nbParts);
                 //.each(new Fields("output"), new PrintFilter());
         //.aggregate(new Fields("output"), new ReducekNN(), new Fields("Finaloutput"));
                // .partitionAggregate(new Fields("bytes"), new TestAggregator(), new Fields("res"))
