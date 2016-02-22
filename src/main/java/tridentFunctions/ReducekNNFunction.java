@@ -20,6 +20,13 @@ import java.util.*;
  */
 public class ReducekNNFunction extends BaseFunction {
 
+    private int partitionIndex;
+
+    @Override
+    public void prepare(Map conf, TridentOperationContext context) {
+        this.partitionIndex = context.getPartitionIndex();
+    }
+
     @Override
     public void execute(TridentTuple input, TridentCollector collector) {
         //liste des bornes inf en static: 1, 185, 270, 356
@@ -43,7 +50,7 @@ public class ReducekNNFunction extends BaseFunction {
         Input str = (Input) input.getValueByField("input");
         int k = 10;// # of neighbours
 
-        System.err.println("\n\nX: " + str.getX() + " Y: " + str.getY());
+        System.err.println("\n\nPartition "+partitionIndex+"\nX: " + str.getX() + " Y: " + str.getY());
 
         for (int v = 0; v < k; v++) {
             System.err.println(resultList.get(v).restaurantName + " ....*******kNN Global " + resultList.get(v).distance + " x: " + resultList.get(v).x + " y:" + resultList.get(v).y);
