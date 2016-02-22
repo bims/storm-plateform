@@ -39,14 +39,14 @@ public class MyProducer {
 
         for (long nEvents = 0; nEvents < events; nEvents++) {
             //On genere les deplacements
-           /* if(rnd.nextBoolean()){
+            if(rnd.nextBoolean()){
                 x = x + ONE_MOVE;
             }
             else x = x - ONE_MOVE;
             if(rnd.nextBoolean()){
                 y = y + ONE_MOVE;
             }
-            else y = y - ONE_MOVE;*/
+            else y = y - ONE_MOVE;
 
             /*if(j==4){
                 j = 0;
@@ -58,12 +58,12 @@ public class MyProducer {
 
             //Ici, on specifie le nom du topic dans lequel on va envoyer le message
             KeyedMessage<String, String> data = new KeyedMessage<String, String>(MyConstants.TOPIC_NAME,key,msg);
-            try {
+           /* try {
                 //A modifier ???
-                Thread.sleep(4000);
+                //Thread.sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
             producer.send(data);
             System.out.println("Message sent:" + msg);
         }

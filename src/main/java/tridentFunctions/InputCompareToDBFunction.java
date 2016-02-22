@@ -61,7 +61,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         //DEBUG
         //On commence à l'id 1
         this.id = this.id+1;
-        System.err.println("BOLT_ID: "+this.id);
+        //System.err.println("BOLT_ID: "+this.id);
 
         //On recupère les données de l'input
         Input str = (Input) input.getValue(0);
@@ -89,7 +89,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         }*/
 
         //on implemente KNN ici
-        int k = 5;// # of neighbours
+        int k = 10;// # of neighbours
         
         
         //les données sont X et Y (INPUT)
@@ -142,19 +142,19 @@ public class InputCompareToDBFunction extends BaseFunction {
         
         
         //System.out.println(resultList);
-       /* Collections.sort(resultList, new DistanceComparator());
-        //String[] ss = new String[k];
+        Collections.sort(resultList, new DistanceComparator());
+
+        //System.err.println("\n\nX: " + str.getX() + " Y: " + str.getY());
         
-        System.err.println("\n\nX: " + str.getX() + " Y: " + str.getY());
-        
-        for(int v = 0; v < k; v++){
-            System.err.println(resultList.get(v).restaurantName+ " .... " + resultList.get(v).distance);
+       /* for(int v = 0; v < k; v++){
+            //System.err.println(resultList.get(v).restaurantName+ " .... " + resultList.get(v).distance);
+            ss[v] = resultList.get(v).restaurantName;
+            resultList.add(x)
             //get classes of k nearest instances (city names) from the list into an array
             //ss[x] = resultList.get(x).restaurantName;
-        }
-        
-        System.err.println("\n\n");*/
-        //return(resultList);///me
+        }*/
+        resultList = resultList.subList(0,k);
+
         collector.emit(new Values(resultList));
         
     }
