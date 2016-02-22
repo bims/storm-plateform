@@ -24,6 +24,7 @@ public class InputNormalizerFunction extends BaseFunction {
         //for(int i = 1; i <= nbParts; i++){
            // part = new Integer(i).toString();
             Input obj = new Input(x,y);
+            //System.out.println("Je suis là");
             collector.emit(new Values(obj));
       //  }
     }
