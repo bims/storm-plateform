@@ -1,4 +1,4 @@
-package tridentFunctions;
+package testTridentFunctions;
 
 import storm.trident.operation.BaseFilter;
 import storm.trident.tuple.TridentTuple;

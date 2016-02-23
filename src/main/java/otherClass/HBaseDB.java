@@ -1,8 +1,8 @@
 package otherClass;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
@@ -252,5 +252,46 @@ public class HBaseDB {
                 ", Lat = " + lat +
                 ", Long = " + lon +
                 ", Name = " + name);
+    }
+
+    //POUR RECUPERER LES BONS INDICES
+    public static int[] getIndiceDB(int size, int nbParts){
+
+        int[] res = new int[nbParts];
+
+        //On récupère les indices réels que l'on souhaite
+        for(int i = 0; i<nbParts; i++){
+
+            res[i] = (i*size/nbParts)+1;
+
+        }
+
+        ArrayList<String> indices = new ArrayList<String>();
+
+        //On cree une liste dans l'ordre numérique
+        for(int i = 1; i<=size; i++){
+
+            indices.add(""+i);
+
+        }
+
+        //On trie la liste par ordre alphabetique
+        Collections.sort(indices);
+
+        //On affecte le nouvel indice
+        String newIndice = "";
+        for(int i = 0; i<nbParts; i++){
+
+
+            newIndice = indices.get((i*size/nbParts));
+
+            res[i] = Integer.parseInt(newIndice);
+
+            //System.out.println(newIndice);
+
+        }
+
+        return res;
+
     }
 }
