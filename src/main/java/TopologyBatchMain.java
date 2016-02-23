@@ -54,7 +54,7 @@ public class TopologyBatchMain {
               /*  .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[1], size / nbParts), new Fields("Nimporte2"))
                 .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[2], size / nbParts), new Fields("Nimporte3"))
                 .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[3], size / nbParts), new Fields("Nimporte4"))*/
-        stream.each(new Fields(outputFields), new ReducekNNFunction(), new Fields("Finaloutput"));
+        stream.each(new Fields(outputFields), new ReducekNNFunction(nbParts), new Fields("Finaloutput"));
 
 
 
@@ -111,38 +111,4 @@ public class TopologyBatchMain {
 
     }
 
-    public static class FakeSpout implements IBatchSpout {
-
-        @Override
-        public void open(Map map, TopologyContext topologyContext) {
-
-        }
-
-        @Override
-        public void emitBatch(long l, TridentCollector tridentCollector) {
-            for(int i = 0; i < 10; i++) {
-                tridentCollector.emit(new Values("Bonjour"));
-            }
-        }
-
-        @Override
-        public void ack(long l) {
-
-        }
-
-        @Override
-        public void close() {
-
-        }
-
-        @Override
-        public Map getComponentConfiguration() {
-            return null;
-        }
-
-        @Override
-        public Fields getOutputFields() {
-            return new Fields("hey");
-        }
-    }
 }

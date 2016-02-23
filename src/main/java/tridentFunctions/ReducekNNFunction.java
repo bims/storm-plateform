@@ -21,6 +21,11 @@ import java.util.*;
 public class ReducekNNFunction extends BaseFunction {
 
     private int partitionIndex;
+    private int nbParts;
+
+    public ReducekNNFunction(int nbParts){
+        this.nbParts = nbParts;
+    }
 
     @Override
     public void prepare(Map conf, TridentOperationContext context) {
@@ -32,19 +37,12 @@ public class ReducekNNFunction extends BaseFunction {
         //liste des bornes inf en static: 1, 185, 270, 356
         List<Result> resultList = new ArrayList<Result>();
 
-        for (Result r : (List<Result>) input.getValueByField("Partition S0")) {
-            resultList.add(r);
+        for(int i=0; i<nbParts;i++){
+            for (Result r : (List<Result>) input.getValueByField("Partition S"+i)) {
+                resultList.add(r);
+            }
         }
 
-        for (Result r : (List<Result>) input.getValueByField("Partition S1")) {
-            resultList.add(r);
-        }
-        for (Result r : (List<Result>) input.getValueByField("Partition S2")) {
-            resultList.add(r);
-        }
-        for (Result r : (List<Result>) input.getValueByField("Partition S3")) {
-            resultList.add(r);
-        }
         //On applique le kNN global
         Collections.sort(resultList, new DistanceComparator());
         Input str = (Input) input.getValueByField("input");
