@@ -28,7 +28,7 @@ public class TopologyBatchMain {
         BrokerHosts zk = new ZkHosts("localhost:"+MyConstants.KAFKA_ZK_PORT);
 
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
-        spoutConf.fetchSizeBytes = 400; //Sliding window avec 11 messages
+        spoutConf.fetchSizeBytes = 1000; //Sliding window
 
         int size = 380;
         int nbParts = 4;

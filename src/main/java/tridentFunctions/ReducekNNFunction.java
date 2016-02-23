@@ -50,15 +50,15 @@ public class ReducekNNFunction extends BaseFunction {
         Input str = (Input) input.getValueByField("input");
         int k = this.k;// # of neighbours
 
-        System.err.println("\n\nPartition "+partitionIndex+"\nX: " + str.getX() + " Y: " + str.getY());
+        String resString = "\n\nPartition "+partitionIndex+"\nX: " + str.getX() + " Y: " + str.getY()+"\n";
 
         for (int v = 0; v < k; v++) {
-            System.err.println(resultList.get(v).restaurantName + " ....*******kNN Global " + resultList.get(v).distance + " x: " + resultList.get(v).x + " y:" + resultList.get(v).y);
+            resString += resultList.get(v).restaurantName + " ....*******kNN Global " + resultList.get(v).distance + " x: " + resultList.get(v).x + " y:" + resultList.get(v).y+"\n";
             //get classes of k nearest instances (city names) from the list into an array
             //ss[x] = resultList.get(x).restaurantName;
         }
-
-        System.err.println("\n\n");
+        resString += "\n\n";
+        System.err.println(resString);
 
     }
 
