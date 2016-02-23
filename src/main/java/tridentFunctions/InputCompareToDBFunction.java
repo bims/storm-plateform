@@ -25,14 +25,16 @@ public class InputCompareToDBFunction extends BaseFunction {
     private List<Restaurant> lr2;
     private List<Restaurant> lr3;
     private List<Restaurant> lr4;
+    private int k;
 
 
     //DEBUG
     Integer id;
 
 
-    public InputCompareToDBFunction(int borneInf, int borneSup){
+    public InputCompareToDBFunction(int k, int borneInf, int borneSup){
         //liste des bornes inf en static: 1, 185, 270, 356
+        this.k = k;
         this.borneInf = borneInf;
         this.borneSup = borneSup;
 
@@ -89,7 +91,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         }*/
 
         //on implemente KNN ici
-        int k = 10;// # of neighbours
+        int k = this.k;// # of neighbours
         
         
         //les données sont X et Y (INPUT)

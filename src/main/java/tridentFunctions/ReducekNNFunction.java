@@ -22,9 +22,11 @@ public class ReducekNNFunction extends BaseFunction {
 
     private int partitionIndex;
     private int nbParts;
+    private int k;
 
-    public ReducekNNFunction(int nbParts){
+    public ReducekNNFunction(int k, int nbParts){
         this.nbParts = nbParts;
+        this.k = k;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class ReducekNNFunction extends BaseFunction {
         //On applique le kNN global
         Collections.sort(resultList, new DistanceComparator());
         Input str = (Input) input.getValueByField("input");
-        int k = 10;// # of neighbours
+        int k = this.k;// # of neighbours
 
         System.err.println("\n\nPartition "+partitionIndex+"\nX: " + str.getX() + " Y: " + str.getY());
 

@@ -32,6 +32,7 @@ public class TopologyBatchMain {
 
         int size = 380;
         int nbParts = 4;
+        int k = 11;
 
         OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
 
@@ -47,14 +48,14 @@ public class TopologyBatchMain {
         outputFields.add("input");
 
         for(int i=0; i<nbParts; i++){
-            stream = stream.each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i));
+            stream = stream.each(new Fields("input"), new InputCompareToDBFunction(k, getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i));
             outputFields.add("Partition S" + i);
         }
 
               /*  .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[1], size / nbParts), new Fields("Nimporte2"))
                 .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[2], size / nbParts), new Fields("Nimporte3"))
                 .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[3], size / nbParts), new Fields("Nimporte4"))*/
-        stream.each(new Fields(outputFields), new ReducekNNFunction(nbParts), new Fields("Finaloutput"));
+        stream.each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
 
 
 
