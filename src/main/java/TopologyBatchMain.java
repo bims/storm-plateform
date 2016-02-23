@@ -3,6 +3,7 @@ import backtype.storm.LocalCluster;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
+import otherClass.HBaseDB;
 import otherClass.MyConstants;
 import storm.trident.Stream;
 import storm.trident.operation.TridentCollector;
@@ -48,7 +49,7 @@ public class TopologyBatchMain {
         outputFields.add("input");
 
         for(int i=0; i<nbParts; i++){
-            stream = stream.each(new Fields("input"), new InputCompareToDBFunction(k, getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i));
+            stream = stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i));
             outputFields.add("Partition S" + i);
         }
 
@@ -69,47 +70,6 @@ public class TopologyBatchMain {
         System.err.println("START!!!!!!!!!!!!!!!!!!!!");
 
         cluster.submitTopology("Trident-Topology", conf, topology.build());
-    }
-
-    //POUR RECUPERER LES BONS INDICES
-    public static int[] getIndiceDB(int size, int nbParts){
-
-        int[] res = new int[nbParts];
-
-        //On récupère les indices réels que l'on souhaite
-        for(int i = 0; i<nbParts; i++){
-
-            res[i] = (i*size/nbParts)+1;
-
-        }
-
-        ArrayList<String> indices = new ArrayList<String>();
-
-        //On cree une liste dans l'ordre numérique
-        for(int i = 1; i<=size; i++){
-
-            indices.add(""+i);
-
-        }
-
-        //On trie la liste par ordre alphabetique
-        Collections.sort(indices);
-
-        //On affecte le nouvel indice
-        String newIndice = "";
-        for(int i = 0; i<nbParts; i++){
-
-
-            newIndice = indices.get((i*size/nbParts));
-
-            res[i] = Integer.parseInt(newIndice);
-
-            //System.out.println(newIndice);
-
-        }
-
-        return res;
-
     }
 
 }

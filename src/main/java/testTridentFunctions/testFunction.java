@@ -22,6 +22,11 @@ package testTridentFunctions;
 public class testFunction extends BaseFunction {
 
     private int partitionIndex;
+    private String msg;
+
+    public testFunction(String msg){
+        this.msg = msg;
+    }
 
     @Override
     public void prepare(Map conf, TridentOperationContext context) {
@@ -29,7 +34,7 @@ public class testFunction extends BaseFunction {
     }
 
     public void execute(TridentTuple tuple, TridentCollector collector) {
-            System.out.println("Partition "+partitionIndex);
-            collector.emit(tuple);
+            System.out.println(msg+" Partition "+partitionIndex+ " voici mon tuple : "+tuple.getString(0));
+            collector.emit(new Values(tuple.getString(0)+msg));
     }
 }
