@@ -1,5 +1,6 @@
 package tridentFunctions;
 
+        import backtype.storm.tuple.Values;
         import inputClass.Input;
         import org.apache.hadoop.conf.Configuration;
         import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -16,13 +17,19 @@ package tridentFunctions;
 /**
  * Created by asmaafillatre on 25/01/2016.
  */
-/*
+
 
 public class testFunction extends BaseFunction {
+
+    private int partitionIndex;
+
+    @Override
+    public void prepare(Map conf, TridentOperationContext context) {
+        this.partitionIndex = context.getPartitionIndex();
+    }
+
     public void execute(TridentTuple tuple, TridentCollector collector) {
-        for(int i=0; i < tuple.getInteger(0); i++) {
-            collector.emit(new Values(i));
-        }
+            System.out.println("Partition "+partitionIndex);
+            collector.emit(tuple);
     }
 }
-*/

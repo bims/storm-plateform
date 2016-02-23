@@ -32,17 +32,17 @@ public class ReducekNNFunction extends BaseFunction {
         //liste des bornes inf en static: 1, 185, 270, 356
         List<Result> resultList = new ArrayList<Result>();
 
-        for (Result r : (List<Result>) input.getValueByField("Nimporte1")) {
+        for (Result r : (List<Result>) input.getValueByField("Partition S0")) {
             resultList.add(r);
         }
 
-        for (Result r : (List<Result>) input.getValueByField("Nimporte2")) {
+        for (Result r : (List<Result>) input.getValueByField("Partition S1")) {
             resultList.add(r);
         }
-        for (Result r : (List<Result>) input.getValueByField("Nimporte3")) {
+        for (Result r : (List<Result>) input.getValueByField("Partition S2")) {
             resultList.add(r);
         }
-        for (Result r : (List<Result>) input.getValueByField("Nimporte4")) {
+        for (Result r : (List<Result>) input.getValueByField("Partition S3")) {
             resultList.add(r);
         }
         //On applique le kNN global
