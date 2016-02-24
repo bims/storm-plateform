@@ -103,5 +103,6 @@ public class TopologyBNLJMain {
         System.err.println("START!!!!!!!!!!!!!!!!!!!!");
 
         cluster.submitTopology("Trident-Topology", conf, topology.build());
+
     }
 }

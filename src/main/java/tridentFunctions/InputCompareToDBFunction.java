@@ -18,6 +18,8 @@ import java.util.*;
  * Created by sy306571 on 16/01/16.
  */
 public class InputCompareToDBFunction extends BaseFunction {
+
+    private int k;
     private int borneInf;
     private int borneSup;
     private List<Restaurant> lr;
@@ -25,7 +27,6 @@ public class InputCompareToDBFunction extends BaseFunction {
     private List<Restaurant> lr2;
     private List<Restaurant> lr3;
     private List<Restaurant> lr4;
-    private int k;
 
 
     //DEBUG

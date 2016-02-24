@@ -2,6 +2,7 @@ package testTridentFunctions;
 
         import backtype.storm.tuple.Values;
         import inputClass.Input;
+        import inputClass.InputZValue;
         import org.apache.hadoop.conf.Configuration;
         import org.apache.hadoop.hbase.HBaseConfiguration;
         import otherClass.HBaseDB;
@@ -34,7 +35,8 @@ public class testFunction extends BaseFunction {
     }
 
     public void execute(TridentTuple tuple, TridentCollector collector) {
-            System.out.println(msg+" Partition "+partitionIndex+ " voici mon tuple : "+tuple.getString(0));
-            collector.emit(new Values(tuple.getString(0)+msg));
+           // InputZValue inpZ = (InputZValue) tuple.getValue(0);
+            System.out.println(msg+" Partition "+partitionIndex+ " voici mon tuple : "+ tuple.getValue(0));
+            collector.emit(new Values(tuple.getValue(0)+msg));
     }
 }
