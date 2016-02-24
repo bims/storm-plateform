@@ -1,34 +1,11 @@
 package convert_coord;
 
-import org.apache.commons.math3.random.CorrelatedRandomVectorGenerator;
-import org.apache.commons.math3.random.RandomVectorGenerator;
-import org.apache.commons.math3.random.UnitSphereRandomVectorGenerator;
-
-//package org.apache.commons.math4.random;
 import java.util.Random;
 
 /**
  * Created by asmaafillatre on 23/02/2016.s
  */
 public class data_preprocessing {
-
-    public static int[] createShift(int dimension, Random rin, boolean shift) {
-        Random r = rin;
-        int[] rv = new int[dimension];  // random vector
-
-        if (shift) {
-            for (int i = 0; i < dimension; i++) {
-                rv[i] = ((int) Math.abs(r.nextInt()));
-                // System.out.printf("%d ", rv[i]);
-            }
-            //System.out.println();
-        } else {
-            for (int i = 0; i < dimension; i++)
-                rv[i] = 0;
-        }
-
-        return rv;
-    }
 
 
     public static int[] Convertcoord(int dimension, int[] coord) {
@@ -66,7 +43,7 @@ public class data_preprocessing {
         return converted_coord;
     }
 
-   /* public static void main(String[] args) {
+    public static void main(String[] args) {
         //int[] coord_resto=;
         int dimension = 2;
         int shift = 3;
@@ -74,28 +51,30 @@ public class data_preprocessing {
         int[] coord = new int[dimension];
         Random r = new Random();
         int[] converted_coord;
+        int [] zvalues =new int[dimension];
 
         String zval = null;
 
         coord[0] = 2;
         coord[1] = 6;
 
-
         // Generate random shift vectors
-            converted_coord=Convertcoord(dimension,coord);
+        converted_coord=Convertcoord(dimension,coord);
         System.out.println("coordonnee initiale");
+
         for (int i = 0; i < dimension; i++)
             System.out.println(coord[i]);
 
-        System.out.println("coordonnee convertie");
-        for (int i = 0; i < dimension; i++)
-            System.out.println(converted_coord[i]);
+        //System.out.println("coordonnee convertie");
+        //for (int i = 0; i < dimension; i++)
+          //  System.out.println(converted_coord[i]);
 
-
-            zval = Zorder.valueOf(dimension, converted_coord);
-
+            zval = Zorder.valueOf(dimension, coord);
             System.out.println("zval of converted coord");
+
+
+        //n Collections.sort(zvalues, new InputCompareToDBFunction.DistanceComparator());
             System.out.println(zval);
-            // Test case
-        }*/
+            // Test case*/
+        }
 }
