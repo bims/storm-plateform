@@ -8,7 +8,7 @@ import org.apache.commons.math3.random.UnitSphereRandomVectorGenerator;
 import java.util.Random;
 
 /**
- * Created by asmaafillatre on 23/02/2016.
+ * Created by asmaafillatre on 23/02/2016.s
  */
 public class data_preprocessing {
 
@@ -18,7 +18,7 @@ public class data_preprocessing {
 
         if (shift) {
             for (int i = 0; i < dimension; i++) {
-                rv[i] = ((int) Math.abs(r.nextInt(2)));
+                rv[i] = ((int) Math.abs(r.nextInt()));
                 // System.out.printf("%d ", rv[i]);
             }
             //System.out.println();
@@ -38,12 +38,14 @@ public class data_preprocessing {
         int shift = 3;
 
         Random r = new Random();
+
+
         int[][] shiftvectors = new int[shift][dimension];
 
         // Generate random shift vectors
         for (int i = 0; i < shift; i++)
             shiftvectors[i] = Zorder.createShift(dimension, r, true);
-        //System.out.println(shiftvectors[i]);
+
         // Scale up coordinates and add random shift vector
         int[] converted_coord = new int[dimension];
 
@@ -64,7 +66,7 @@ public class data_preprocessing {
         return converted_coord;
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         //int[] coord_resto=;
         int dimension = 2;
         int shift = 3;
@@ -76,7 +78,7 @@ public class data_preprocessing {
         String zval = null;
 
         coord[0] = 2;
-        coord[1] = 3;
+        coord[1] = 6;
 
 
         // Generate random shift vectors
@@ -92,8 +94,8 @@ public class data_preprocessing {
 
             zval = Zorder.valueOf(dimension, converted_coord);
 
-            System.out.println("zval");
+            System.out.println("zval of converted coord");
             System.out.println(zval);
             // Test case
-        }
+        }*/
 }
