@@ -1,25 +1,30 @@
 package otherClass;
 
 import com.google.gson.Gson;
-import kafka.EmbeddedZookeeper;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
-import org.apache.zookeeper.server.ZooKeeperServer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class parseJSONtoDB {
 
+    private static final int ZVALUE_MODE = 1;
+    private static final int NB_PARTITIONS = 5;
+
+
     public static void main(String[] args) throws IOException {
+
+        int mode = 0;
+        if(args.length > 0){
+            mode = Integer.parseInt(args[0]);
+        }
 
         // String pour recuperer la string du fichier
         String stringDB = "";
@@ -40,6 +45,7 @@ public class parseJSONtoDB {
         Type listType = new TypeToken<ArrayList<Restaurant>>(){}.getType();
 
         List<Restaurant> allRestaurants = gson.fromJson(stringDB, listType);
+        List<RestaurantZValue> restaurantZValues = new ArrayList<>();
 
         Configuration config = HBaseConfiguration.create();
         //config.addResource("hbase-site.xml");
@@ -67,7 +73,38 @@ public class parseJSONtoDB {
 
             //String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
             //restaurantsDB.addItem(id, lat, lon, name, addr);
-            restaurantsDB.addItem(id, lat, lon, name);
+            if(mode == ZVALUE_MODE){
+                double[] coord = new double[2];
+                coord[0] = Double.parseDouble(rest.getLat());
+                coord[1] = Double.parseDouble(rest.getLon());
+
+                //int[] zValue = data_preprocessing.Convertcoord(2,coord);
+                double zValue = (coord[0] + coord[1])*((coord[0] + coord[1]));
+
+                restaurantZValues.add(new RestaurantZValue(id,lat,lon,name,zValue));
+            }
+            else restaurantsDB.addItem(id, lat, lon, name);
+        }
+
+        if(mode == ZVALUE_MODE){
+            Collections.sort(restaurantZValues, new Comparator<RestaurantZValue>() {
+
+                @Override
+                public int compare(RestaurantZValue o1, RestaurantZValue o2) {
+                    return Double.compare(o1.getzValue(), o2.getzValue());
+                }
+            });
+
+            long nbTuplesByPartition = Math.round(((double) restaurantZValues.size())/((double) NB_PARTITIONS));
+            int numPartition = 1;
+            for(int i=0; i<restaurantZValues.size(); i++) {
+                if (i != 0 && numPartition < NB_PARTITIONS && i % nbTuplesByPartition == 0) {
+                    numPartition++;
+                }
+                RestaurantZValue rest = restaurantZValues.get(i);
+                restaurantsDB.addItemZValue(rest.getId(),rest.getLat(),rest.getLon(),rest.getName(),
+                        rest.getzValue(),numPartition-1);
+            }
         }
 
         //DEBUG
@@ -99,5 +136,42 @@ public class parseJSONtoDB {
             }
         }
         return buffer==null ? s : buffer.toString();
+    }
+
+    private static class RestaurantZValue{
+        private String id;
+        private String lat;
+        private String lon;
+        private String name;
+        private double zValue;
+
+        public RestaurantZValue(String id, String lat, String lon, String name, double zValue){
+            this.id = id;
+            this.lat = lat;
+            this.lon = lon;
+            this.zValue = zValue;
+            this.name = name;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getLat() {
+            return lat;
+        }
+
+        public String getLon() {
+            return lon;
+        }
+
+        public double getzValue() {
+            return zValue;
+        }
+
+        public String getName() {
+            return name;
+        }
+
     }
 }

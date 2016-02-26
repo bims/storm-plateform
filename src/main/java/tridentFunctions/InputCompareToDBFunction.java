@@ -112,7 +112,7 @@ public class InputCompareToDBFunction extends BaseFunction {
         //list to save distance result
         List<Result> resultList = new ArrayList<Result>();
         
-        for(int resto = 1; resto < limit; resto++) {
+        for(int resto = 0; resto < limit; resto++) {
             
             //System.err.println("RESTO:"+resto+" x="+lr.get(resto).getLon()+" y="+lr.get(resto).getLat());
             

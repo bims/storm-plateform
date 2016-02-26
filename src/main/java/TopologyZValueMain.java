@@ -1,7 +1,6 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
-import otherClass.HBaseDB;
 import otherClass.MyConstants;
 import storm.kafka.BrokerHosts;
 import storm.kafka.ZkHosts;
@@ -10,10 +9,8 @@ import storm.kafka.trident.TridentKafkaConfig;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
 import tridentFunctions.InputNormalizerFunction;
-import tridentFunctions.zValue.PartitionFilter;
-import tridentFunctions.zValue.kNNzValueFunction;
-import tridentFunctions.zValue.SortAggregator;
-import tridentFunctions.zValue.ZValueFunction;
+import tridentFunctions.PartitionFilter;
+import tridentFunctions.zValue.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +45,8 @@ public class TopologyZValueMain {
         //On reprend une partie du code de BNLJ pour paralleliser le traitement de chaque partition
         List<Stream> streams = new ArrayList<>();
         for(int i=0; i<nbParts; i++){
-            streams.add(partitionsR.each(new Fields("numParition"), new PartitionFilter(i))
-                    .each(new Fields("inputZValue"), new kNNzValueFunction(k,HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("res")));
+            streams.add(partitionsR.each(new Fields("inputZValue","numPartition"), new PartitionFilter(i))
+                    .each(new Fields("inputZValue","numPartition"), new KNNZValueFunction(k,0,size,nbParts,i), new Fields("res")));
         }
 
 

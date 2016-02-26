@@ -17,7 +17,7 @@ public class ZValueFunction extends BaseFunction {
         Input inp = (Input) tridentTuple.getValue(0);
         double x = Double.parseDouble(inp.getX());
         double y = Double.parseDouble(inp.getX());
-        tridentCollector.emit(new Values((x+y)*2));
+        tridentCollector.emit(new Values((x + y) * ((x + y))));
 
 
         //int[] coord_resto=;

@@ -5,11 +5,8 @@ package convert_coord;
  */
 //package test;
 
-import java.io.*;
 import java.util.*;
-import java.util.Date;
 import java.util.Random;
-import java.util.ArrayList;
 import java.math.*;
 
 public class Zorder {
@@ -47,6 +44,28 @@ public class Zorder {
         maxDec = maxDec.shiftLeft( dimension * max );
         maxDec.subtract( BigInteger.ONE );
         return maxDec.toString().length();
+    }
+
+    public static int[] convertCoord(int shift, int dimension, int scale, int[][] shiftvectors, double[] coord){
+        // generate m random shift copies
+        double[] tmp_coord = new double[dimension];
+        // Scale up coordinates and add random shift vector
+        int[] converted_coord = new int[dimension];
+        for (int i = 0; i < shift; i++) {
+
+            for (int k = 0; k < dimension; k++) {
+                tmp_coord[k] = coord[k];
+                // To prevent precision loss, we need to ale up
+                // the part behinde the decimal point to integer.
+                converted_coord[k] = (int) tmp_coord[k]; // Get integer part
+                tmp_coord[k] -= converted_coord[k];  // Get fractional part
+                converted_coord[k] *= scale;         // Scale integer part
+                converted_coord[k] += (tmp_coord[k] * scale);
+                if (i!=0)   //for shift 0 we use the original setting
+                    converted_coord[k] += shiftvectors[i][k]; // Add shift
+            }
+        }
+        return converted_coord;
     }
 
     public static String maxDecString( int dimension ) {
@@ -109,6 +128,25 @@ public class Zorder {
         //System.out.println(order);
 
         return order;
+    }
+
+    public static char[] fromStringToInt(String zValue){
+        int sum = 0;
+
+        char[] monNum = zValue.toCharArray();
+        int i=0;
+        while(monNum[i]=='0'){
+            i++;
+        }
+        char[] numSansZero = new char[monNum.length-i];
+        for(int j=i; j<monNum.length; j++){
+            numSansZero[j-i]=monNum[j];
+        }
+
+        /*for(int i=0; i<zValue.length(); i++){
+            sum += Integer.parseInt(String.valueOf(zValue.charAt(i))) * Math.pow(10.0,zValue.length()-1-i);
+        }*/
+        return numSansZero;
     }
 
     public static int[] toCoord(String z, int dimension) {

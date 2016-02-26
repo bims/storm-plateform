@@ -26,6 +26,9 @@ public class HBaseDB {
     public final static byte[] COL_LAT = "lat".getBytes();
     public final static byte[] COL_NAME = "name".getBytes();
     public final static byte[] COL_ADDR = "addr".getBytes();
+    public final static byte[] COL_ZVALUE = "zvalue".getBytes();
+    public final static byte[] COL_PARTITION = "partition".getBytes();
+
 
     // HBase configuration
     private final Configuration config;
@@ -252,6 +255,39 @@ public class HBaseDB {
                 ", Lat = " + lat +
                 ", Long = " + lon +
                 ", Name = " + name);
+    }
+
+    public void addItemZValue(String id, String lat, String lon, String name, double zValue,int partition) throws IOException {
+        //public void addItem(String id, String lat, String lon, String name, String addStreet) throws IOException {
+        // Construct a "put" object for insert
+        Put p = new Put(id.getBytes());
+
+        p.addColumn(COLUMN_FAMILY_INFO, COL_NAME, name.getBytes());
+        //if(addStreet!=null)
+        // p.addColumn(COLUMN_FAMILY_INFO, COL_ADDR, addStreet.getBytes());
+        p.addColumn(COLUMN_FAMILY_GEO, COL_LON, lon.getBytes());
+        p.addColumn(COLUMN_FAMILY_GEO, COL_LAT, lat.getBytes());
+
+        //Colonne pour zValue
+        p.addColumn(COLUMN_FAMILY_GEO, COL_ZVALUE, Double.toString(zValue).getBytes());
+
+        //Colonne pour partition
+        p.addColumn(COLUMN_FAMILY_INFO, COL_PARTITION, Integer.toString(partition).getBytes());
+
+
+
+        try (Connection conn = ConnectionFactory.createConnection(config)) {
+            Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
+            table.put(p);
+            table.close();
+        }
+
+        System.out.println("data inserted: Id = " + id +
+                ", Lat = " + lat +
+                ", Long = " + lon +
+                ", Name = " + name +
+                ", ZValue = " + zValue +
+                ", Partition = " + partition);
     }
 
     //POUR RECUPERER LES BONS INDICES
