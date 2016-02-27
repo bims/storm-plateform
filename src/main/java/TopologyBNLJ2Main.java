@@ -48,10 +48,11 @@ public class TopologyBNLJ2Main {
 
         for(int i=0; i<nbParts; i++){
             List<Stream> streams = new ArrayList<>();
+            Stream partitionStream = stream.each(new Fields("input"), new PartitionFilter(i));
             for(int j=0; j<nbParts; j++) {
-                streams.add(stream
-                        .each(new Fields("input"), new PartitionFilter(i))
-                        .each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[j], size / nbParts), new Fields("Partition S" + j)));
+                streams.add(partitionStream.each(new Fields("input"),
+                        new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[j], size / nbParts),
+                        new Fields("Partition S" + j)));
             }
             allStreams.add(streams);
         }
