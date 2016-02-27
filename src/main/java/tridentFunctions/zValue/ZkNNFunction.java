@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * Created by sy306571 on 24/02/16.
  */
-public class KNNZValueFunction extends BaseFunction {
+public class ZkNNFunction extends BaseFunction {
 
 
     private int k;
@@ -30,7 +30,7 @@ public class KNNZValueFunction extends BaseFunction {
     private List<Restaurant> lr1;
 
 
-    public KNNZValueFunction(int k, int borneInf, int borneSup, int nbParts, int numPart){
+    public ZkNNFunction(int k, int borneInf, int borneSup, int nbParts, int numPart){
         //liste des bornes inf en static: 1, 185, 270, 356
         this.k = k;
         this.borneInf = borneInf;

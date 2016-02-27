@@ -35,8 +35,13 @@ public class testFunction extends BaseFunction {
     }
 
     public void execute(TridentTuple tuple, TridentCollector collector) {
-           // InputZValue inpZ = (InputZValue) tuple.getValue(0);
-            System.out.println(msg+" Partition "+partitionIndex+ " voici mon tuple : "+ tuple.getValue(0));
+            InputZValue inpZ = (InputZValue) tuple.getValue(0);
+            if(msg.equals(">1")){
+                for(int i=0; i<100000;i++){
+                    double r = Math.pow(10.0,4.0);
+                }
+            }
+            System.out.println(msg+" Partition "+partitionIndex+ " voici mon tuple : "+ inpZ.getzValue());
             collector.emit(new Values(tuple.getValue(0)+msg));
     }
 }

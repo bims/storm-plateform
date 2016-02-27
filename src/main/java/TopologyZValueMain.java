@@ -21,34 +21,33 @@ public class TopologyZValueMain {
         BrokerHosts zk = new ZkHosts("localhost:"+ MyConstants.KAFKA_ZK_PORT);
 
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
-        spoutConf.fetchSizeBytes = 1000; //Sliding window
+        //spoutConf.fetchSizeBytes = 1000; //Sliding window
 
         int size = 380;
-        int nbParts = 3;
+        int nbParts = 2;
         int k = 11;
 
         OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
 
         TridentTopology topology=new TridentTopology();
 
-        Stream partitionsR = topology.newStream("kafka-spout", spout)
+        Stream firstStream = topology.newStream("kafka-spout", spout)
                 .shuffle()
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
                 .each(new Fields("input"), new ZValueFunction(), new Fields("zValue"))
-                .parallelismHint(nbParts)
-                .aggregate(new Fields("input","zValue"), new SortAggregator(nbParts),new Fields("inputZValue","numPartition"))
-                .partitionBy(new Fields("numPartition"))
-                //.each(new Fields("inputZValue"),new testFunction(null),new Fields("Nimporte"))
-                .parallelismHint(nbParts);
+                .parallelismHint(nbParts) //Ce n'est pas necessaire
+                .aggregate(new Fields("input", "zValue"), new SortAggregator(nbParts), new Fields("inputZValue", "numPartition"))
+                .partitionBy(new Fields("numPartition"));
 
         //utiliser un filtre pour que chaque partition de R soit couplee a la bonne partition de S
         //On reprend une partie du code de BNLJ pour paralleliser le traitement de chaque partition
         List<Stream> streams = new ArrayList<>();
         for(int i=0; i<nbParts; i++){
-            streams.add(partitionsR.each(new Fields("inputZValue","numPartition"), new PartitionFilter(i))
-                    .each(new Fields("inputZValue","numPartition"), new KNNZValueFunction(k,0,size,nbParts,i), new Fields("res")));
+            streams.add(firstStream.each(new Fields("inputZValue", "numPartition"), new PartitionFilter(i))
+                    .each(new Fields("inputZValue", "numPartition"),
+                            new ZkNNFunction(k, 0, size, nbParts, i), new Fields("res"))
+                    .parallelismHint(nbParts));
         }
-
 
         //En commentaire ci-dessous, un code qui sert pour divers tests
 
