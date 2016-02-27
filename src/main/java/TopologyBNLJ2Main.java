@@ -42,7 +42,7 @@ public class TopologyBNLJ2Main {
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
                 .parallelismHint(nbParts);
 
-        //Element i de allStreams contient RiSj avec j l'element j de allStream i
+        //allStreams(i,j) contient RiSj
         List<List<Stream>> allStreams = new ArrayList<>();
 
 
@@ -67,6 +67,7 @@ public class TopologyBNLJ2Main {
         }
 
         for(int i=0; i<nbParts; i++){
+            //On applique la jointure sur les RiS(0-nbParts) puis on fait le Reduce kNN
             topology.join(allStreams.get(i),joinFields,new Fields(outputFields))
             .each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
         }
