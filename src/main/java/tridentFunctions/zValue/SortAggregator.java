@@ -9,6 +9,7 @@ import storm.trident.operation.BaseAggregator;
 import storm.trident.operation.TridentCollector;
 import storm.trident.tuple.TridentTuple;
 
+import java.math.BigInteger;
 import java.util.*;
 
 public class SortAggregator extends BaseAggregator<List<InputZValue>> {
@@ -26,7 +27,7 @@ public class SortAggregator extends BaseAggregator<List<InputZValue>> {
 
     @Override
     public void aggregate(List<InputZValue> val, TridentTuple input, TridentCollector tridentCollector) {
-        val.add(new InputZValue((Input) input.getValue(0),input.getDouble(1)));
+        val.add(new InputZValue((Input) input.getValue(0),(BigInteger) input.getValue(1)));
     }
 
     @Override
@@ -34,7 +35,7 @@ public class SortAggregator extends BaseAggregator<List<InputZValue>> {
         Collections.sort(val, new Comparator<InputZValue>() {
             @Override
             public int compare(final InputZValue o1, final InputZValue o2) {
-                return Double.compare(o1.getzValue(),o2.getzValue());
+                return o1.getzValue().compareTo(o2.getzValue());
             }
         });
         long nbTuplesByPartition = Math.round(((double) val.size())/((double) nbParts));

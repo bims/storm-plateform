@@ -8,16 +8,23 @@ import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.tuple.TridentTuple;
 
+import java.math.BigInteger;
 import java.util.Random;
 
 public class ZValueFunction extends BaseFunction {
 
     @Override
     public void execute(TridentTuple tridentTuple, TridentCollector tridentCollector) {
+        int scale = 1000;
         Input inp = (Input) tridentTuple.getValue(0);
-        double x = Double.parseDouble(inp.getX());
-        double y = Double.parseDouble(inp.getX());
-        tridentCollector.emit(new Values((x + y) * ((x + y))));
+        double[] query = new double[2];
+        query[0] = Double.parseDouble(inp.getX());
+        query[1] = Double.parseDouble(inp.getY());
+        int[] convertCoord = Zorder.convertCoord(1, 2, scale, new int[2][2], query);
+        String zValue = String.valueOf(Zorder.fromStringToInt(Zorder.valueOf(2, convertCoord)));
+        BigInteger bigInt = new BigInteger(zValue);
+
+        tridentCollector.emit(new Values(bigInt));
 
 
         //int[] coord_resto=;

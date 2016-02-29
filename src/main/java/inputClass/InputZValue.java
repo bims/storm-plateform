@@ -1,24 +1,26 @@
 package inputClass;
 
+import java.math.BigInteger;
+
 public class InputZValue extends Input{
-    private double zValue;
+    private BigInteger zValue;
 
 
-    public InputZValue(String x, String y, double zValue) {
+    public InputZValue(String x, String y, BigInteger zValue) {
         super(x, y);
         this.zValue = zValue;
     }
 
-    public InputZValue(Input inp, double zValue) {
+    public InputZValue(Input inp, BigInteger zValue) {
         super(inp.x, inp.y);
         this.zValue = zValue;
     }
 
-    public double getzValue() {
+    public BigInteger getzValue() {
         return zValue;
     }
 
-    public void setzValue(double zValue) {
+    public void setzValue(BigInteger zValue) {
         this.zValue = zValue;
     }
 }

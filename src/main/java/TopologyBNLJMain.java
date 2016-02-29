@@ -47,19 +47,20 @@ public class TopologyBNLJMain {
         Stream stream = topology.newStream("kafka-spout", spout)
                 .shuffle()
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
-                .parallelismHint(nbParts);
+                .parallelismHint(nbParts)
+                .each(new Fields("input"), new InputNormalizerFunction(), new Fields("input2"))
+                .shuffle();
 
         List<Stream> streams = new ArrayList<>();
 
         for(int i=0; i<nbParts; i++) {
-            streams.add(stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i)));
+            streams.add(stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i)).parallelismHint(1));
             outputFields.add("Partition S" + i);
             joinFields.add(new Fields("bytes","input"));
         }
 
-        Stream finalStream = topology.join(streams,joinFields,new Fields(outputFields)).parallelismHint(nbParts);
+        Stream finalStream = topology.join(streams,joinFields,new Fields(outputFields));
         finalStream.each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
-
 
 
         //En commentaire ci-dessous, un code qui sert pour divers tests

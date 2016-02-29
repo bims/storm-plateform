@@ -2,6 +2,7 @@ package tridentFunctions.zValue;
 
 import convert_coord.Zorder;
 import inputClass.Input;
+import inputClass.InputZValue;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import otherClass.HBaseDB;
@@ -54,7 +55,7 @@ public class ZkNNFunction extends BaseFunction {
     }
 
     public void execute(TridentTuple input, TridentCollector collector) {
-        Input str = (Input) input.getValue(0);
+        InputZValue str = (InputZValue) input.getValue(0);
 
         lr = this.lr1;
         int scale = 1000;
@@ -90,15 +91,7 @@ public class ZkNNFunction extends BaseFunction {
         int k = this.k;// # of neighbours
 
 
-        //les données sont X et Y (INPUT)
-        // TODO modifier
-        double[] query = {Double.parseDouble(str.getX()), Double.parseDouble(str.getY())};
-
-        //On utilise un objet RestaurantZValue pour y mettre la query et sa zvalue
-        int[] convertCoord = Zorder.convertCoord(1, 2, scale, new int[2][2], query);
-        String zValue = String.valueOf(Zorder.fromStringToInt(Zorder.valueOf(2, convertCoord)));
-
-        RestaurantZValue rZ = new RestaurantZValue("",str.getX(),str.getY(),"requete",new BigInteger(zValue));
+        RestaurantZValue rZ = new RestaurantZValue("",str.getX(),str.getY(),"requete",str.getzValue());
 
         //Fonction permettant de calculer les k top voisins
         List<RestaurantZValue> candidats;
@@ -239,7 +232,7 @@ public class ZkNNFunction extends BaseFunction {
 
     public static void main(String[] args){
 
-        List<RestaurantZValue> maListe = new ArrayList<>();
+        /*List<RestaurantZValue> maListe = new ArrayList<>();
         for(int i=0; i<30; i++){
             Random rd = new Random();
             int lat = rd.nextInt(40);
@@ -289,22 +282,26 @@ public class ZkNNFunction extends BaseFunction {
                     + resultList.get(v).x + " y:" + resultList.get(v).y+"\n";
         }
         resString += "\n\n";
-        System.err.println(resString);
-       /*double[] coord = new double[2];
-        coord[0] = 43.7099874;
-        coord[1] = 7.2588942;
+        System.err.println(resString);*/
 
+
+        //X: 38.69 Y: 2.24
+        double[] coord = new double[2];
+        coord[0] = 38.69;
+        coord[1] = 2.24;
+
+        //43.6106519 y:7.017811
         double[] coord2 = new double[2];
-        coord2[0] = 43.7001641;
-        coord2[1] = 7.2678543;
+        coord2[0] = 43.6241486;
+        coord2[1] = 7.0034397;
 
-        int[][] shiftvectors = new int[2][2];
+       /* int[][] shiftvectors = new int[2][2];
         shiftvectors[0][0] = 0;
         shiftvectors[0][1] = 0;
         shiftvectors[1][0] = 2;
-        shiftvectors[1][1] = 3;
+        shiftvectors[1][1] = 3;*/
 
-        int[] converted = Zorder.convertCoord(1,2,1000,shiftvectors,coord);
+        int[] converted = Zorder.convertCoord(1,2,1000,new int[2][2],coord);
 
         String zValue = Zorder.valueOf(2,converted);
         //String zValue = "1203";
@@ -317,24 +314,20 @@ public class ZkNNFunction extends BaseFunction {
         monEntier[3] = 6;*/
        /* for(int i=0; i<converted.length; i++){
             System.out.println(converted[i]);
-        }*/
-       /* System.out.println(zValue);
+        }
+        System.out.println(zValue);*/
 
-        converted = Zorder.convertCoord(1,2,1000,shiftvectors,coord2);
+        converted = Zorder.convertCoord(1,2,1000,new int[2][2],coord2);
 
-        zValue = Zorder.valueOf(2,converted);
-        System.out.println(zValue);
-        char[] res = Zorder.fromStringToInt(zValue);
+        String zValue2 = Zorder.valueOf(2,converted);
+        //System.out.println(zValue);
+        /*char[] res = Zorder.fromStringToInt(zValue);
         for(int i=0; i<res.length; i++){
             System.out.print(res[i]);
-        }
-        System.out.println("\n"+new BigInteger(String.valueOf(res)));
-        BigInteger z = new BigInteger("2312674853");
-        BigInteger v = new BigInteger("2312674854");
+        }*/
+        BigInteger z = new BigInteger(String.valueOf(Zorder.fromStringToInt(zValue)));
+        BigInteger v = new BigInteger(String.valueOf(Zorder.fromStringToInt(zValue2)));
         System.out.println(z.subtract(v).abs());
-        System.out.println(v);
-*/
-
     }
 
 

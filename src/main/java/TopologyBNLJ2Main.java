@@ -16,6 +16,8 @@ import tridentFunctions.PartitionFilter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by sy306571 on 26/02/16.
@@ -45,7 +47,6 @@ public class TopologyBNLJ2Main {
         //allStreams(i,j) contient RiSj
         List<List<Stream>> allStreams = new ArrayList<>();
 
-
         for(int i=0; i<nbParts; i++){
             List<Stream> streams = new ArrayList<>();
             Stream partitionStream = stream.each(new Fields("input"), new PartitionFilter(i)).shuffle();
@@ -53,7 +54,7 @@ public class TopologyBNLJ2Main {
                 streams.add(partitionStream.each(new Fields("input"),
                         new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[j], size / nbParts),
                         new Fields("Partition S" + j))
-                .parallelismHint(1));
+                        .parallelismHint(1));
             }
             allStreams.add(streams);
         }
