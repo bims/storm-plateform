@@ -8,13 +8,16 @@ import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
+import org.apache.storm.shade.org.apache.commons.io.IOUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class parseJSONtoDB {
@@ -34,10 +37,14 @@ public class parseJSONtoDB {
         String stringDB = "";
 
         // On lit le fichier
-        Path path_DataBase = Paths.get("src/main/resources", "restaurant.json");
+        String path_DataBase = "/src/main/resources/restaurant.json";
+        InputStream inputDB = parseJSONtoDB.class.getResourceAsStream("/src/main/resources/restaurant.json");
+        if (inputDB == null) {
+            throw new FileNotFoundException("File " + path_DataBase + " does not exist");
+        }
 
         try {
-            byte[] ArrayDB = Files.readAllBytes(path_DataBase);
+            byte[] ArrayDB = IOUtils.toByteArray(inputDB);
             stringDB = new String(ArrayDB, "ISO-8859-1");
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,7 +119,7 @@ public class parseJSONtoDB {
                     numPartition++;
                 }
                 RestaurantZValue rest = restaurantZValues.get(i);
-                restaurantsDB.addItemZValue(rest.getId(),rest.getLat(),rest.getLon(),rest.getName(),
+                restaurantsDB.addItemZValue(zeroPadding(String.valueOf(i)),rest.getLat(),rest.getLon(),rest.getName(),
                         rest.getzValue(),numPartition-1);
             }
         }
@@ -146,6 +153,16 @@ public class parseJSONtoDB {
             }
         }
         return buffer==null ? s : buffer.toString();
+    }
+
+    private static String zeroPadding(String num){
+        StringBuilder padded = new StringBuilder("0000000000");
+
+        for(int i = 0; i < num.length(); i++){
+            padded.setCharAt(padded.length() - (i + 1), num.charAt(num.length() - i - 1));
+        }
+
+        return padded.toString();
     }
 
     private static class RestaurantZValue{

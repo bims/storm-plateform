@@ -1,25 +1,20 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
-import backtype.storm.task.TopologyContext;
 import backtype.storm.tuple.Fields;
-import backtype.storm.tuple.Values;
 import otherClass.HBaseDB;
 import otherClass.MyConstants;
-import storm.trident.Stream;
-import storm.trident.operation.TridentCollector;
-import storm.trident.spout.IBatchSpout;
-import storm.trident.testing.FixedBatchSpout;
-import tridentFunctions.*;
 import storm.kafka.BrokerHosts;
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
+import storm.trident.Stream;
 import storm.trident.TridentTopology;
+import tridentFunctions.InputCompareToDBFunction;
+import tridentFunctions.InputNormalizerFunction;
+import tridentFunctions.ReducekNNFunction;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 
 public class TopologyBatchMain {

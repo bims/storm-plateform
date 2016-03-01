@@ -8,8 +8,8 @@ import backtype.storm.tuple.Tuple;
 import inputClass.Input;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.client.ResultScanner;
-import otherClass.*;
+import otherClass.HBaseDB;
+import otherClass.Restaurant;
 
 import java.io.IOException;
 import java.util.*;
