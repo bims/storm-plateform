@@ -4,13 +4,16 @@ import com.google.gson.Gson;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
+import org.apache.storm.shade.org.apache.commons.io.IOUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class parseJSONtoDB {
@@ -30,10 +33,14 @@ public class parseJSONtoDB {
         String stringDB = "";
 
         // On lit le fichier
-        Path path_DataBase = Paths.get("src/main/resources", "restaurant.json");
+        String path_DataBase = "/src/main/resources/restaurant.json";
+        InputStream inputDB = parseJSONtoDB.class.getResourceAsStream("/src/main/resources/restaurant.json");
+        if (inputDB == null) {
+            throw new FileNotFoundException("File " + path_DataBase + " does not exist");
+        }
 
         try {
-            byte[] ArrayDB = Files.readAllBytes(path_DataBase);
+            byte[] ArrayDB = IOUtils.toByteArray(inputDB);
             stringDB = new String(ArrayDB, "ISO-8859-1");
         } catch (IOException e) {
             e.printStackTrace();
