@@ -24,19 +24,18 @@ public class ZkNNFunction extends BaseFunction {
 
     private int k;
     private int borneInf;
-    private int borneSup;
+    private int nbItems;
     private int nbParts;
     private int numPart;
-    private List<Restaurant> lr;
-    private List<Restaurant> lr1;
+    private List<RestaurantZValue> lr;
     private List<RestaurantZValue> restaurantZValues;
 
 
-    public ZkNNFunction(int k, int borneInf, int borneSup, int nbParts, int numPart){
+    public ZkNNFunction(int k, int borneInf, int nbItems, int nbParts, int numPart){
         //liste des bornes inf en static: 1, 185, 270, 356
         this.k = k;
         this.borneInf = borneInf;
-        this.borneSup = borneSup;
+        this.nbItems = nbItems;
         this.nbParts = nbParts;
         this.numPart = numPart;
     }
@@ -48,34 +47,9 @@ public class ZkNNFunction extends BaseFunction {
         HBaseDB listeRestaurants = new HBaseDB(config);
         //On récupère la liste des restaurants de la base S
         try {
-            lr1 = listeRestaurants.ScanRows(""+borneInf,borneSup);
-            List<RestaurantZValue> restaurantZValues = new ArrayList<>();
+            lr = listeRestaurants.ScanZRows(""+borneInf,nbItems);
 
-            lr = this.lr1;
-            int scale = 1000;
-
-            for(Restaurant rest : lr) {
-
-                double[] coord = new double[2];
-                coord[0] = Double.parseDouble(rest.getLat());
-                coord[1] = Double.parseDouble(rest.getLon());
-
-                int[] convertCoord = Zorder.convertCoord(1, 2, scale, new int[2][2], coord);
-                //int[] zValue = (coord[0] + coord[1]) * ((coord[0] + coord[1]));
-                String zValue = String.valueOf(Zorder.eraseZeros(Zorder.valueOf(2, convertCoord)));
-
-                restaurantZValues.add(new RestaurantZValue(rest.getId(), rest.getLat(), rest.getLon(), rest.getName(), new BigInteger(zValue)));
-            }
-
-            Collections.sort(restaurantZValues, new Comparator<RestaurantZValue>() {
-
-                @Override
-                public int compare(RestaurantZValue o1, RestaurantZValue o2) {
-                    return o1.getzValue().compareTo(o2.getzValue());
-                }
-            });
-
-            this.restaurantZValues = restaurantZValues.subList((restaurantZValues.size()/nbParts)*numPart,(restaurantZValues.size()/nbParts)*(numPart+1));
+            this.restaurantZValues = lr.subList((nbItems/nbParts)*numPart,(nbItems/nbParts)*(numPart+1));
 
 
 
@@ -219,8 +193,8 @@ public class ZkNNFunction extends BaseFunction {
 
         //43.6106519 y:7.017811
         double[] coord2 = new double[2];
-        coord2[0] = 43.6241486;
-        coord2[1] = 7.0034397;
+        coord2[0] = 45.69;
+        coord2[1] = 1.2400000000000002;
 
        /* int[][] shiftvectors = new int[2][2];
         shiftvectors[0][0] = 0;
@@ -247,6 +221,17 @@ public class ZkNNFunction extends BaseFunction {
         converted = Zorder.convertCoord(1,2,1000,new int[2][2],coord2);
 
         String zValue2 = Zorder.valueOf(2,converted);
+        System.out.println("V: "+zValue2);
+
+        //Flunch
+        double distance = Math.sqrt(Math.pow((43.7427636 - coord2[0]),2)+Math.pow((7.3178718 - coord2[1]),2));
+        System.out.println("D:"+distance);
+
+        //Auberge de Courmes
+        distance = Math.sqrt(Math.pow((43.7429201 - coord2[0]),2)+Math.pow((7.0084038 - coord2[1]),2));
+        System.out.println("D2:"+distance);
+
+
         //System.out.println(zValue);
         /*char[] res = Zorder.eraseZeros(zValue);
         for(int i=0; i<res.length; i++){
