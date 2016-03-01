@@ -234,7 +234,7 @@ public class HBaseDB {
         return myRestaurant;
     }
 
-    public void addItem(String id, String lat, String lon, String name) throws IOException {
+    public void addItem(Table t, String id, String lat, String lon, String name) throws IOException {
     //public void addItem(String id, String lat, String lon, String name, String addStreet) throws IOException {
         // Construct a "put" object for insert
         Put p = new Put(id.getBytes());
@@ -245,11 +245,7 @@ public class HBaseDB {
         p.addColumn(COLUMN_FAMILY_GEO, COL_LON, lon.getBytes());
         p.addColumn(COLUMN_FAMILY_GEO, COL_LAT, lat.getBytes());
 
-        try (Connection conn = ConnectionFactory.createConnection(config)) {
-            Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
-            table.put(p);
-            table.close();
-        }
+        t.put(p);
 
         System.out.println("data inserted: Id = " + id +
                 ", Lat = " + lat +

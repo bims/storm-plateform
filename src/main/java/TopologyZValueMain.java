@@ -2,17 +2,21 @@ import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
 import otherClass.MyConstants;
+import otherClass.ZLimits;
 import storm.kafka.BrokerHosts;
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
+import storm.trident.operation.BaseFunction;
 import tridentFunctions.InputNormalizerFunction;
 import tridentFunctions.PartitionFilter;
 import tridentFunctions.zValue.*;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class TopologyZValueMain {
@@ -31,23 +35,31 @@ public class TopologyZValueMain {
 
         TridentTopology topology=new TridentTopology();
 
+        HashMap<Integer, ZLimits> zLimits = new HashMap<>();
+        zLimits.put(1,new ZLimits(new BigInteger("3"),new BigInteger("3")));
+        IntelligentPartitionsFunction fct = new IntelligentPartitionsFunction(zLimits);
+
         Stream firstStream = topology.newStream("kafka-spout", spout)
                 .shuffle()
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
                 .each(new Fields("input"), new ZValueFunction(), new Fields("zValue"))
-                .parallelismHint(nbParts) //Ce n'est pas necessaire
-                .aggregate(new Fields("input", "zValue"), new SortAggregator(nbParts), new Fields("inputZValue", "numPartition"))
-                .partitionBy(new Fields("numPartition"));
+                //.parallelismHint(nbParts) //Ce n'est pas necessaire
+                .each(new Fields("zValue"),fct,new Fields("inputZValue","numPartition"));
+                //.aggregate(new Fields("input", "zValue"), new SortAggregator(nbParts), new Fields("inputZValue", "numPartition"))
+                //.partitionBy(new Fields("numPartition"));
 
         //utiliser un filtre pour que chaque partition de R soit couplee a la bonne partition de S
         //On reprend une partie du code de BNLJ pour paralleliser le traitement de chaque partition
-        List<Stream> streams = new ArrayList<>();
+
+
+        
+       /* List<Stream> streams = new ArrayList<>();
         for(int i=0; i<nbParts; i++){
-            streams.add(firstStream.each(new Fields("inputZValue", "numPartition"), new PartitionFilter(i))
+            streams.add(firstStream.each(new Fields("inputZValue", "numPartition"), new PartitionFilter(i)).shuffle()
                     .each(new Fields("inputZValue", "numPartition"),
-                            new ZkNNFunction(k, 0, size, nbParts, i), new Fields("res"))
-                    .parallelismHint(nbParts));
-        }
+                            new ZkNNFunction(k, 0, size, nbParts, i, fct), new Fields("res"))
+                    .parallelismHint(1));
+        }*/
 
         //En commentaire ci-dessous, un code qui sert pour divers tests
 

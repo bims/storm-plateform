@@ -3,6 +3,10 @@ package otherClass;
 import com.google.gson.Gson;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.Table;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
 
 import java.io.IOException;
@@ -17,7 +21,7 @@ public class parseJSONtoDB {
 
     private static final int ZVALUE_MODE = 1;
     private static final int NB_PARTITIONS = 5;
-
+    public final static byte[] TABLE_NAME = "restaurants".getBytes();
 
     public static void main(String[] args) throws IOException {
 
@@ -55,36 +59,42 @@ public class parseJSONtoDB {
         HBaseDB restaurantsDB = new HBaseDB(config);
         restaurantsDB.DropTable();
         restaurantsDB.CreateTable();
+        Table table;
+        try (Connection conn = ConnectionFactory.createConnection(config)) {
+            table = conn.getTable(TableName.valueOf(TABLE_NAME));
 
-        int cpt = 0;
-        for(Restaurant rest: allRestaurants) {
+            int cpt = 0;
+            for(Restaurant rest: allRestaurants) {
 
-            cpt++;
+                cpt++;
 
-            //System.out.println("Numéro "+cpt+":  Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
-            String id = Integer.toString(cpt);
-            String lat = rest.getLat();
-            String lon = rest.getLon();
+                //System.out.println("Numéro "+cpt+":  Rest[" + rest.getId() + "]:(" + rest.getLat() + "," + rest.getLon() + ")");
+                String id = Integer.toString(cpt);
+                String lat = rest.getLat();
+                String lon = rest.getLon();
 
-            String name = "N/C";
-            if(rest.getTags().getName() != null){
-                name = rest.getTags().getName();
+                String name = "N/C";
+                if(rest.getTags().getName() != null){
+                    name = rest.getTags().getName();
+                }
+
+                //String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
+                //restaurantsDB.addItem(id, lat, lon, name, addr);
+                if(mode == ZVALUE_MODE){
+                    double[] coord = new double[2];
+                    coord[0] = Double.parseDouble(rest.getLat());
+                    coord[1] = Double.parseDouble(rest.getLon());
+
+                    //int[] zValue = data_preprocessing.Convertcoord(2,coord);
+                    double zValue = (coord[0] + coord[1])*((coord[0] + coord[1]));
+
+                    restaurantZValues.add(new RestaurantZValue(id,lat,lon,name,zValue));
+                }
+                else restaurantsDB.addItem(table, id, lat, lon, name);
             }
-
-            //String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
-            //restaurantsDB.addItem(id, lat, lon, name, addr);
-            if(mode == ZVALUE_MODE){
-                double[] coord = new double[2];
-                coord[0] = Double.parseDouble(rest.getLat());
-                coord[1] = Double.parseDouble(rest.getLon());
-
-                //int[] zValue = data_preprocessing.Convertcoord(2,coord);
-                double zValue = (coord[0] + coord[1])*((coord[0] + coord[1]));
-
-                restaurantZValues.add(new RestaurantZValue(id,lat,lon,name,zValue));
-            }
-            else restaurantsDB.addItem(id, lat, lon, name);
         }
+
+        table.close();
 
         if(mode == ZVALUE_MODE){
             Collections.sort(restaurantZValues, new Comparator<RestaurantZValue>() {

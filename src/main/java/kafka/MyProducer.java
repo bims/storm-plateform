@@ -13,7 +13,7 @@ public class MyProducer {
     public static final double ONE_MOVE = 1;
 
     public static void main(String[] args){
-        long events = 20;// nombre de messages
+        long events = 1;// nombre de messages
         Random rnd = new Random();
 
         //Variables utilisees pour la simulation

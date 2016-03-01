@@ -7,6 +7,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import otherClass.HBaseDB;
 import otherClass.Restaurant;
+import otherClass.ZLimits;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.operation.TridentOperationContext;
@@ -29,15 +30,18 @@ public class ZkNNFunction extends BaseFunction {
     private int numPart;
     private List<Restaurant> lr;
     private List<Restaurant> lr1;
+    private IntelligentPartitionsFunction fct;
+    private List<RestaurantZValue> restaurantZValues;
 
 
-    public ZkNNFunction(int k, int borneInf, int borneSup, int nbParts, int numPart){
+    public ZkNNFunction(int k, int borneInf, int borneSup, int nbParts, int numPart, IntelligentPartitionsFunction fct){
         //liste des bornes inf en static: 1, 185, 270, 356
         this.k = k;
         this.borneInf = borneInf;
         this.borneSup = borneSup;
         this.nbParts = nbParts;
         this.numPart = numPart;
+        this.fct = fct;
     }
 
     @Override
@@ -48,7 +52,35 @@ public class ZkNNFunction extends BaseFunction {
         //On récupère la liste des restaurants de la base S
         try {
             lr1 = listeRestaurants.ScanRows(""+borneInf,borneSup);
+            List<RestaurantZValue> restaurantZValues = new ArrayList<>();
 
+            lr = this.lr1;
+            int scale = 1000;
+
+            for(Restaurant rest : lr) {
+
+                double[] coord = new double[2];
+                coord[0] = Double.parseDouble(rest.getLat());
+                coord[1] = Double.parseDouble(rest.getLon());
+
+                int[] convertCoord = Zorder.convertCoord(1, 2, scale, new int[2][2], coord);
+                //int[] zValue = (coord[0] + coord[1]) * ((coord[0] + coord[1]));
+                String zValue = String.valueOf(Zorder.fromStringToInt(Zorder.valueOf(2, convertCoord)));
+
+                restaurantZValues.add(new RestaurantZValue(rest.getId(), rest.getLat(), rest.getLon(), rest.getName(), new BigInteger(zValue)));
+            }
+
+            Collections.sort(restaurantZValues, new Comparator<RestaurantZValue>() {
+
+                @Override
+                public int compare(RestaurantZValue o1, RestaurantZValue o2) {
+                    return o1.getzValue().compareTo(o2.getzValue());
+                }
+            });
+
+            this.restaurantZValues = restaurantZValues.subList((restaurantZValues.size()/nbParts)*numPart,(restaurantZValues.size()/nbParts)*(numPart+1));
+            fct.getzLimits().put(numPart, new ZLimits(restaurantZValues.get(0).getzValue(),
+                    restaurantZValues.get(restaurantZValues.size() - 1).getzValue()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,36 +88,6 @@ public class ZkNNFunction extends BaseFunction {
 
     public void execute(TridentTuple input, TridentCollector collector) {
         InputZValue str = (InputZValue) input.getValue(0);
-
-        lr = this.lr1;
-        int scale = 1000;
-
-        List<RestaurantZValue> restaurantZValues = new ArrayList<>();
-
-        for(Restaurant rest : lr) {
-
-            double[] coord = new double[2];
-            coord[0] = Double.parseDouble(rest.getLat());
-            coord[1] = Double.parseDouble(rest.getLon());
-
-            int[] convertCoord = Zorder.convertCoord(1, 2, scale, new int[2][2], coord);
-            //int[] zValue = (coord[0] + coord[1]) * ((coord[0] + coord[1]));
-            String zValue = String.valueOf(Zorder.fromStringToInt(Zorder.valueOf(2, convertCoord)));
-
-            restaurantZValues.add(new RestaurantZValue(rest.getId(), rest.getLat(), rest.getLon(), rest.getName(), new BigInteger(zValue)));
-        }
-
-        //Comparaison a revoir
-       Collections.sort(restaurantZValues, new Comparator<RestaurantZValue>() {
-
-            @Override
-            public int compare(RestaurantZValue o1, RestaurantZValue o2) {
-                return o1.getzValue().compareTo(o2.getzValue());
-            }
-        });
-
-        restaurantZValues = restaurantZValues.subList((restaurantZValues.size()/nbParts)*numPart,(restaurantZValues.size()/nbParts)*(numPart+1));
-
 
         //on implemente KNN ici
         int k = this.k;// # of neighbours
