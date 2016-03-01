@@ -102,7 +102,7 @@ public class parseJSONtoDB {
                     numPartition++;
                 }
                 RestaurantZValue rest = restaurantZValues.get(i);
-                restaurantsDB.addItemZValue(rest.getId(),rest.getLat(),rest.getLon(),rest.getName(),
+                restaurantsDB.addItemZValue(zeroPadding(String.valueOf(i)),rest.getLat(),rest.getLon(),rest.getName(),
                         rest.getzValue(),numPartition-1);
             }
         }
@@ -136,6 +136,16 @@ public class parseJSONtoDB {
             }
         }
         return buffer==null ? s : buffer.toString();
+    }
+
+    private static String zeroPadding(String num){
+        StringBuilder padded = new StringBuilder("0000000000");
+
+        for(int i = 0; i < num.length(); i++){
+            padded.setCharAt(padded.length() - (i + 1), num.charAt(num.length() - i - 1));
+        }
+
+        return padded.toString();
     }
 
     private static class RestaurantZValue{
