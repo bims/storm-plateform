@@ -13,11 +13,11 @@ public class MyProducer {
     public static final double ONE_MOVE = 1;
 
     public static void main(String[] args){
-        long events = 1;// nombre de messages
+        long events = 20;// nombre de messages
         Random rnd = new Random();
 
         //Variables utilisees pour la simulation
-        double x = 44.69;
+        double x = 40.69;
         double y = 2.24;
 
         Properties props = new Properties();
@@ -42,6 +42,9 @@ public class MyProducer {
                 y = y + ONE_MOVE;
             }
             else y = y - ONE_MOVE;
+
+            x = Math.abs(x);
+            y = Math.abs(y);
 
             String msg = x+" "+y;
             String key = ""; //Clé non nécessaire pour l'instant, obligatoire (?) de mettre une valeur pour utiliser Partitioner

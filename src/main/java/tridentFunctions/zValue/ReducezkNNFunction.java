@@ -1,30 +1,23 @@
-package tridentFunctions;
+package tridentFunctions.zValue;
 
-import backtype.storm.tuple.Values;
 import inputClass.Input;
-import org.apache.commons.collections.MapUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import otherClass.HBaseDB;
-import otherClass.Restaurant;
-import storm.trident.operation.*;
+import inputClass.InputZValue;
+import storm.trident.operation.BaseFunction;
+import storm.trident.operation.TridentCollector;
+import storm.trident.operation.TridentOperationContext;
 import storm.trident.tuple.TridentTuple;
-import tridentFunctions.InputCompareToDBFunction.Result;
-import tridentFunctions.InputCompareToDBFunction.DistanceComparator;
+import tridentFunctions.InputCompareToDBFunction;
 
-import java.io.IOException;
 import java.util.*;
 
-/**
- * Created by asmaafillatre on 20/01/2016.
- */
-public class ReducekNNFunction extends BaseFunction {
+
+public class ReducezkNNFunction extends BaseFunction{
 
     private int partitionIndex;
     private int nbParts;
     private int k;
 
-    public ReducekNNFunction(int k, int nbParts){
+    public ReducezkNNFunction(int k, int nbParts){
         this.nbParts = nbParts;
         this.k = k;
     }
@@ -46,8 +39,14 @@ public class ReducekNNFunction extends BaseFunction {
         }
 
         //On applique le kNN global
-        Collections.sort(resultList, new DistanceComparator());
-        Input str = (Input) input.getValueByField("input");
+        Collections.sort(resultList, new Comparator<Result>() {
+            @Override
+            public int compare(Result o1, Result o2) {
+                return o1.distance.compareTo(o2.distance);
+            }
+        });
+
+        InputZValue str = (InputZValue) input.getValueByField("inputZValue");
         int k = this.k;// # of neighbours
 
         String resString = "\n\nPartition "+partitionIndex+"\nX:" + str.getX() + " Y:" + str.getY()+"\n";
@@ -61,5 +60,4 @@ public class ReducekNNFunction extends BaseFunction {
         System.err.println(resString);
 
     }
-
 }

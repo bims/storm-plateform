@@ -130,7 +130,7 @@ public class Zorder {
         return order;
     }
 
-    public static char[] fromStringToInt(String zValue){
+    public static char[] eraseZeros(String zValue){
         int sum = 0;
 
         char[] monNum = zValue.toCharArray();

@@ -1,6 +1,7 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
+import otherClass.HBaseDB;
 import otherClass.MyConstants;
 import otherClass.ZLimits;
 import storm.kafka.BrokerHosts;
@@ -10,8 +11,10 @@ import storm.kafka.trident.TridentKafkaConfig;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
 import storm.trident.operation.BaseFunction;
+import tridentFunctions.InputCompareToDBFunction;
 import tridentFunctions.InputNormalizerFunction;
 import tridentFunctions.PartitionFilter;
+import tridentFunctions.ReducekNNFunction;
 import tridentFunctions.zValue.*;
 
 import java.math.BigInteger;
@@ -44,15 +47,43 @@ public class TopologyZValueMain {
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
                 .each(new Fields("input"), new ZValueFunction(), new Fields("zValue"))
                 //.parallelismHint(nbParts) //Ce n'est pas necessaire
-                .each(new Fields("zValue"),fct,new Fields("inputZValue","numPartition"));
-                //.aggregate(new Fields("input", "zValue"), new SortAggregator(nbParts), new Fields("inputZValue", "numPartition"))
-                //.partitionBy(new Fields("numPartition"));
+                .aggregate(new Fields("input", "zValue"), new SortAggregator(nbParts), new Fields("inputZValue", "numPartition"))
+                .partitionBy(new Fields("numPartition"));
 
-        //utiliser un filtre pour que chaque partition de R soit couplee a la bonne partition de S
-        //On reprend une partie du code de BNLJ pour paralleliser le traitement de chaque partition
+        //allStreams(i,j) contient RiSj
+        List<List<Stream>> allStreams = new ArrayList<>();
+
+        for(int i=0; i<nbParts; i++){
+            List<Stream> streams = new ArrayList<>();
+            Stream partitionStream = firstStream.each(new Fields("inputZValue"), new PartitionFilter(i)).shuffle();
+            for(int j=0; j<nbParts; j++) {
+                streams.add(partitionStream.each(new Fields("inputZValue"),
+                        new ZkNNFunction(k, 0, size, nbParts, j),
+                        new Fields("Partition S" + j))
+                        .parallelismHint(1));
+            }
+            allStreams.add(streams);
+        }
+
+        List<String> outputFields = new ArrayList<>();
+        outputFields.add("inputZValue");
+        outputFields.add("numPartition");
 
 
-        
+        List<Fields> joinFields = new ArrayList<>();
+
+        for(int i=0; i<nbParts; i++){
+            outputFields.add("Partition S" + i);
+            joinFields.add(new Fields("inputZValue","numPartition"));
+        }
+
+        for(int i=0; i<nbParts; i++){
+            //On applique la jointure sur les RiS(0-nbParts) puis on fait le Reduce kNN
+            topology.join(allStreams.get(i),joinFields,new Fields(outputFields))
+                    .each(new Fields(outputFields), new ReducezkNNFunction(k,nbParts), new Fields("Finaloutput"));
+        }
+
+
        /* List<Stream> streams = new ArrayList<>();
         for(int i=0; i<nbParts; i++){
             streams.add(firstStream.each(new Fields("inputZValue", "numPartition"), new PartitionFilter(i)).shuffle()

@@ -1,13 +1,12 @@
 package tridentFunctions.zValue;
 
+import backtype.storm.tuple.Values;
 import convert_coord.Zorder;
-import inputClass.Input;
 import inputClass.InputZValue;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import otherClass.HBaseDB;
 import otherClass.Restaurant;
-import otherClass.ZLimits;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.operation.TridentOperationContext;
@@ -34,14 +33,13 @@ public class ZkNNFunction extends BaseFunction {
     private List<RestaurantZValue> restaurantZValues;
 
 
-    public ZkNNFunction(int k, int borneInf, int borneSup, int nbParts, int numPart, IntelligentPartitionsFunction fct){
+    public ZkNNFunction(int k, int borneInf, int borneSup, int nbParts, int numPart){
         //liste des bornes inf en static: 1, 185, 270, 356
         this.k = k;
         this.borneInf = borneInf;
         this.borneSup = borneSup;
         this.nbParts = nbParts;
         this.numPart = numPart;
-        this.fct = fct;
     }
 
     @Override
@@ -65,7 +63,7 @@ public class ZkNNFunction extends BaseFunction {
 
                 int[] convertCoord = Zorder.convertCoord(1, 2, scale, new int[2][2], coord);
                 //int[] zValue = (coord[0] + coord[1]) * ((coord[0] + coord[1]));
-                String zValue = String.valueOf(Zorder.fromStringToInt(Zorder.valueOf(2, convertCoord)));
+                String zValue = String.valueOf(Zorder.eraseZeros(Zorder.valueOf(2, convertCoord)));
 
                 restaurantZValues.add(new RestaurantZValue(rest.getId(), rest.getLat(), rest.getLon(), rest.getName(), new BigInteger(zValue)));
             }
@@ -79,8 +77,8 @@ public class ZkNNFunction extends BaseFunction {
             });
 
             this.restaurantZValues = restaurantZValues.subList((restaurantZValues.size()/nbParts)*numPart,(restaurantZValues.size()/nbParts)*(numPart+1));
-            fct.getzLimits().put(numPart, new ZLimits(restaurantZValues.get(0).getzValue(),
-                    restaurantZValues.get(restaurantZValues.size() - 1).getzValue()));
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,7 +93,7 @@ public class ZkNNFunction extends BaseFunction {
 
         RestaurantZValue rZ = new RestaurantZValue("",str.getX(),str.getY(),"requete",str.getzValue());
 
-        //Fonction permettant de calculer les k top voisins
+        //Calcule les k top voisins
         List<RestaurantZValue> candidats;
         if(restaurantZValues.size() > k){
             TreeSet<RestaurantZValue> treeSet = new TreeSet<>(restaurantZValues);
@@ -120,31 +118,8 @@ public class ZkNNFunction extends BaseFunction {
             }
         });
 
-        resultList = resultList.subList(0,k);
-        String resString = "\n\nX: " + str.getX() + " Y: " + str.getY()+"\n";
+        collector.emit(new Values(resultList));
 
-        for (int v = 0; v < k; v++) {
-            resString += resultList.get(v).restaurantName + " ....*******kNN Global " + resultList.get(v).distance + " x: "
-                    + resultList.get(v).x + " y:" + resultList.get(v).y+"\n";
-        }
-        resString += "\n\n";
-        System.err.println(resString);
-
-    }
-
-
-    //simple class to model results (distance + class)
-    public static class Result {
-        BigInteger distance;
-        double x;
-        double y;
-        String restaurantName;
-        public Result(BigInteger distance, String restaurantName, double x, double y){
-            this.restaurantName = restaurantName;
-            this.distance = distance;
-            this.x =x;
-            this.y=y;
-        }
     }
 
     public static List<RestaurantZValue> treeSetInsert(TreeSet<RestaurantZValue> treeSet, RestaurantZValue rZ, int k){
@@ -180,56 +155,6 @@ public class ZkNNFunction extends BaseFunction {
         }
 
         return resultList;
-    }
-
-    private static class RestaurantZValue implements Comparable<RestaurantZValue>{
-        private String id;
-        private String lat;
-        private String lon;
-        private String name;
-        private BigInteger zValue;
-
-        public RestaurantZValue(String id, String lat, String lon, String name, BigInteger zValue){
-            this.id = id;
-            this.lat = lat;
-            this.lon = lon;
-            this.zValue = zValue;
-            this.name = name;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getLat() {
-            return lat;
-        }
-
-        public String getLon() {
-            return lon;
-        }
-
-        public BigInteger getzValue() {
-            return zValue;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        public int compareTo(RestaurantZValue o) {
-            int res = this.zValue.compareTo(o.getzValue());
-            if(res==0){
-                return this.getName().compareTo(o.getName());
-            }
-            else return res;
-        }
-
-        @Override
-        public String toString() {
-            return "x:"+lat+"-y:"+lon+"-v:"+zValue;
-        }
     }
 
     public static void main(String[] args){
@@ -323,12 +248,12 @@ public class ZkNNFunction extends BaseFunction {
 
         String zValue2 = Zorder.valueOf(2,converted);
         //System.out.println(zValue);
-        /*char[] res = Zorder.fromStringToInt(zValue);
+        /*char[] res = Zorder.eraseZeros(zValue);
         for(int i=0; i<res.length; i++){
             System.out.print(res[i]);
         }*/
-        BigInteger z = new BigInteger(String.valueOf(Zorder.fromStringToInt(zValue)));
-        BigInteger v = new BigInteger(String.valueOf(Zorder.fromStringToInt(zValue2)));
+        BigInteger z = new BigInteger(String.valueOf(Zorder.eraseZeros(zValue)));
+        BigInteger v = new BigInteger(String.valueOf(Zorder.eraseZeros(zValue2)));
         System.out.println(z.subtract(v).abs());
     }
 
