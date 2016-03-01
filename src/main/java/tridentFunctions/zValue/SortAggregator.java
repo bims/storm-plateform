@@ -38,13 +38,24 @@ public class SortAggregator extends BaseAggregator<List<InputZValue>> {
                 return o1.getzValue().compareTo(o2.getzValue());
             }
         });
-        long nbTuplesByPartition = Math.round(((double) val.size())/((double) nbParts));
-        int numPartition = 1;
-        for(int i=0; i<val.size(); i++){
-            if(i!=0 && numPartition<nbParts && i%nbTuplesByPartition==0){
-                numPartition++;
+
+        int nbTuples[] = new int[nbParts];
+        int remaining = val.size();
+        int j=0;
+        while(remaining > 0){
+            nbTuples[j]++;
+            remaining--;
+            j++;
+            if(j==nbParts)
+                j=0;
+        }
+
+        int compt = 0;
+        for(int i=0; i<nbParts; i++){
+            for(j=0; j<nbTuples[i]; j++){
+                tridentCollector.emit(new Values(val.get(compt),i));
+                compt++;
             }
-            tridentCollector.emit(new Values(val.get(i),numPartition));
         }
     }
 

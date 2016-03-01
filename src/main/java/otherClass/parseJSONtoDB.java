@@ -1,6 +1,7 @@
 package otherClass;
 
 import com.google.gson.Gson;
+import convert_coord.Zorder;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
@@ -9,11 +10,13 @@ import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
 import org.apache.storm.shade.org.apache.commons.io.IOUtils;
+import tridentFunctions.zValue.RestaurantZValue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -71,7 +74,7 @@ public class parseJSONtoDB {
             table = conn.getTable(TableName.valueOf(TABLE_NAME));
 
             int cpt = 0;
-            for(Restaurant rest: allRestaurants) {
+            for (Restaurant rest : allRestaurants) {
 
                 cpt++;
 
@@ -81,46 +84,45 @@ public class parseJSONtoDB {
                 String lon = rest.getLon();
 
                 String name = "N/C";
-                if(rest.getTags().getName() != null){
+                if (rest.getTags().getName() != null) {
                     name = rest.getTags().getName();
                 }
 
                 //String addr = rest.getTags().getAddrStreet() == null? "":rest.getTags().getAddrStreet();
                 //restaurantsDB.addItem(id, lat, lon, name, addr);
-                if(mode == ZVALUE_MODE){
+                if (mode == ZVALUE_MODE) {
                     double[] coord = new double[2];
                     coord[0] = Double.parseDouble(rest.getLat());
                     coord[1] = Double.parseDouble(rest.getLon());
 
-                    //int[] zValue = data_preprocessing.Convertcoord(2,coord);
-                    double zValue = (coord[0] + coord[1])*((coord[0] + coord[1]));
+                    int[] convertCoord = Zorder.convertCoord(1, 2, 1000, new int[2][2], coord);
+                    //int[] zValue = (coord[0] + coord[1]) * ((coord[0] + coord[1]));
+                    String zValue = String.valueOf(Zorder.eraseZeros(Zorder.valueOf(2, convertCoord)));
 
-                    restaurantZValues.add(new RestaurantZValue(id,lat,lon,name,zValue));
-                }
-                else restaurantsDB.addItem(table, id, lat, lon, name);
+                    restaurantZValues.add(new RestaurantZValue(id, lat, lon, name, new BigInteger(zValue)));
+                } else restaurantsDB.addItem(table, id, lat, lon, name);
             }
-        }
 
-        table.close();
+            if (mode == ZVALUE_MODE) {
+                Collections.sort(restaurantZValues, new Comparator<RestaurantZValue>() {
 
-        if(mode == ZVALUE_MODE){
-            Collections.sort(restaurantZValues, new Comparator<RestaurantZValue>() {
+                    @Override
+                    public int compare(RestaurantZValue o1, RestaurantZValue o2) {
+                        return o1.getzValue().compareTo(o2.getzValue());
+                    }
+                });
 
-                @Override
-                public int compare(RestaurantZValue o1, RestaurantZValue o2) {
-                    return Double.compare(o1.getzValue(), o2.getzValue());
+                long nbTuplesByPartition = Math.round(((double) restaurantZValues.size()) / ((double) NB_PARTITIONS));
+                int numPartition = 1;
+
+                for (int i = 0; i < restaurantZValues.size(); i++) {
+                 /*   if (i != 0 && numPartition < NB_PARTITIONS && i % nbTuplesByPartition == 0) {
+                        numPartition++;
+                    }*/
+                    RestaurantZValue rest = restaurantZValues.get(i);
+                    restaurantsDB.addItemZValue(table, zeroPadding(String.valueOf(i)), rest.getLat(), rest.getLon(), rest.getName(),
+                            rest.getzValue());
                 }
-            });
-
-            long nbTuplesByPartition = Math.round(((double) restaurantZValues.size())/((double) NB_PARTITIONS));
-            int numPartition = 1;
-            for(int i=0; i<restaurantZValues.size(); i++) {
-                if (i != 0 && numPartition < NB_PARTITIONS && i % nbTuplesByPartition == 0) {
-                    numPartition++;
-                }
-                RestaurantZValue rest = restaurantZValues.get(i);
-                restaurantsDB.addItemZValue(zeroPadding(String.valueOf(i)),rest.getLat(),rest.getLon(),rest.getName(),
-                        rest.getzValue(),numPartition-1);
             }
         }
 
@@ -155,7 +157,7 @@ public class parseJSONtoDB {
         return buffer==null ? s : buffer.toString();
     }
 
-    private static String zeroPadding(String num){
+    public static String zeroPadding(String num){
         StringBuilder padded = new StringBuilder("0000000000");
 
         for(int i = 0; i < num.length(); i++){
@@ -163,42 +165,5 @@ public class parseJSONtoDB {
         }
 
         return padded.toString();
-    }
-
-    private static class RestaurantZValue{
-        private String id;
-        private String lat;
-        private String lon;
-        private String name;
-        private double zValue;
-
-        public RestaurantZValue(String id, String lat, String lon, String name, double zValue){
-            this.id = id;
-            this.lat = lat;
-            this.lon = lon;
-            this.zValue = zValue;
-            this.name = name;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getLat() {
-            return lat;
-        }
-
-        public String getLon() {
-            return lon;
-        }
-
-        public double getzValue() {
-            return zValue;
-        }
-
-        public String getName() {
-            return name;
-        }
-
     }
 }

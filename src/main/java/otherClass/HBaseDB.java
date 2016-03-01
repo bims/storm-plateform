@@ -1,9 +1,11 @@
 package otherClass;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.*;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
+import tridentFunctions.zValue.RestaurantZValue;
 
 public class HBaseDB {
 
@@ -218,6 +221,51 @@ public class HBaseDB {
         return allRestaurants;
     }
 
+    public List<RestaurantZValue> ScanZRows(String startID, int limit) throws IOException {
+        ResultScanner results = null;
+        List<RestaurantZValue> allRestaurants = new ArrayList<>();
+        try (Connection conn = ConnectionFactory.createConnection(config)){
+            // Get the table
+            Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
+            // Create the scan
+            Scan scan = new Scan();
+            // start at a specific rowkey.
+            scan.setStartRow(startID.getBytes());
+            // Tell the server not to cache more than limit rows since we won't need them
+            scan.setCaching(limit);
+            // Can also set a server side filter
+            scan.setFilter(new PageFilter(limit));
+            // Get the scan results
+            results = table.getScanner(scan);
+            // Iterate over the scan results and break at the limit
+            int count = 0;
+            for (Result r : results) {
+                RestaurantZValue myRestaurant = new RestaurantZValue();
+                //Tags myTags = new Tags();
+                //myRestaurant.setTags(myTags);
+
+                if ( r.isEmpty() ) return null;
+                myRestaurant.setId(new String(r.getRow())); // Gets rowkey from the record for validation
+                //String addr = new String(r.getValue(COLUMN_FAMILY_INFO, COL_ADDR));
+                myRestaurant.setLat(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LAT)));
+                myRestaurant.setLon(new String(r.getValue(COLUMN_FAMILY_GEO, COL_LON)));
+                //myRestaurant.getTags().setAddrStreet("");
+                myRestaurant.setName(new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME)));
+                myRestaurant.setzValue(new BigInteger(new String(r.getValue(COLUMN_FAMILY_GEO, COL_ZVALUE))));
+                //if(addr != null) myRestaurant.getTags().setAddrStreet(addr);
+
+                allRestaurants.add(myRestaurant);
+
+                if ( count++ >= limit ) break;
+            }
+        }
+        finally {
+            // ResultScanner must be closed.
+            if ( results != null ) results.close();
+        }
+        return allRestaurants;
+    }
+
     public void ProcessRow(Result r) {
         System.out.print(new String(r.getRow()) + ",");
         System.out.print(new String(r.getValue(COLUMN_FAMILY_INFO, COL_NAME)) + ",");
@@ -253,7 +301,7 @@ public class HBaseDB {
                 ", Name = " + name);
     }
 
-    public void addItemZValue(String id, String lat, String lon, String name, double zValue,int partition) throws IOException {
+    public void addItemZValue(Table table, String id, String lat, String lon, String name, BigInteger zValue) throws IOException {
         //public void addItem(String id, String lat, String lon, String name, String addStreet) throws IOException {
         // Construct a "put" object for insert
         Put p = new Put(id.getBytes());
@@ -265,28 +313,18 @@ public class HBaseDB {
         p.addColumn(COLUMN_FAMILY_GEO, COL_LAT, lat.getBytes());
 
         //Colonne pour zValue
-        p.addColumn(COLUMN_FAMILY_GEO, COL_ZVALUE, Double.toString(zValue).getBytes());
+        p.addColumn(COLUMN_FAMILY_GEO, COL_ZVALUE, zValue.toString().getBytes());
 
-        //Colonne pour partition
-        p.addColumn(COLUMN_FAMILY_INFO, COL_PARTITION, Integer.toString(partition).getBytes());
-
-
-
-        try (Connection conn = ConnectionFactory.createConnection(config)) {
-            Table table = conn.getTable(TableName.valueOf(TABLE_NAME));
-            table.put(p);
-            table.close();
-        }
+        table.put(p);
 
         System.out.println("data inserted: Id = " + id +
                 ", Lat = " + lat +
                 ", Long = " + lon +
                 ", Name = " + name +
-                ", ZValue = " + zValue +
-                ", Partition = " + partition);
+                ", ZValue = " + zValue);
     }
 
-    //POUR RECUPERER LES BONS INDICES
+        //POUR RECUPERER LES BONS INDICES
     public static int[] getIndiceDB(int size, int nbParts){
 
         int[] res = new int[nbParts];

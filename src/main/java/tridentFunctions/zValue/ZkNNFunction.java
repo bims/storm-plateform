@@ -29,7 +29,6 @@ public class ZkNNFunction extends BaseFunction {
     private int numPart;
     private List<Restaurant> lr;
     private List<Restaurant> lr1;
-    private IntelligentPartitionsFunction fct;
     private List<RestaurantZValue> restaurantZValues;
 
 
@@ -77,6 +76,7 @@ public class ZkNNFunction extends BaseFunction {
             });
 
             this.restaurantZValues = restaurantZValues.subList((restaurantZValues.size()/nbParts)*numPart,(restaurantZValues.size()/nbParts)*(numPart+1));
+
 
 
         } catch (IOException e) {

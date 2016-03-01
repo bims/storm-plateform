@@ -12,12 +12,36 @@ public class RestaurantZValue implements Comparable<RestaurantZValue>{
     private String name;
     private BigInteger zValue;
 
+    public RestaurantZValue(){
+
+    }
+
     public RestaurantZValue(String id, String lat, String lon, String name, BigInteger zValue){
         this.id = id;
         this.lat = lat;
         this.lon = lon;
         this.zValue = zValue;
         this.name = name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setzValue(BigInteger zValue) {
+        this.zValue = zValue;
     }
 
     public String getId() {

@@ -1,8 +1,9 @@
 package otherClass;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class ZLimits{
+public class ZLimits implements Serializable{
 
     private BigInteger borneInf;
     private BigInteger borneSup;

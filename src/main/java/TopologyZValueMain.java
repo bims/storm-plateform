@@ -38,10 +38,6 @@ public class TopologyZValueMain {
 
         TridentTopology topology=new TridentTopology();
 
-        HashMap<Integer, ZLimits> zLimits = new HashMap<>();
-        zLimits.put(1,new ZLimits(new BigInteger("3"),new BigInteger("3")));
-        IntelligentPartitionsFunction fct = new IntelligentPartitionsFunction(zLimits);
-
         Stream firstStream = topology.newStream("kafka-spout", spout)
                 .shuffle()
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
@@ -55,7 +51,9 @@ public class TopologyZValueMain {
 
         for(int i=0; i<nbParts; i++){
             List<Stream> streams = new ArrayList<>();
-            Stream partitionStream = firstStream.each(new Fields("inputZValue"), new PartitionFilter(i)).shuffle();
+            Stream partitionStream = firstStream.each(new Fields("inputZValue"), new PartitionFilter(i))
+                    .parallelismHint(nbParts)
+                    .shuffle();
             for(int j=0; j<nbParts; j++) {
                 streams.add(partitionStream.each(new Fields("inputZValue"),
                         new ZkNNFunction(k, 0, size, nbParts, j),
@@ -82,15 +80,6 @@ public class TopologyZValueMain {
             topology.join(allStreams.get(i),joinFields,new Fields(outputFields))
                     .each(new Fields(outputFields), new ReducezkNNFunction(k,nbParts), new Fields("Finaloutput"));
         }
-
-
-       /* List<Stream> streams = new ArrayList<>();
-        for(int i=0; i<nbParts; i++){
-            streams.add(firstStream.each(new Fields("inputZValue", "numPartition"), new PartitionFilter(i)).shuffle()
-                    .each(new Fields("inputZValue", "numPartition"),
-                            new ZkNNFunction(k, 0, size, nbParts, i, fct), new Fields("res"))
-                    .parallelismHint(1));
-        }*/
 
         //En commentaire ci-dessous, un code qui sert pour divers tests
 
