@@ -324,6 +324,33 @@ public class HBaseDB {
                 ", ZValue = " + zValue);
     }
 
+    public static int[] getNbItems(int size, int nbParts){
+        int nbTuples[] = new int[nbParts];
+        int remaining = size;
+        int h=0;
+        while(remaining > 0){
+            nbTuples[h]++;
+            remaining--;
+            h++;
+            if(h==nbParts)
+                h=0;
+        }
+
+        return nbTuples;
+    }
+
+    public static int[] getStartIds(int nbParts, int nbTuples[]){
+        int startId[] = new int[nbParts];
+        int sum = 0;
+        int h=0;
+        for(h=0; h<nbParts; h++){
+            startId[h] = sum;
+            sum+=nbTuples[h];
+        }
+
+        return startId;
+    }
+
         //POUR RECUPERER LES BONS INDICES
     public static int[] getIndiceDB(int size, int nbParts){
 
