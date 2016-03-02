@@ -48,9 +48,6 @@ public class TopologyBatchMain {
             outputFields.add("Partition S" + i);
         }
 
-              /*  .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[1], size / nbParts), new Fields("Nimporte2"))
-                .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[2], size / nbParts), new Fields("Nimporte3"))
-                .each(new Fields("input"), new InputCompareToDBFunction(getIndiceDB(size, nbParts)[3], size / nbParts), new Fields("Nimporte4"))*/
         stream.each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
 
 

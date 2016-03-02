@@ -7,6 +7,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import otherClass.HBaseDB;
 import otherClass.Restaurant;
+import otherClass.parseJSONtoDB;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.operation.TridentOperationContext;
@@ -47,9 +48,9 @@ public class ZkNNFunction extends BaseFunction {
         HBaseDB listeRestaurants = new HBaseDB(config);
         //On récupère la liste des restaurants de la base S
         try {
-            lr = listeRestaurants.ScanZRows(""+borneInf,nbItems);
+            restaurantZValues = listeRestaurants.ScanZRows(parseJSONtoDB.zeroPadding(""+borneInf),nbItems);
 
-            this.restaurantZValues = lr.subList((nbItems/nbParts)*numPart,(nbItems/nbParts)*(numPart+1));
+            //this.restaurantZValues = lr.subList((nbItems/nbParts)*numPart,(nbItems/nbParts)*(numPart+1));
 
 
 

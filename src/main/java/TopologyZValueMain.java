@@ -34,6 +34,26 @@ public class TopologyZValueMain {
         int nbParts = 2;
         int k = 11;
 
+        int nbTuples[] = new int[nbParts];
+        int remaining = size;
+        int h=0;
+        while(remaining > 0){
+            nbTuples[h]++;
+            remaining--;
+            h++;
+            if(h==nbParts)
+                h=0;
+        }
+
+        int startId[] = new int[nbParts];
+        int sum = 0;
+        for(h=0; h<nbParts; h++){
+            startId[h] = sum;
+            sum+=nbTuples[h];
+        }
+
+
+
         OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
 
         TridentTopology topology=new TridentTopology();
@@ -56,7 +76,7 @@ public class TopologyZValueMain {
                     .shuffle();
             for(int j=0; j<nbParts; j++) {
                 streams.add(partitionStream.each(new Fields("inputZValue"),
-                        new ZkNNFunction(k, 0, size, nbParts, j),
+                        new ZkNNFunction(k, startId[j], nbTuples[j], nbParts, j),
                         new Fields("Partition S" + j))
                         .parallelismHint(1));
             }
@@ -80,32 +100,6 @@ public class TopologyZValueMain {
             topology.join(allStreams.get(i),joinFields,new Fields(outputFields))
                     .each(new Fields(outputFields), new ReducezkNNFunction(k,nbParts), new Fields("Finaloutput"));
         }
-
-        //En commentaire ci-dessous, un code qui sert pour divers tests
-
-      /* TridentTopology topology=new TridentTopology();
-       FixedBatchSpout spout = new FixedBatchSpout(new Fields("sentence"),20,
-                new Values("blabla"),new Values("blabla2"),new Values("blabla1"),
-                new Values("blabla3"),new Values("blabla4"),new Values("blabla5"),
-               new Values("blabla6"),new Values("blabla7"),new Values("blabla8"));
-
-       // spout.setCycle(true);
-
-        Stream streamPartitions = topology.newStream("kafka-spout", spout)
-                .shuffle();
-
-        List<Stream> streams = new ArrayList<>();
-        for(int i=0; i<2; i++){
-            streams.add(streamPartitions.each(new Fields("sentence"), new PartitionFilter(i)).parallelismHint(3)
-                    .each(new Fields("sentence"), new testFunction("Print"), new Fields("res")));
-        }*/
-
-      /*  Stream stream1 = stream
-                .each(new Fields("sentence"), new testFunction("Flux1"), new Fields("output"))
-                //.each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"));
-                .each(new Fields("sentence"), new testFunction("Flux2"), new Fields("Hey"))
-                .parallelismHint(2);*/
-        //Stream finalStream = topology.merge(new Fields("sentence","output","Hey"), stream1,stream2);
 
         Config conf;
         conf = new Config();
