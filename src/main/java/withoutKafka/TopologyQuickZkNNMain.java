@@ -77,7 +77,7 @@ public class TopologyQuickZkNNMain {
 
        Stream firstStream = topology.newStream("kafka-spout", spout)
                 .shuffle()
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
+                .each(new Fields("bytes"), new withoutKafka.InputNormalizerFunction(), new Fields("input"))
                 .each(new Fields("input"), new ZValueFunction(), new Fields("zValue"))
                         //.parallelismHint(nbParts) //Ce n'est pas necessaire
                 .each(new Fields("input", "zValue"), new SmartPartitionsFunction(zLimits, nbParts), new Fields("inputZValue", "numPartition"))

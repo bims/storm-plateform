@@ -50,7 +50,7 @@ public class TopologyBNLJ2Main {
 
         Stream stream = topology.newStream("kafka-spout", spout)
                 .shuffle()
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
+                .each(new Fields("bytes"), new withoutKafka.InputNormalizerFunction(), new Fields("input"))
                 .parallelismHint(nbParts);
 
         //allStreams(i,j) contient RiSj

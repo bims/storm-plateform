@@ -54,13 +54,13 @@ public class TopologyBNLJMain {
                 .shuffle()
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
                 .parallelismHint(nbParts)
-                .each(new Fields("input"), new InputNormalizerFunction(), new Fields("input2"))
                 .shuffle();
 
         List<Stream> streams = new ArrayList<>();
 
         for(int i=0; i<nbParts; i++) {
-            streams.add(stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i)).parallelismHint(1));
+            streams.add(stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i))
+                    .parallelismHint(1));
             outputFields.add("Partition S" + i);
             joinFields.add(new Fields("bytes","input"));
         }
