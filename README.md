@@ -30,3 +30,4 @@ messages once and for all in the topic.
         * `TopologyQuickZkNNMain` will process the Quick zkNN algorithm with enough parallelism.
 - Each one of these main classes need two arguments: the first to give the number of partitions (for R and S) and
 the second to give the value of k. By default, the number of partitions is 4 and k is 11.
+- **/!\** Don't confuse the previous main classes with the ones in the package named "withoutKafka".
