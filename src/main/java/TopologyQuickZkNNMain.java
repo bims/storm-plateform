@@ -30,7 +30,7 @@ public class TopologyQuickZkNNMain {
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
         //spoutConf.fetchSizeBytes = 1000; //Sliding window
 
-        int size = 383;
+        int size = 382;
         int nbParts = 4;
         int k = 11;
         if(args.length == 2){

@@ -57,7 +57,7 @@ public class InputCompareToDB extends BaseBasicBolt {
 		double x;
 		double y;
 		String nomDuRestaurant;
-		int limit = 380; //nb of HBase's columns
+		int limit = 382; //nb of HBase's columns
 
 		config = HBaseConfiguration.create();
 		config.addResource("hbase-site.xml");

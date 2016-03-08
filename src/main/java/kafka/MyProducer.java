@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class MyProducer {
 
-    public static final double ONE_MOVE = 0.05;
+    public static final double ONE_MOVE = 0.03;
 
     public static void main(String[] args){
 
@@ -23,7 +23,7 @@ public class MyProducer {
 
         //Variables utilisees pour la simulation
         double x = 43.306;
-        double y = 7.246;
+        double y = 7.216;
 
         Properties props = new Properties();
 
@@ -39,11 +39,11 @@ public class MyProducer {
 
         for (long nEvents = 0; nEvents < events; nEvents++) {
             //On genere les deplacements
-            if(rnd.nextInt(4)!=1){
+            if(rnd.nextInt(3)!=1){
                 x = x + ONE_MOVE;
             }
             else x = x - ONE_MOVE;
-            if(rnd.nextInt(4)!=1){
+            if(rnd.nextInt(3)!=1){
                 y = y + ONE_MOVE;
             }
             else y = y - ONE_MOVE;

@@ -393,16 +393,6 @@
 },
 {
   "type": "node",
-  "id": 488715018,
-  "lat": 43.7037296,
-  "lon": 7.2632985,
-  "tags": {
-    "amenity": "restaurant",
-    "name": "Le Voyageur Nissart"
-  }
-},
-{
-  "type": "node",
   "id": 530728217,
   "lat": 43.7037637,
   "lon": 7.2699587,
