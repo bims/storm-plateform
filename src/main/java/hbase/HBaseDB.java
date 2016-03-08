@@ -1,11 +1,9 @@
-package otherClass;
+package hbase;
 
-import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.*;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
@@ -17,7 +15,9 @@ import java.util.List;
 
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
-import tridentFunctions.zValue.RestaurantZValue;
+import otherClass.Restaurant;
+import otherClass.Tags;
+import otherClass.RestaurantZValue;
 
 public class HBaseDB {
 

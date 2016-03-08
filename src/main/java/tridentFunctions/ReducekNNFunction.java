@@ -1,18 +1,11 @@
 package tridentFunctions;
 
-import backtype.storm.tuple.Values;
 import inputClass.Input;
-import org.apache.commons.collections.MapUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import otherClass.HBaseDB;
-import otherClass.Restaurant;
 import storm.trident.operation.*;
 import storm.trident.tuple.TridentTuple;
 import tridentFunctions.InputCompareToDBFunction.Result;
 import tridentFunctions.InputCompareToDBFunction.DistanceComparator;
 
-import java.io.IOException;
 import java.util.*;
 
 /**

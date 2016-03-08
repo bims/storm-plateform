@@ -55,7 +55,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>otherClass.parseJSONtoDB</mainClass>
+                            <mainClass>hbase.parseJSONtoDB</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,13 +1,12 @@
 package tridentFunctions.zValue;
 
 import backtype.storm.tuple.Values;
-import convert_coord.Zorder;
 import inputClass.InputZValue;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import otherClass.HBaseDB;
-import otherClass.Restaurant;
-import otherClass.parseJSONtoDB;
+import hbase.HBaseDB;
+import hbase.parseJSONtoDB;
+import otherClass.RestaurantZValue;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.operation.TridentOperationContext;
@@ -103,144 +102,22 @@ public class ZkNNFunction extends BaseFunction {
         SortedSet<RestaurantZValue> zPlus = treeSet.tailSet(rZ,false);
 
         List<RestaurantZValue> resultList = new ArrayList<>();
-        int nbZMoins;
-        int nbZPlus;
-        if(zMoins.size() < k && zPlus.size() < k){
-            nbZMoins = zMoins.size();
-            nbZPlus = zPlus.size();
-        }
-        else if (zMoins.size() > k && zPlus.size() < k) {
-            nbZMoins = k;
-            nbZPlus = zPlus.size();
-        } else if (zPlus.size() > k && zMoins.size() < k) {
-            nbZMoins = zMoins.size();
-            nbZPlus = k;
-        } else {
-            nbZMoins = nbZPlus = k;
-        }
 
         Iterator<RestaurantZValue> it = zMoins.descendingIterator();
-        for (int i = 0; i < nbZMoins; i++) {
+        int i=0;
+        while(i<zMoins.size() && i<k){
             resultList.add(it.next());
+            i++;
         }
 
         it = zPlus.iterator();
-        for(int i=0; i<nbZPlus; i++){
-                resultList.add(it.next());
+        i=0;
+        while(i<zPlus.size() && i<k){
+            resultList.add(it.next());
+            i++;
         }
 
         return resultList;
-    }
-
-    public static void main(String[] args){
-
-        /*List<RestaurantZValue> maListe = new ArrayList<>();
-        for(int i=0; i<30; i++){
-            Random rd = new Random();
-            int lat = rd.nextInt(40);
-            int lon = rd.nextInt(40);
-            double numRest = Math.random();
-            int entier = (lat+lon)*(lat+lon);
-            maListe.add(new RestaurantZValue("",""+lat,""+lon,"Rest"+numRest,new BigInteger(""+entier)));
-        }
-        //System.out.println(maListe);
-        Collections.sort(maListe);
-        //System.out.println(maListe);
-        TreeSet<RestaurantZValue> treeSet = new TreeSet<RestaurantZValue>(maListe);
-        //System.out.println(treeSet);
-        int[] query = {Integer.parseInt("7"), Integer.parseInt("12")};
-
-        //On utilise un objet RestaurantZValue pour y mettre la query et sa zvalue
-        // zValue = Zorder.convertCoord(1,2,1000,new int[2][2],query);
-        int zValue = (query[0]+query[1])*(query[0]+query[1]);
-        System.out.println("Requete : "+zValue);
-        RestaurantZValue rZ = new RestaurantZValue("","23.0","24.0","requete",new BigInteger(""+zValue));
-
-        int k = 4;
-        //Fonction permettant de calculer les k top voisins
-        List<RestaurantZValue> res = treeSetInsert(treeSet,rZ,k);
-        System.out.println(res);
-
-        List<Result> resultList = new ArrayList<Result>();
-        for(int i=0; i<res.size(); i++){
-            RestaurantZValue restZ = res.get(i);
-            resultList.add(new Result(rZ.getzValue().subtract(restZ.getzValue()).abs(), restZ.getName(),
-                    Double.parseDouble(restZ.getLat()),
-                    Double.parseDouble(restZ.getLon())));
-        }
-
-        Collections.sort(resultList, new Comparator<Result>() {
-            @Override
-            public int compare(Result o1, Result o2) {
-                return o1.distance.compareTo(o2.distance);
-            }
-        });
-
-        resultList = resultList.subList(0,k);
-        String resString = "\n\nX: " + "23.0" + " Y: " + "24.0"+"\n";
-
-        for (int v = 0; v < k; v++) {
-            resString += resultList.get(v).restaurantName + " ....*******kNN Global " + resultList.get(v).distance + " x: "
-                    + resultList.get(v).x + " y:" + resultList.get(v).y+"\n";
-        }
-        resString += "\n\n";
-        System.err.println(resString);*/
-
-
-        //X: 38.69 Y: 2.24
-        double[] coord = new double[2];
-        coord[0] = 38.69;
-        coord[1] = 2.24;
-
-        //43.6106519 y:7.017811
-        double[] coord2 = new double[2];
-        coord2[0] = 45.69;
-        coord2[1] = 1.2400000000000002;
-
-       /* int[][] shiftvectors = new int[2][2];
-        shiftvectors[0][0] = 0;
-        shiftvectors[0][1] = 0;
-        shiftvectors[1][0] = 2;
-        shiftvectors[1][1] = 3;*/
-
-        int[] converted = Zorder.convertCoord(1,2,1000,new int[2][2],coord);
-
-        String zValue = Zorder.valueOf(2,converted);
-        //String zValue = "1203";
-
-        //zValue.charAt();
-        /*int[] monEntier = new int[5];
-        monEntier[0] = 4;
-        monEntier[1] = 2;
-        monEntier[2] = 1;
-        monEntier[3] = 6;*/
-       /* for(int i=0; i<converted.length; i++){
-            System.out.println(converted[i]);
-        }
-        System.out.println(zValue);*/
-
-        converted = Zorder.convertCoord(1,2,1000,new int[2][2],coord2);
-
-        String zValue2 = Zorder.valueOf(2,converted);
-        System.out.println("V: "+zValue2);
-
-        //Flunch
-        double distance = Math.sqrt(Math.pow((43.7427636 - coord2[0]),2)+Math.pow((7.3178718 - coord2[1]),2));
-        System.out.println("D:"+distance);
-
-        //Auberge de Courmes
-        distance = Math.sqrt(Math.pow((43.7429201 - coord2[0]),2)+Math.pow((7.0084038 - coord2[1]),2));
-        System.out.println("D2:"+distance);
-
-
-        //System.out.println(zValue);
-        /*char[] res = Zorder.eraseZeros(zValue);
-        for(int i=0; i<res.length; i++){
-            System.out.print(res[i]);
-        }*/
-        BigInteger z = new BigInteger(String.valueOf(Zorder.eraseZeros(zValue)));
-        BigInteger v = new BigInteger(String.valueOf(Zorder.eraseZeros(zValue2)));
-        System.out.println(z.subtract(v).abs());
     }
 
 

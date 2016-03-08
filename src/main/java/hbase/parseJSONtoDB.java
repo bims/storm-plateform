@@ -1,4 +1,4 @@
-package otherClass;
+package hbase;
 
 import com.google.gson.Gson;
 import convert_coord.Zorder;
@@ -10,7 +10,8 @@ import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.storm.shade.com.google.common.reflect.TypeToken;
 import org.apache.storm.shade.org.apache.commons.io.IOUtils;
-import tridentFunctions.zValue.RestaurantZValue;
+import otherClass.Restaurant;
+import otherClass.RestaurantZValue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

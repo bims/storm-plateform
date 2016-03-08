@@ -10,11 +10,10 @@ import storm.trident.tuple.TridentTuple;
 
 import java.math.BigInteger;
 import java.util.HashMap;
-import java.util.List;
 
 public class SmartPartitionsFunction extends BaseFunction {
 
-    private HashMap<Integer,ZLimits> zLimits;
+    private HashMap<Integer, ZLimits> zLimits;
     private int nbParts;
 
     public SmartPartitionsFunction(HashMap<Integer,ZLimits> zLimits, int nbParts){

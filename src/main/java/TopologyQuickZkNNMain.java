@@ -3,23 +3,21 @@ import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import otherClass.HBaseDB;
+import hbase.HBaseDB;
 import otherClass.MyConstants;
+import otherClass.RestaurantZValue;
 import otherClass.ZLimits;
-import otherClass.parseJSONtoDB;
+import hbase.parseJSONtoDB;
 import storm.kafka.BrokerHosts;
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
-import testTridentFunctions.testFunction;
 import tridentFunctions.InputNormalizerFunction;
-import tridentFunctions.PartitionFilter;
 import tridentFunctions.zValue.*;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,9 +30,13 @@ public class TopologyQuickZkNNMain {
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
         //spoutConf.fetchSizeBytes = 1000; //Sliding window
 
-        int size = 380;
-        int nbParts = 2;
+        int size = 383;
+        int nbParts = 4;
         int k = 11;
+        if(args.length == 2){
+            nbParts = Integer.parseInt(args[0]);
+            k = Integer.parseInt(args[1]);
+        }
 
         OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
 
@@ -51,21 +53,10 @@ public class TopologyQuickZkNNMain {
 
         for(int i=0; i<nbParts; i++){
             restaurantZValues = restaurantsDB.ScanZRows(parseJSONtoDB.zeroPadding("" + startId[i]),nbTuples[i]);
-            //System.out.println("**********"+restaurantZValues.get(0).getName()+"****************");
             zLimits.put(i,new ZLimits(restaurantZValues.get(0).getzValue(),
                     restaurantZValues.get(restaurantZValues.size()-1).getzValue()));
         }
 
-        /*topology.newStream("kafka-spout", spout)
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
-                .each(new Fields("input"), new ZValueFunction(), new Fields("zValue"))
-                .aggregate(new Fields("input", "zValue"), new SortAggregator(nbParts), new Fields("inputZValue", "numPartition"))
-                .partitionBy(new Fields("numPartition"))
-                .each(new Fields("inputZValue"), new testFunction("f"), new Fields("blabla"))
-                .parallelismHint(nbParts)
-                .shuffle()
-                .each(new Fields("blabla"), new testFunction("Hey! "), new Fields("blabla2"))
-                .parallelismHint(1);*/
 
        Stream firstStream = topology.newStream("kafka-spout", spout)
                 .shuffle()

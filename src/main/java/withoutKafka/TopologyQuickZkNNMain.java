@@ -6,18 +6,13 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import otherClass.HBaseDB;
-import otherClass.MyConstants;
+import hbase.HBaseDB;
+import otherClass.RestaurantZValue;
 import otherClass.ZLimits;
-import otherClass.parseJSONtoDB;
-import storm.kafka.BrokerHosts;
-import storm.kafka.ZkHosts;
-import storm.kafka.trident.OpaqueTridentKafkaSpout;
-import storm.kafka.trident.TridentKafkaConfig;
+import hbase.parseJSONtoDB;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
 import storm.trident.testing.FixedBatchSpout;
-import tridentFunctions.InputNormalizerFunction;
 import tridentFunctions.zValue.*;
 
 import java.io.IOException;
@@ -63,17 +58,6 @@ public class TopologyQuickZkNNMain {
             zLimits.put(i,new ZLimits(restaurantZValues.get(0).getzValue(),
                     restaurantZValues.get(restaurantZValues.size()-1).getzValue()));
         }
-
-        /*topology.newStream("kafka-spout", spout)
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
-                .each(new Fields("input"), new ZValueFunction(), new Fields("zValue"))
-                .aggregate(new Fields("input", "zValue"), new SortAggregator(nbParts), new Fields("inputZValue", "numPartition"))
-                .partitionBy(new Fields("numPartition"))
-                .each(new Fields("inputZValue"), new testFunction("f"), new Fields("blabla"))
-                .parallelismHint(nbParts)
-                .shuffle()
-                .each(new Fields("blabla"), new testFunction("Hey! "), new Fields("blabla2"))
-                .parallelismHint(1);*/
 
        Stream firstStream = topology.newStream("kafka-spout", spout)
                 .shuffle()

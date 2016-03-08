@@ -1,15 +1,12 @@
 package tridentFunctions.zValue;
 
 
-import backtype.storm.tuple.Values;
-import convert_coord.Zorder;
 import inputClass.InputZValue;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import otherClass.HBaseDB;
-import otherClass.Restaurant;
-import otherClass.ZLimits;
-import otherClass.parseJSONtoDB;
+import hbase.HBaseDB;
+import hbase.parseJSONtoDB;
+import otherClass.RestaurantZValue;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.operation.TridentOperationContext;

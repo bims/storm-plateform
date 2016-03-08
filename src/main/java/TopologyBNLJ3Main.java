@@ -1,7 +1,7 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
-import otherClass.HBaseDB;
+import hbase.HBaseDB;
 import otherClass.MyConstants;
 import storm.kafka.BrokerHosts;
 import storm.kafka.ZkHosts;
@@ -12,16 +12,16 @@ import storm.trident.TridentTopology;
 import tridentFunctions.InputCompareToDBFunction;
 import tridentFunctions.InputNormalizerFunction;
 import tridentFunctions.ReducekNNFunction;
+import tridentFunctions.PartitionFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class TopologyBatchMain {
+public class TopologyBNLJ3Main {
     public static void main(String[] args) throws InterruptedException {
 
          /*Creation du spout Kafka pour Trident*/
-        BrokerHosts zk = new ZkHosts("localhost:"+MyConstants.KAFKA_ZK_PORT);
+        BrokerHosts zk = new ZkHosts("localhost:"+ MyConstants.KAFKA_ZK_PORT);
 
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
         spoutConf.fetchSizeBytes = 1000; //Sliding window
@@ -29,27 +29,50 @@ public class TopologyBatchMain {
         int size = 380;
         int nbParts = 4;
         int k = 11;
+        if(args.length == 2){
+            nbParts = Integer.parseInt(args[0]);
+            k = Integer.parseInt(args[1]);
+        }
 
         OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
 
         TridentTopology topology=new TridentTopology();
-
 
         Stream stream = topology.newStream("kafka-spout", spout)
                 .shuffle()
                 .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
                 .parallelismHint(nbParts);
 
-        List<String> outputFields = new ArrayList<>();
-        outputFields.add("input");
+        //allStreams(i,j) contient RiSj
+        List<List<Stream>> allStreams = new ArrayList<>();
 
         for(int i=0; i<nbParts; i++){
-            stream = stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i));
-            outputFields.add("Partition S" + i);
+            List<Stream> streams = new ArrayList<>();
+            Stream partitionStream = stream.each(new Fields("input"), new PartitionFilter(i)).shuffle();
+            for(int j=0; j<nbParts; j++) {
+                streams.add(partitionStream.each(new Fields("input"),
+                        new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[j], size / nbParts),
+                        new Fields("Partition S" + j))
+                        .parallelismHint(1));
+            }
+            allStreams.add(streams);
         }
 
-        stream.each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
+        List<String> outputFields = new ArrayList<>();
+        outputFields.add("bytes");
+        outputFields.add("input");
 
+        List<Fields> joinFields = new ArrayList<>();
+        for(int i=0; i<nbParts; i++){
+            outputFields.add("Partition S" + i);
+            joinFields.add(new Fields("bytes","input"));
+        }
+
+        for(int i=0; i<nbParts; i++){
+            //On applique la jointure sur les RiS(0-nbParts) puis on fait le Reduce kNN
+            topology.join(allStreams.get(i),joinFields,new Fields(outputFields))
+            .each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
+        }
 
 
         Config conf;
@@ -62,6 +85,6 @@ public class TopologyBatchMain {
         System.err.println("START!!!!!!!!!!!!!!!!!!!!");
 
         cluster.submitTopology("Trident-Topology", conf, topology.build());
-    }
 
+    }
 }

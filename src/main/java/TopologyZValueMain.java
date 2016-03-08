@@ -1,25 +1,19 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
-import otherClass.HBaseDB;
+import hbase.HBaseDB;
 import otherClass.MyConstants;
-import otherClass.ZLimits;
 import storm.kafka.BrokerHosts;
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
-import storm.trident.operation.BaseFunction;
-import tridentFunctions.InputCompareToDBFunction;
 import tridentFunctions.InputNormalizerFunction;
 import tridentFunctions.PartitionFilter;
-import tridentFunctions.ReducekNNFunction;
 import tridentFunctions.zValue.*;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class TopologyZValueMain {
@@ -30,9 +24,13 @@ public class TopologyZValueMain {
         TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
         //spoutConf.fetchSizeBytes = 1000; //Sliding window
 
-        int size = 380;
-        int nbParts = 2;
+        int size = 383;
+        int nbParts = 4;
         int k = 11;
+        if(args.length == 2){
+            nbParts = Integer.parseInt(args[0]);
+            k = Integer.parseInt(args[1]);
+        }
 
         int nbTuples[] = HBaseDB.getNbItems(size,nbParts);
         int startId[] = HBaseDB.getStartIds(nbParts,nbTuples);

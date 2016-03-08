@@ -10,15 +10,20 @@ import java.util.Random;
 
 public class MyProducer {
 
-    public static final double ONE_MOVE = 1;
+    public static final double ONE_MOVE = 0.05;
 
     public static void main(String[] args){
-        long events = 20;// nombre de messages
+
+        long events;
+        if(args.length == 1){
+            events = Integer.parseInt(args[0]);
+        }
+        else events = 20;// nombre de messages
         Random rnd = new Random();
 
         //Variables utilisees pour la simulation
-        double x = 40.69;
-        double y = 2.24;
+        double x = 43.306;
+        double y = 7.246;
 
         Properties props = new Properties();
 

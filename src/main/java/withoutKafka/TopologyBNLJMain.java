@@ -4,29 +4,24 @@ import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
-import otherClass.HBaseDB;
-import otherClass.MyConstants;
-import storm.kafka.BrokerHosts;
-import storm.kafka.ZkHosts;
-import storm.kafka.trident.OpaqueTridentKafkaSpout;
-import storm.kafka.trident.TridentKafkaConfig;
+import hbase.HBaseDB;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
 import storm.trident.testing.FixedBatchSpout;
 import tridentFunctions.InputCompareToDBFunction;
-import tridentFunctions.InputNormalizerFunction;
 import tridentFunctions.ReducekNNFunction;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TopologyBNLJMain {
     public static void main(String[] args) throws InterruptedException {
 
          /*Creation du spout Kafka pour Trident*/
-        /*BrokerHosts zk = new ZkHosts("localhost:"+ MyConstants.KAFKA_ZK_PORT);
+        //BrokerHosts zk = new ZkHosts("localhost:"+MyConstants.KAFKA_ZK_PORT);
 
-        TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
+        /*TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
         spoutConf.fetchSizeBytes = 1000; //Sliding window*/
 
         int size = 380;
@@ -35,38 +30,30 @@ public class TopologyBNLJMain {
 
         //OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
 
-        TridentTopology topology=new TridentTopology();
-
         FixedBatchSpout spout = new FixedBatchSpout(new Fields("bytes"),20,
                 new Values("44.3 3.3"),new Values("42.3 3.3"),new Values("44.0 3.3"),
                 new Values("42.3 3.3"),new Values("40.3 3.3"),new Values("42.3 3.3"),
-                new Values("43.1 3.3"),new Values("43.0 3.3"),new Values("42.3 3.3"),new Values("41.3 3.3"));
+        new Values("43.1 3.3"),new Values("43.0 3.3"),new Values("42.3 3.3"),new Values("41.3 3.3"));
 
         spout.setCycle(true);
 
-        List<String> outputFields = new ArrayList<>();
-        outputFields.add("bytes");
-        outputFields.add("input");
-
-        List<Fields> joinFields = new ArrayList<>();
+        TridentTopology topology=new TridentTopology();
 
         Stream stream = topology.newStream("kafka-spout", spout)
                 .shuffle()
-                .each(new Fields("bytes"), new InputNormalizerFunction(), new Fields("input"))
-                .parallelismHint(nbParts)
-                .shuffle();
+                .each(new Fields("bytes"), new withoutKafka.InputNormalizerFunction(), new Fields("input"))
+                .parallelismHint(nbParts);
 
-        List<Stream> streams = new ArrayList<>();
+        List<String> outputFields = new ArrayList<>();
+        outputFields.add("input");
 
-        for(int i=0; i<nbParts; i++) {
-            streams.add(stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i))
-                    .parallelismHint(1));
+        for(int i=0; i<nbParts; i++){
+            stream = stream.each(new Fields("input"), new InputCompareToDBFunction(k, HBaseDB.getIndiceDB(size, nbParts)[i], size / nbParts), new Fields("Partition S" + i));
             outputFields.add("Partition S" + i);
-            joinFields.add(new Fields("bytes","input"));
         }
 
-        topology.join(streams,joinFields,new Fields(outputFields))
-        .each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
+        stream.each(new Fields(outputFields), new ReducekNNFunction(k, nbParts), new Fields("Finaloutput"));
+
 
 
         Config conf;
@@ -79,6 +66,6 @@ public class TopologyBNLJMain {
         System.err.println("START!!!!!!!!!!!!!!!!!!!!");
 
         cluster.submitTopology("Trident-Topology", conf, topology.build());
-
     }
+
 }

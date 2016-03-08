@@ -4,16 +4,10 @@ import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
-import otherClass.HBaseDB;
-import otherClass.MyConstants;
-import storm.kafka.BrokerHosts;
-import storm.kafka.ZkHosts;
-import storm.kafka.trident.OpaqueTridentKafkaSpout;
-import storm.kafka.trident.TridentKafkaConfig;
+import hbase.HBaseDB;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
 import storm.trident.testing.FixedBatchSpout;
-import tridentFunctions.InputNormalizerFunction;
 import tridentFunctions.PartitionFilter;
 import tridentFunctions.zValue.ReducezkNNFunction;
 import tridentFunctions.zValue.SortAggregator;
@@ -25,11 +19,6 @@ import java.util.List;
 
 public class TopologyZValueMain {
     public static void main(String[] args) throws InterruptedException {
-        /*Creation du spout Kafka pour Trident*/
-        /*BrokerHosts zk = new ZkHosts("localhost:"+ MyConstants.KAFKA_ZK_PORT);
-
-        TridentKafkaConfig spoutConf = new TridentKafkaConfig(zk, MyConstants.TOPIC_NAME);
-        //spoutConf.fetchSizeBytes = 1000; //Sliding window*/
 
         int size = 380;
         int nbParts = 2;
@@ -37,8 +26,6 @@ public class TopologyZValueMain {
 
         int nbTuples[] = HBaseDB.getNbItems(size,nbParts);
         int startId[] = HBaseDB.getStartIds(nbParts,nbTuples);
-
-        //OpaqueTridentKafkaSpout spout = new OpaqueTridentKafkaSpout(spoutConf);
 
         TridentTopology topology=new TridentTopology();
 

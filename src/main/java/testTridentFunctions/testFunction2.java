@@ -1,17 +1,10 @@
 package testTridentFunctions;
 
-import backtype.storm.tuple.Values;
-import inputClass.Input;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import otherClass.HBaseDB;
-import otherClass.Restaurant;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.operation.TridentOperationContext;
 import storm.trident.tuple.TridentTuple;
 
-import java.io.IOException;
 import java.util.*;
 
 
