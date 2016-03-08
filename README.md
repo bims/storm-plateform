@@ -8,7 +8,9 @@ An implementation of kNN algorithm on a real-time platform, namely a Trident top
 command that you have one running process called `HMaster`.
 - Then, after importing all the dependencies with Maven, run the main class `hbase.parseJSONtoDB`. It will
 create and populate a database. If you want to process z-Value based algorithms, you need to populate 
-the database with sorted items along with their z-Values. To do so, give the number 1 as argument to the program.
+the database with sorted items along with their z-Values. To do so, give the number 1 as argument to the program. 
+/!\ Notice that a z-Value based database will not work with the BNLJ topologies. You can re-run the main class if you
+want to recreate the database.
 
 #### Kafka part
 - Run the main class `kafka.MyKafkaCluster`. It will create a Kafka cluster and a topic.

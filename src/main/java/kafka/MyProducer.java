@@ -39,11 +39,11 @@ public class MyProducer {
 
         for (long nEvents = 0; nEvents < events; nEvents++) {
             //On genere les deplacements
-            if(rnd.nextBoolean()){
+            if(rnd.nextInt(4)!=1){
                 x = x + ONE_MOVE;
             }
             else x = x - ONE_MOVE;
-            if(rnd.nextBoolean()){
+            if(rnd.nextInt(4)!=1){
                 y = y + ONE_MOVE;
             }
             else y = y - ONE_MOVE;

@@ -5,7 +5,7 @@ import java.math.BigInteger;
 /**
  * Created by sy306571 on 01/03/16.
  */
-public class RestaurantZValue extends Restaurant implements Comparable<RestaurantZValue>{
+public class RestaurantZValue implements Comparable<RestaurantZValue>{
     private String id;
     private String lat;
     private String lon;
